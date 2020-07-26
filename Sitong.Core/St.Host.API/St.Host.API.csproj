@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\St.Common\St.Common.csproj" />
+    <ProjectReference Include="..\St.Extensions\St.Extensions.csproj" />
+    <ProjectReference Include="..\St.ServiceExtensions\St.ServiceExtensions.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ConfigurationExtensions\" />
+  </ItemGroup>
+
+</Project>
