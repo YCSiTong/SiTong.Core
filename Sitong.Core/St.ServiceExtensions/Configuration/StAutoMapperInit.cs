@@ -1,7 +1,6 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.DependencyInjection;
-using St.AutoMapper;
+﻿using Microsoft.Extensions.DependencyInjection;
 using St.Extensions;
+using St.Application.AutoMapper;
 
 namespace St.ServiceExtensions.Configuration
 {
@@ -15,7 +14,7 @@ namespace St.ServiceExtensions.Configuration
         {
             services.NotNull(nameof(IServiceCollection));
 
-            services.AddAutoMapper(typeof(StAutoMapperProFile));
+            //services.AddAutoMapper(typeof(StAutoMapperProFile));
         }
     }
 }

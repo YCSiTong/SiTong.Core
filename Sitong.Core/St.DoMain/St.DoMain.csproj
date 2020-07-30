@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\St.EfCore\St.EfCore.csproj" />
+  </ItemGroup>
+
 </Project>

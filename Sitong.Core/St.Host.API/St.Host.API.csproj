@@ -10,8 +10,4 @@
     <ProjectReference Include="..\St.ServiceExtensions\St.ServiceExtensions.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ConfigurationExtensions\" />
-  </ItemGroup>
-
 </Project>
