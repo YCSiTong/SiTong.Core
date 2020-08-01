@@ -1,8 +1,12 @@
 ﻿using St.Exceptions;
 using System;
+using System.Collections.Generic;
 
 namespace St.Extensions
 {
+    /// <summary>
+    /// 检查参数抛出异常
+    /// </summary>
     public static class CheckException
     {
         /// <summary>
@@ -78,7 +82,16 @@ namespace St.Extensions
         {
             ThrowEx<ArgumentException>(val.Length > 0, $"参数<{paramName}>至少有1个以上值");
         }
-
+        /// <summary>
+        /// 验证参数类型<see cref="List{T}"/>是否至少具有一个值或不为Null,抛出<see cref="ArgumentException"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="val">List</param>
+        /// <param name="paramName">参数名称</param>
+        public static void CheckList<T>(this List<T> val, string paramName)
+        {
+            ThrowEx<ArgumentException>(val.Count == 0 || val == null, $"参数<{paramName}>Count为0或本身Null");
+        }
 
 
 

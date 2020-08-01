@@ -16,6 +16,7 @@ namespace St.ServiceExtensions.Configuration
         public static void AddSwaggerStartUp(this IServiceCollection services, Action<SwaggerOptions> options)
         {
             services.NotNull(nameof(IServiceCollection));
+            services.NotNull(nameof(Action<SwaggerOptions>));
 
             var model = new SwaggerOptions();
             options(model);

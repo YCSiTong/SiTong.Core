@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using St.Common.Helper;
-using St.Common.RedisCaChe;
+using St.EfCore;
 using St.Extensions;
 using St.ServiceExtensions.Configuration;
 using St.ServiceExtensions.Configuration.AutoFac;
@@ -37,19 +37,19 @@ namespace St.Host.API
             services.AddSingleton(new AppSettings(Env.ContentRootPath));
             #endregion
             #region 注入Redis服务 
-            if (Configuration["Redis:Enabled"].ObjToBool())
+            if (Configuration["Redis:Enabled"].ToBool())
             {
-                services.AddScoped<IRedisCaChe, RedisCaChe>();
+                services.AddRedisStartUp();
             }
             #endregion
             #region 注入MemoryCaChe服务
-            if (Configuration["MemoryCaChe:Enabled"].ObjToBool())
+            if (Configuration["MemoryCaChe:Enabled"].ToBool())
             {
                 services.AddMemoryCaCheStartUp();
             }
             #endregion
             #region 注入Swagger
-            if (Configuration["SwaggerOptions:Enabled"].ObjToBool())
+            if (Configuration["SwaggerOptions:Enabled"].ToBool())
             {
                 services.AddSwaggerStartUp(op =>
                 {
@@ -62,7 +62,7 @@ namespace St.Host.API
             }
             #endregion
             #region 注入验证授权
-            if (Configuration["Authorize:Enabled"].ObjToBool())
+            if (Configuration["Authorize:Enabled"].ToBool())
             {
                 services.AddAuthorizeStartUp(op =>
                 {
@@ -80,7 +80,7 @@ namespace St.Host.API
             services.AddAutoMapperStartUp();
             #endregion
             #region 注入Cors
-            if (Configuration["Cors:Enabled"].ObjToBool())
+            if (Configuration["Cors:Enabled"].ToBool())
             {
                 services.AddCorsStartUp(op =>
                 {
@@ -95,7 +95,7 @@ namespace St.Host.API
             }
             #endregion
             #region 注入EfCore中DbContext
-            services.AddDbContextStartUp(op =>
+            services.AddDbContextStartUp<StDbContext>(op =>
             {
                 op.ConnectionString = Configuration["SqlDbContext:SqlServer:SqlConnection"];
                 op.DataBase = DataBaseType.SqlServer;
@@ -128,18 +128,18 @@ namespace St.Host.API
             }
 
             #region 开启Swagger
-            if (Configuration["SwaggerOptions:Enabled"].ObjToBool())
+            if (Configuration["SwaggerOptions:Enabled"].ToBool())
             {
                 app.UseSwagger(op =>
                 {
                     op.Name = Configuration["SwaggerOptions:Name"];
                     op.Version = Configuration["SwaggerOptions:Version"];
-                    op.IsOpenMiniProfiler = Configuration["MiniProfiler:Enabled"].ObjToBool();
+                    op.IsOpenMiniProfiler = Configuration["MiniProfiler:Enabled"].ToBool();
                 });
             }
             #endregion
             #region 是否开启Cors跨域
-            if (Configuration["Cors:Enabled"].ObjToBool())
+            if (Configuration["Cors:Enabled"].ToBool())
             {
                 app.UseCors(_DefaultCorsName);
             }

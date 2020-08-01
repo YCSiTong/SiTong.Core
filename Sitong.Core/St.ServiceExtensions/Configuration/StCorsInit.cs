@@ -14,6 +14,7 @@ namespace St.ServiceExtensions.Configuration
         public static void AddCorsStartUp(this IServiceCollection services, Action<CorsOptions> options)
         {
             services.NotNull(nameof(IServiceCollection));
+            services.NotNull(nameof(Action<CorsOptions>));
 
             var model = new CorsOptions();
             options(model);

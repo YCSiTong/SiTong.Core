@@ -1,7 +1,7 @@
-﻿using System;
+﻿using St.DoMain.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace St.DoMain.Interfaces
@@ -10,7 +10,7 @@ namespace St.DoMain.Interfaces
     /// 泛型仓储，实现泛型仓储接口
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public interface IRepository<TEntity> : IDisposable where TEntity : class
+    public interface IRepository<TEntity, TKey> : IAsyncDisposable, IDisposable where TEntity : class, IAggregateRoot<TKey>
     {
 
         /// <summary>
@@ -19,18 +19,30 @@ namespace St.DoMain.Interfaces
         IUnitOfWork UnitOfWork { get; }
 
 
-        #region IQueryable
+        #region Query
         /// <summary>
-        /// 不追踪实体获取<see cref="IQueryable"/>
+        /// 不追踪实体获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <returns><see cref="IQueryable"/>延迟加载</returns>
         IQueryable<TEntity> AsNoTracking();
 
         /// <summary>
-        /// 追踪实体获取<see cref="IQueryable"/>
+        /// 追踪实体获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <returns><see cref="IQueryable"/>延迟加载</returns>
         IQueryable<TEntity> AsTracking();
+        /// <summary>
+        /// 根据主键<typeparamref name="TKey"/>获取<typeparamref name="TEntity"/>
+        /// </summary>
+        /// <param name="key">主键值</param>
+        /// <returns></returns>
+        TEntity GetById(TKey key);
+        /// <summary>
+        /// 根据主键<typeparamref name="TKey"/>异步获取<typeparamref name="TEntity"/>
+        /// </summary>
+        /// <param name="key">主键值</param>
+        /// <returns></returns>
+        Task<TEntity> GetByIdAsync(TKey key);
 
         #endregion
 
@@ -52,12 +64,6 @@ namespace St.DoMain.Interfaces
         #endregion
 
         #region Delete
-        /// <summary>
-        /// 删除单条数据
-        /// </summary>
-        /// <param name="id">主键</param>
-        /// <returns><see cref="bool"/>是否成功</returns>
-        Task<bool> DeleteByIDAsync(object id);
         /// <summary>
         /// 删除单条数据
         /// </summary>
@@ -107,12 +113,6 @@ namespace St.DoMain.Interfaces
         #endregion
 
         #region Delete
-        /// <summary>
-        /// 删除单条数据
-        /// </summary>
-        /// <param name="id">主键</param>
-        /// <returns><see cref="bool"/>是否成功</returns>
-        bool DeleteByID(object id);
         /// <summary>
         /// 删除单条数据
         /// </summary>

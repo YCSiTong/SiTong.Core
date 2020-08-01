@@ -12,6 +12,7 @@ namespace St.ServiceExtensions.Configuration
         public static void AddAuthorizeStartUp(this IServiceCollection services, Action<AuthorizeOptions> options)
         {
             services.NotNull(nameof(IServiceCollection));
+            services.NotNull(nameof(Action<AuthorizeOptions>));
 
             var model = new AuthorizeOptions();
             options(model);

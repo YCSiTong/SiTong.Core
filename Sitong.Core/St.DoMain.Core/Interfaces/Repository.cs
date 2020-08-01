@@ -1,119 +1,249 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using St.DoMain.Entity;
 using St.DoMain.Interfaces;
-using St.EfCore;
+using St.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace St.DoMain.Core.Interfaces
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class Repository<TEntity, TKey> : IRepository<TEntity, TKey>
+        where TEntity : class, IAggregateRoot<TKey>
     {
-        private readonly DbContext _StDb;
-        private readonly DbSet<TEntity> _StSet;
+        private readonly DbContext _StDb;// 上下文对象
+        private readonly DbSet<TEntity> _Entities;// 具体操作对象
 
         public Repository(IServiceProvider provider)
         {
             UnitOfWork = (provider.GetService(typeof(IUnitOfWork)) as IUnitOfWork);
             _StDb = UnitOfWork.GetDb();
-            _StSet = _StDb.Set<TEntity>();
+            _Entities = _StDb.Set<TEntity>();
         }
+
+        private bool Save()
+            => _StDb.SaveChanges() > 0;
+        private async Task<bool> SaveAsync()
+            => await _StDb.SaveChangesAsync() > 0;
+
+
         /// <summary>
         /// 工作单元
         /// </summary>
         public virtual IUnitOfWork UnitOfWork { get; }
 
+        #region Query
+
         /// <summary>
-        /// 不追踪实体获取<see cref="IQueryable"/>
+        /// 不追踪实体获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <returns><see cref="IQueryable"/>延迟加载</returns>
-        public virtual IQueryable<TEntity> AsNoTracking()
-            => _StSet.AsNoTracking();
+        public virtual IQueryable<TEntity> AsNoTracking() => _Entities.AsNoTracking();
+
         /// <summary>
-        /// 追踪实体获取<see cref="IQueryable"/>
+        /// 追踪实体获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <returns><see cref="IQueryable"/>延迟加载</returns>
-        public virtual IQueryable<TEntity> AsTracking()
-            => _StSet.AsTracking();
+        public virtual IQueryable<TEntity> AsTracking() => _Entities;
 
-        public bool Delete(TEntity model)
+        /// <summary>
+        /// 根据主键<typeparamref name="TKey"/>获取<typeparamref name="TEntity"/>
+        /// </summary>
+        /// <param name="key">主键值</param>
+        /// <returns></returns>
+        public virtual TEntity GetById(TKey key) => _Entities.Find(key);
+
+        /// <summary>
+        /// 根据主键<typeparamref name="TKey"/>异步获取<typeparamref name="TEntity"/>
+        /// </summary>
+        /// <param name="key">主键值</param>
+        /// <returns></returns>
+        public virtual async Task<TEntity> GetByIdAsync(TKey key) => await _Entities.FindAsync(key);
+
+        #endregion
+
+
+        #region Delete
+
+        /// <summary>
+        /// 删除单条数据
+        /// </summary>
+        /// <param name="model">实体</param>
+        /// <returns><see cref="bool"/>是否成功</returns>
+        public virtual bool Delete(TEntity model)
         {
-            throw new NotImplementedException();
+            model.NotNull(nameof(TEntity));
+            _Entities.Remove(model);
+            return Save();
         }
 
-        public bool Delete(IEnumerable<TEntity> model)
+        /// <summary>
+        /// 批量删除数据
+        /// </summary>
+        /// <param name="model">实体</param>
+        /// <returns><see cref="bool"/>是否成功</returns>
+        public virtual bool Delete(IEnumerable<TEntity> model)
         {
-            throw new NotImplementedException();
+            model.NotNull(nameof(IEnumerable<TEntity>));
+
+            _Entities.RemoveRange(model);
+            return Save();
         }
 
-        public Task<bool> DeleteAsync(TEntity model)
+        /// <summary>
+        /// 异步删除单条数据
+        /// </summary>
+        /// <param name="model">实体</param>
+        /// <returns><see cref="bool"/>是否成功</returns>
+        public virtual async Task<bool> DeleteAsync(TEntity model)
         {
-            throw new NotImplementedException();
+            model.NotNull(nameof(TEntity));
+            _Entities.Remove(model);
+            return await SaveAsync();
         }
 
-        public Task<bool> DeleteAsync(IEnumerable<TEntity> model)
+        /// <summary>
+        /// 异步批量删除数据
+        /// </summary>
+        /// <param name="model">实体</param>
+        /// <returns><see cref="bool"/>是否成功</returns>
+        public virtual async Task<bool> DeleteAsync(IEnumerable<TEntity> model)
         {
-            throw new NotImplementedException();
+            model.NotNull(nameof(IEnumerable<TEntity>));
+            _Entities.RemoveRange(model);
+            return await SaveAsync();
         }
 
-        public bool DeleteByID(object id)
+        #endregion
+
+        #region Insert
+
+        /// <summary>
+        /// 批量新增数据
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns><see cref="bool"/>是否成功</returns>
+        public virtual bool Insert(TEntity model)
         {
-            throw new NotImplementedException();
+            model.NotNull(nameof(TEntity));
+            _Entities.Add(model);
+            return Save();
         }
 
-        public Task<bool> DeleteByIDAsync(object id)
+        /// <summary>
+        /// 批量新增数据
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns><see cref="bool"/>是否成功</returns>
+        public virtual bool Insert(IEnumerable<TEntity> model)
         {
-            throw new NotImplementedException();
+            model.NotNull(nameof(IEnumerable<TEntity>));
+            _Entities.AddRange(model);
+            return Save();
         }
 
-        public bool Insert(TEntity model)
+        /// <summary>
+        /// 异步新增单条数据
+        /// </summary>
+        /// <param name="model">实体类</param>
+        /// <returns><see cref="bool"/>是否成功</returns>
+        public virtual async Task<bool> InsertAsync(TEntity model)
         {
-            throw new NotImplementedException();
+            model.NotNull(nameof(TEntity));
+            await _Entities.AddAsync(model);
+            return await SaveAsync();
         }
 
-        public bool Insert(IEnumerable<TEntity> model)
+        /// <summary>
+        /// 异步批量新增数据
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns><see cref="bool"/>是否成功</returns>
+        public virtual async Task<bool> InsertAsync(IEnumerable<TEntity> model)
         {
-            throw new NotImplementedException();
+            model.NotNull(nameof(IEnumerable<TEntity>));
+            await _Entities.AddRangeAsync(model);
+            return await SaveAsync();
         }
 
-        public Task<bool> InsertAsync(TEntity model)
+        #endregion
+
+        #region Update
+        /// <summary>
+        /// 更新单条数据
+        /// </summary>
+        /// <param name="model">需要修改的数据</param>
+        /// <returns><see cref="bool"/>是否成功</returns>
+        public virtual bool Updata(TEntity model)
         {
-            throw new NotImplementedException();
+            model.NotNull(nameof(TEntity));
+            _Entities.Update(model);
+            return Save();
         }
 
-        public Task<bool> InsertAsync(IEnumerable<TEntity> model)
+        /// <summary>
+        /// 批量更新数据
+        /// </summary>
+        /// <param name="model">需要修改的数据</param>
+        /// <returns><see cref="bool"/>是否成功</returns>
+        public virtual bool Updata(IEnumerable<TEntity> model)
         {
-            throw new NotImplementedException();
+            model.NotNull(nameof(IEnumerable<TEntity>));
+            _Entities.UpdateRange(model);
+            return Save();
         }
 
-        public bool Updata(TEntity model)
+        /// <summary>
+        /// 异步更新单条数据
+        /// </summary>
+        /// <param name="model">需要修改的数据</param>
+        /// <returns><see cref="bool"/>是否成功</returns>
+        public virtual async Task<bool> UpdataAsync(TEntity model)
         {
-            throw new NotImplementedException();
+            model.NotNull(nameof(TEntity));
+            _Entities.Update(model);
+            return await SaveAsync();
         }
 
-        public bool Updata(IEnumerable<TEntity> model)
+        /// <summary>
+        /// 异步批量更新数据
+        /// </summary>
+        /// <param name="model">需要修改的数据</param>
+        /// <returns><see cref="bool"/>是否成功</returns>
+        public virtual async Task<bool> UpdataAsync(IEnumerable<TEntity> model)
         {
-            throw new NotImplementedException();
+            model.NotNull(nameof(TEntity));
+            _Entities.UpdateRange(model);
+            return await SaveAsync();
         }
 
-        public Task<bool> UpdataAsync(TEntity model)
-        {
-            throw new NotImplementedException();
-        }
+        #endregion
 
-        public Task<bool> UpdataAsync(IEnumerable<TEntity> model)
-        {
-            throw new NotImplementedException();
-        }
+
+        private bool _Disposed = false; // 避免重复手动释放
 
         /// <summary>
         /// 释放资源 
         /// </summary>
         public void Dispose()
         {
+            if (_Disposed)
+                return;
+
             _StDb.Dispose();
+            GC.SuppressFinalize(this);
+            _Disposed = true;
+        }
+        /// <summary>
+        /// 异步释放资源
+        /// </summary>
+        /// <returns></returns>
+        public async ValueTask DisposeAsync()
+        {
+            if (_Disposed)
+                return;
+            await _StDb.DisposeAsync();
             GC.SuppressFinalize(this);
         }
 

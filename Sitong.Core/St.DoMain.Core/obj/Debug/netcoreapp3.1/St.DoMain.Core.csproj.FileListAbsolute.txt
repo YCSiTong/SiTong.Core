@@ -10,3 +10,9 @@ D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.csproj.CopyComplete
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.dll
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.pdb
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.EfCore.dll
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Exceptions.dll
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Extensions.dll
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Extensions.pdb
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.EfCore.pdb
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Exceptions.pdb

@@ -1,9 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Data;
 using System.Threading.Tasks;
-using System.Transactions;
 
 namespace St.DoMain.Interfaces
 {
@@ -18,12 +16,48 @@ namespace St.DoMain.Interfaces
         /// <returns></returns>
         DbContext GetDb();
 
+        /// <summary>
+        /// 执行委托<see cref="Action"/>事务
+        /// </summary>
+        /// <param name="action">需要执行的代码块</param>
+        void UseTransaction(Action action);
+
+        /// <summary>
+        /// 执行委托<see cref="Func{TResult}"/>事务
+        /// </summary>
+        /// <param name="action">需要执行的代码块</param>
+        /// <returns><see cref="Task{TResult}"/></returns>
+        Task<T> UseTransactionAsync<T>(Func<Task<T>> action);
+
+        /// <summary>
+        /// 执行委托<see cref="Func{TResult}"/>事务
+        /// </summary>
+        /// <param name="action">需要执行的代码块</param>
+        /// <returns><see cref="Task"/></returns>
+        Task UseTransactionAsync(Func<Task> action);
+
+        /// <summary>
+        /// 执行委托<see cref="Func{TResult}"/>事务
+        /// </summary>
+        /// <param name="action">需要执行的代码块</param>
+        /// <param name="isolationLevel">事务级别</param>
+        /// <returns><see cref="Task{TResult}"/></returns>
+        Task<T> UseTransactionAsync<T>(Func<Task<T>> action, IsolationLevel isolationLevel);
+
+        /// <summary>
+        /// 执行委托<see cref="Func{TResult}"/>事务
+        /// </summary>
+        /// <param name="action">需要执行的代码块</param>
+        /// <param name="isolationLevel">事务级别</param>
+        /// <returns><see cref="Task"/></returns>
+        Task UseTransactionAsync(Func<Task> action, IsolationLevel isolationLevel);
 
         /// <summary>
         /// 开启事务
         /// </summary>
         /// <returns></returns>
         Task BeginTransactionAsync();
+
         /// <summary>
         /// 开启事务
         /// </summary>
@@ -38,7 +72,7 @@ namespace St.DoMain.Interfaces
         Task CommitAsync();
 
         /// <summary>
-        /// 回滚事务
+        /// 事务回滚
         /// </summary>
         /// <returns></returns>
         Task RollBackAsync();
@@ -47,6 +81,7 @@ namespace St.DoMain.Interfaces
         /// 开启事务
         /// </summary>
         void BeginTransaction();
+
         /// <summary>
         /// 开启事务
         /// </summary>
@@ -62,5 +97,6 @@ namespace St.DoMain.Interfaces
         /// 事务回滚
         /// </summary>
         void RollBack();
+
     }
 }

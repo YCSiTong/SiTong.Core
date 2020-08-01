@@ -1279,6 +1279,29 @@
         "runtime": {
           "bin/placeholder/St.EfCore.dll": {}
         }
+      },
+      "St.Exceptions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "compile": {
+          "bin/placeholder/St.Exceptions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/St.Exceptions.dll": {}
+        }
+      },
+      "St.Extensions/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v3.1",
+        "dependencies": {
+          "St.Exceptions": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/St.Extensions.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/St.Extensions.dll": {}
+        }
       }
     }
   },
@@ -4959,11 +4982,22 @@
       "type": "project",
       "path": "../St.EfCore/St.EfCore.csproj",
       "msbuildProject": "../St.EfCore/St.EfCore.csproj"
+    },
+    "St.Exceptions/1.0.0": {
+      "type": "project",
+      "path": "../St.Exceptions/St.Exceptions.csproj",
+      "msbuildProject": "../St.Exceptions/St.Exceptions.csproj"
+    },
+    "St.Extensions/1.0.0": {
+      "type": "project",
+      "path": "../St.Extensions/St.Extensions.csproj",
+      "msbuildProject": "../St.Extensions/St.Extensions.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "St.DoMain >= 1.0.0"
+      "St.DoMain >= 1.0.0",
+      "St.Extensions >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -4994,6 +5028,9 @@
           "projectReferences": {
             "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj": {
               "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj"
+            },
+            "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj": {
+              "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj"
             }
           }
         }

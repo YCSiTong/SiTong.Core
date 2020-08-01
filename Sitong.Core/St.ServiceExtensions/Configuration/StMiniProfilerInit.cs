@@ -15,7 +15,7 @@ namespace St.ServiceExtensions.Configuration
         public static void AddMiniProfilerStartUp(this IServiceCollection services, Action<RenderPosition> options)
         {
             services.NotNull(nameof(IServiceCollection));
-
+            services.NotNull(nameof(Action<RenderPosition>));
             var model = new RenderPosition();
             options(model);
 

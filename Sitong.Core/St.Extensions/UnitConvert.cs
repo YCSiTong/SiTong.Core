@@ -9,7 +9,7 @@ namespace St.Extensions
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
-        public static bool ObjToBool(this object val)
+        public static bool ToBool(this object val)
         {
             if (val.ToString().Length > 0 && val != DBNull.Value)
             {
@@ -24,7 +24,7 @@ namespace St.Extensions
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
-        public static int ObjToInt(this object val)
+        public static int ToInt(this object val)
         {
             if (val.ToString().Length > 0 && val != DBNull.Value)
             {
@@ -39,7 +39,7 @@ namespace St.Extensions
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
-        public static double ObjToDouble(this object val)
+        public static double ToDouble(this object val)
         {
             if (val.ToString().Length > 0 && val != DBNull.Value)
             {
@@ -54,7 +54,7 @@ namespace St.Extensions
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
-        public static decimal ObjToDecimal(this object val)
+        public static decimal ToDecimal(this object val)
         {
             if (val.ToString().Length > 0 && val != DBNull.Value)
             {
@@ -69,7 +69,7 @@ namespace St.Extensions
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
-        public static DateTime ObjToDate(this object val)
+        public static DateTime ToDate(this object val)
         {
             if (val.ToString().Length > 0 && val != DBNull.Value)
             {
@@ -84,7 +84,7 @@ namespace St.Extensions
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
-        public static Guid ObjToGuid(this object val)
+        public static Guid ToGuid(this object val)
         {
             if (val.ToString().Length > 0 && val != DBNull.Value)
             {
@@ -94,5 +94,6 @@ namespace St.Extensions
             else
                 return Guid.Empty;
         }
+
     }
 }

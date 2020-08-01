@@ -182,7 +182,7 @@ namespace St.ServiceExtensions.Aop.BaseCaChe
             }
             string Name = Argument2.Member.Name;
             //string Operator = Convert.ToBoolean(isTrue) ? "in" : " not in";
-            string Operator = isTrue.ObjToBool() ? "in" : " not in";
+            string Operator = isTrue.ToBool() ? "in" : " not in";
             string CompName = string.Join(",", SetInPara);
             string Result = string.Format("{0} {1} ({2})", Name, Operator, CompName);
             return Result;

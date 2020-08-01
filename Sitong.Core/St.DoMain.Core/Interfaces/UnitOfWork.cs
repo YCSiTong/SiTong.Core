@@ -1,26 +1,29 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using St.DoMain.Interfaces;
-using St.EfCore;
+using St.Extensions;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Data;
+using System.Data.Common;
 using System.Threading.Tasks;
-using System.Transactions;
 
 namespace St.DoMain.Core.Interfaces
 {
     /// <summary>
-    /// https://docs.microsoft.com/zh-cn/ef/core/saving/transactions Microsoft => 使用事务
     /// 工作单元实现类.
+    /// https://docs.microsoft.com/zh-cn/ef/core/saving/transactions Microsoft => 使用事务
     /// </summary>
     public class UnitOfWork<TDbContext> : IUnitOfWork where TDbContext : DbContext
     {
-        private readonly TDbContext _Db;
+        private readonly TDbContext _Db;// 上下文对象
 
         public UnitOfWork(TDbContext dbContext)
         {
             _Db = dbContext;
         }
+
+        private DbTransaction _DbTransaction;
+
+        private bool _IsCommit = false;
 
         /// <summary>
         /// 获取DbContext上下文
@@ -28,54 +31,241 @@ namespace St.DoMain.Core.Interfaces
         /// <returns></returns>
         public DbContext GetDb()
         {
-            if (_Db != null)
-            {
+            if (_Db.IsNotNull())
                 return _Db;
+            throw new NullReferenceException("DbContext注入失败!");
+        }
+
+        /// <summary>
+        /// 执行委托<see cref="Action"/>事务
+        /// </summary>
+        /// <param name="action">需要执行的代码块</param>
+        public void UseTransaction(Action action)
+        {
+            action.NotNull(nameof(Action));
+
+            BeginTransaction();
+            action.Invoke();
+            Commit();
+        }
+
+        /// <summary>
+        /// 执行委托<see cref="Func{TResult}"/>事务
+        /// </summary>
+        /// <param name="action">需要执行的代码块</param>
+        /// <returns><see cref="Task{TResult}"/></returns>
+        public async Task<T> UseTransactionAsync<T>(Func<Task<T>> action)
+        {
+            action.NotNull(nameof(Func<Task<T>>));
+
+            await BeginTransactionAsync();
+            var result = await action.Invoke();
+            await CommitAsync();
+            return result;
+        }
+
+        /// <summary>
+        /// 执行委托<see cref="Func{TResult}"/>事务
+        /// </summary>
+        /// <param name="action">需要执行的代码块</param>
+        /// <returns><see cref="Task"/></returns>
+        public async Task UseTransactionAsync(Func<Task> action)
+        {
+            action.NotNull(nameof(Func<Task>));
+
+            await BeginTransactionAsync();
+            await action.Invoke();
+            await CommitAsync();
+        }
+
+        /// <summary>
+        /// 执行委托<see cref="Func{TResult}"/>事务
+        /// </summary>
+        /// <param name="action">需要执行的代码块</param>
+        /// <param name="isolationLevel">事务级别</param>
+        /// <returns><see cref="Task{TResult}"/></returns>
+        public async Task<T> UseTransactionAsync<T>(Func<Task<T>> action, IsolationLevel isolationLevel)
+        {
+            action.NotNull(nameof(Func<Task<T>>));
+
+            await BeginTransactionAsync(isolationLevel);
+            var result = await action.Invoke();
+            await CommitAsync();
+            return result;
+        }
+
+        /// <summary>
+        /// 执行委托<see cref="Func{TResult}"/>事务
+        /// </summary>
+        /// <param name="action">需要执行的代码块</param>
+        /// <param name="isolationLevel">事务级别</param>
+        /// <returns><see cref="Task"/></returns>
+        public async Task UseTransactionAsync(Func<Task> action, IsolationLevel isolationLevel)
+        {
+            action.NotNull(nameof(Func<Task>));
+
+            await BeginTransactionAsync(isolationLevel);
+            await action.Invoke();
+            await CommitAsync();
+        }
+
+        /// <summary>
+        /// 开启事务
+        /// </summary>
+        /// <returns></returns>
+        public virtual async Task BeginTransactionAsync()
+        {
+            if (_DbTransaction.Connection == null)
+            {
+                if (_DbTransaction.Connection.State != ConnectionState.Open)
+                {
+                    await _DbTransaction.Connection.OpenAsync();
+                }
+                _DbTransaction = await _DbTransaction.Connection.BeginTransactionAsync();
             }
-            else
-                throw new NullReferenceException("DbContext注入失败!");
+
+            await _Db.Database.UseTransactionAsync(_DbTransaction);
+            _IsCommit = true;
         }
 
-
-        public void BeginTransaction()
+        /// <summary>
+        /// 开启事务
+        /// </summary>
+        /// <param name="isolationLevel">事务级别</param>
+        /// <returns></returns>
+        public virtual async Task BeginTransactionAsync(IsolationLevel isolationLevel)
         {
-            throw new NotImplementedException();
+            if (_DbTransaction.Connection == null)
+            {
+                if (_DbTransaction.Connection.State != ConnectionState.Open)
+                    await _DbTransaction.Connection.OpenAsync();
+                _DbTransaction = await _DbTransaction.Connection.BeginTransactionAsync(isolationLevel);
+            }
+
+            await _Db.Database.UseTransactionAsync(_DbTransaction);
+            _IsCommit = true;
         }
 
-        public void BeginTransaction(IsolationLevel isolationLevel)
+        /// <summary>
+        /// 提交事务
+        /// </summary>
+        /// <returns></returns>
+        public virtual async Task CommitAsync()
         {
-            throw new NotImplementedException();
+            if (_DbTransaction == null || !_IsCommit)
+                return;
+
+            try
+            {
+                await _DbTransaction.CommitAsync();
+            }
+            catch (Exception ex)
+            {
+                if (_DbTransaction?.Connection != null)
+                    await _DbTransaction.RollbackAsync();
+                throw ex;
+            }
+            finally
+            {
+                if (_Db.Database.CurrentTransaction != null)
+                    await _Db.Database.CurrentTransaction.DisposeAsync();
+                _IsCommit = false;
+            }
+
+
         }
 
-        public Task BeginTransactionAsync()
+        /// <summary>
+        /// 回滚事务
+        /// </summary>
+        /// <returns></returns>
+        public virtual async Task RollBackAsync()
         {
-            throw new NotImplementedException();
+            if (_DbTransaction.Connection != null)
+            {
+                await _DbTransaction.RollbackAsync();
+            }
+
+            if (_Db.Database.CurrentTransaction != null)
+            {
+                await _Db.Database.CurrentTransaction.DisposeAsync();
+            }
+            _IsCommit = false;
         }
 
-        public Task BeginTransactionAsync(IsolationLevel isolationLevel)
+        /// <summary>
+        /// 开启事务
+        /// </summary>
+        public virtual void BeginTransaction()
         {
-            throw new NotImplementedException();
+            if (_DbTransaction.Connection == null)
+            {
+                if (_DbTransaction.Connection.State != ConnectionState.Open)
+                {
+                    _DbTransaction.Connection.Open();
+                }
+                _DbTransaction = _DbTransaction.Connection.BeginTransaction();
+            }
+            _Db.Database.UseTransaction(_DbTransaction);
+            _IsCommit = true;
         }
 
-        public void Commit()
+        /// <summary>
+        /// 开启事务
+        /// </summary>
+        /// <param name="isolationLevel">事务级别</param>
+        public virtual void BeginTransaction(IsolationLevel isolationLevel)
         {
-            throw new NotImplementedException();
+            if (_DbTransaction.Connection == null)
+            {
+                if (_DbTransaction.Connection.State != ConnectionState.Open)
+                    _DbTransaction.Connection.Open();
+                _DbTransaction = _DbTransaction.Connection.BeginTransaction(isolationLevel);
+            }
+
+            _Db.Database.UseTransaction(_DbTransaction);
+            _IsCommit = true;
         }
 
-        public Task CommitAsync()
+        /// <summary>
+        /// 事务提交
+        /// </summary>
+        public virtual void Commit()
         {
-            throw new NotImplementedException();
+            if (_DbTransaction == null || !_IsCommit)
+                return;
+            try
+            {
+                _DbTransaction.Commit();
+
+            }
+            catch (Exception ex)
+            {
+                if (_DbTransaction?.Connection != null)
+                    _DbTransaction.Rollback();
+                throw ex;
+            }
+            finally
+            {
+                if (_Db.Database.CurrentTransaction != null)
+                    _Db.Database.CurrentTransaction.Dispose();
+                _IsCommit = false;
+            }
         }
 
-
-        public void RollBack()
+        /// <summary>
+        /// 事务回滚
+        /// </summary>
+        public virtual void RollBack()
         {
-            throw new NotImplementedException();
+            if (_DbTransaction.Connection != null)
+                _DbTransaction.Rollback();
+
+            if (_Db.Database.CurrentTransaction != null)
+                _Db.Database.CurrentTransaction.Dispose();
+
+            _IsCommit = false;
         }
 
-        public Task RollBackAsync()
-        {
-            throw new NotImplementedException();
-        }
     }
 }

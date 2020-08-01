@@ -23,13 +23,13 @@ namespace St.ServiceExtensions.Configuration.AutoFac
 
             #region 需要开启的Aop
             List<Type> types = new List<Type>();
-            if (AppSettings.GetVal("Aop", "Redis", "Enabled").ObjToBool())
+            if (AppSettings.GetVal("Aop", "Redis", "Enabled").ToBool())
             {
                 var type = typeof(RedisCaCheAop);
                 builder.RegisterType(type);
                 types.Add(type);
             }
-            if (AppSettings.GetVal("Aop", "MemoryCaChe", "Enabled").ObjToBool())
+            if (AppSettings.GetVal("Aop", "MemoryCaChe", "Enabled").ToBool())
             {
                 var type = typeof(MemoryCaCheAop);
                 builder.RegisterType(type);
