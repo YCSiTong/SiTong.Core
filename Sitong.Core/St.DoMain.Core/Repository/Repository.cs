@@ -1,23 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using St.DoMain.Entity;
-using St.DoMain.Interfaces;
+using St.DoMain.Entity.Audited;
+using St.DoMain.Repository;
+using St.DoMain.UnitOfWork;
 using St.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace St.DoMain.Core.Interfaces
+namespace St.DoMain.Core.Repository
 {
     public class Repository<TEntity, TKey> : IRepository<TEntity, TKey>
-        where TEntity : class, IAggregateRoot<TKey>
+        where TEntity : class
+        where TKey : IAggregateRoot<TKey>
     {
         private readonly DbContext _StDb;// 上下文对象
         private readonly DbSet<TEntity> _Entities;// 具体操作对象
 
         public Repository(IServiceProvider provider)
         {
-            UnitOfWork = (provider.GetService(typeof(IUnitOfWork)) as IUnitOfWork);
+            UnitOfWork = provider.GetService(typeof(IUnitOfWork)) as IUnitOfWork;
             _StDb = UnitOfWork.GetDb();
             _Entities = _StDb.Set<TEntity>();
         }
@@ -62,7 +65,6 @@ namespace St.DoMain.Core.Interfaces
         public virtual async Task<TEntity> GetByIdAsync(TKey key) => await _Entities.FindAsync(key);
 
         #endregion
-
 
         #region Delete
 
@@ -220,7 +222,6 @@ namespace St.DoMain.Core.Interfaces
 
         #endregion
 
-
         private bool _Disposed = false; // 避免重复手动释放
 
         /// <summary>
@@ -246,6 +247,23 @@ namespace St.DoMain.Core.Interfaces
             await _StDb.DisposeAsync();
             GC.SuppressFinalize(this);
         }
+
+        #region CheckAudited
+
+
+        //TODO:创建审计过滤添加信息.
+        //private TEntity CheckInsert(TEntity model)
+        //{
+        //    if (model is ICreationAudited)
+        //    {
+
+        //    }
+            
+        //}
+
+        #endregion
+
+
 
     }
 }

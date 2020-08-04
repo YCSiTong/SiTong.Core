@@ -17,14 +17,26 @@ namespace St.Extensions
         /// <param name="message"></param>
         private static void ThrowEx<TEx>(bool verify, string message) where TEx : Exception
         {
-            if (verify)
-                return;
+            if (verify) return;
 
-            if (string.IsNullOrEmpty(message))
-                throw new BusinessException(nameof(message));
+            if (message.IsNullOrEmpty())
+                throw new AggregateException($"校验抛出信息为空,但校验结果异常.");
 
             TEx exception = (TEx)Activator.CreateInstance(typeof(TEx), message);
             throw exception;
+        }
+
+        /// <summary>
+        /// 自定义校验,抛出<see cref="ArgumentException"/>异常
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="val">对象</param>
+        /// <param name="verify">校验条件</param>
+        /// <param name="exMsg">异常信息</param>
+        public static void CustomVerify<T>(this T val, bool verify, string exMsg)
+        {
+            ThrowEx<ArgumentException>(val != null, $"自定义校验对象不能为Null");
+            ThrowEx<AggregateException>(verify, exMsg);
         }
 
         /// <summary>
@@ -35,8 +47,9 @@ namespace St.Extensions
         /// <param name="paramName">对象名</param>
         public static void NotNull<T>(this T val, string paramName) where T : class
         {
-            ThrowEx<ArgumentException>(val != null, $"对象 <{paramName}> 不能为空引用");
+            ThrowEx<ArgumentException>(val != null, $"对象 <{paramName}> 不能为Null");
         }
+
         /// <summary>
         /// 验证参数类型<see cref="string"/>值是否为空或Null,抛出<see cref="ArgumentException"/>异常
         /// </summary>
@@ -46,6 +59,7 @@ namespace St.Extensions
         {
             ThrowEx<ArgumentException>(!string.IsNullOrEmpty(val), $"参数 <{paramName}> 不能为Empty或Null");
         }
+
         /// <summary>
         /// 验证参数类型<see cref="Guid"/>值是否为空,抛出<see cref="ArgumentException"/>异常
         /// </summary>
@@ -55,6 +69,7 @@ namespace St.Extensions
         {
             ThrowEx<ArgumentException>(Guid.Empty != val, $"参数 <{paramName}> 不能为Guid.Empty");
         }
+
         /// <summary>
         /// 验证参数类型<see cref="int"/>值是否正整数,抛出<see cref="ArgumentException"/>异常
         /// </summary>
@@ -64,6 +79,7 @@ namespace St.Extensions
         {
             ThrowEx<ArgumentException>(val >= 0, $"参数 <{paramName}> 值必须为正整数");
         }
+
         /// <summary>
         /// 验证参数类型<see cref="int"/>值是否负整数,抛出<see cref="ArgumentException"/>异常
         /// </summary>
@@ -73,6 +89,7 @@ namespace St.Extensions
         {
             ThrowEx<ArgumentException>(val < 0, $"参数 <{paramName}> 值必须为负整数");
         }
+
         /// <summary>
         /// 验证参数类型<see cref="string"/>[]是否至少具有一个值,抛出<see cref="ArgumentException"/>
         /// </summary>
@@ -82,6 +99,7 @@ namespace St.Extensions
         {
             ThrowEx<ArgumentException>(val.Length > 0, $"参数<{paramName}>至少有1个以上值");
         }
+
         /// <summary>
         /// 验证参数类型<see cref="List{T}"/>是否至少具有一个值或不为Null,抛出<see cref="ArgumentException"/>
         /// </summary>
@@ -92,10 +110,6 @@ namespace St.Extensions
         {
             ThrowEx<ArgumentException>(val.Count == 0 || val == null, $"参数<{paramName}>Count为0或本身Null");
         }
-
-
-
-
 
 
     }

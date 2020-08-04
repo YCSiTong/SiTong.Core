@@ -1,19 +1,24 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using St.DoMain.Interfaces;
+using St.DoMain.UnitOfWork;
 using St.Extensions;
 using System;
 using System.Data;
 using System.Data.Common;
 using System.Threading.Tasks;
 
-namespace St.DoMain.Core.Interfaces
+namespace St.DoMain.Core.UnitOfWork
 {
+    ///https://docs.microsoft.com/zh-cn/ef/core/saving/transactions Microsoft => 使用事务
     /// <summary>
     /// 工作单元实现类.
-    /// https://docs.microsoft.com/zh-cn/ef/core/saving/transactions Microsoft => 使用事务
     /// </summary>
     public class UnitOfWork<TDbContext> : IUnitOfWork where TDbContext : DbContext
     {
+        /*
+         *  摘要：
+         *      TODO：当前需实验事务在首次开启时具体是什么状态！      
+         */
+
         private readonly TDbContext _Db;// 上下文对象
 
         public UnitOfWork(TDbContext dbContext)

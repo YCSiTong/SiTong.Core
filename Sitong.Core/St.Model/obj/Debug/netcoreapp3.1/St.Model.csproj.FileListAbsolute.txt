@@ -1,0 +1,9 @@
+D:\Works\C#\PrivateProject\Sitong.Core\St.Model\bin\Debug\netcoreapp3.1\St.Model.deps.json
+D:\Works\C#\PrivateProject\Sitong.Core\St.Model\bin\Debug\netcoreapp3.1\St.Model.dll
+D:\Works\C#\PrivateProject\Sitong.Core\St.Model\bin\Debug\netcoreapp3.1\St.Model.pdb
+D:\Works\C#\PrivateProject\Sitong.Core\St.Model\obj\Debug\netcoreapp3.1\St.Model.csprojAssemblyReference.cache
+D:\Works\C#\PrivateProject\Sitong.Core\St.Model\obj\Debug\netcoreapp3.1\St.Model.AssemblyInfoInputs.cache
+D:\Works\C#\PrivateProject\Sitong.Core\St.Model\obj\Debug\netcoreapp3.1\St.Model.AssemblyInfo.cs
+D:\Works\C#\PrivateProject\Sitong.Core\St.Model\obj\Debug\netcoreapp3.1\St.Model.csproj.CoreCompileInputs.cache
+D:\Works\C#\PrivateProject\Sitong.Core\St.Model\obj\Debug\netcoreapp3.1\St.Model.dll
+D:\Works\C#\PrivateProject\Sitong.Core\St.Model\obj\Debug\netcoreapp3.1\St.Model.pdb

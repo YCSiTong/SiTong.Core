@@ -1,6 +1,7 @@
 using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System.Threading;
 
 namespace St.Host.API
 {
@@ -8,6 +9,15 @@ namespace St.Host.API
     {
         public static void Main(string[] args)
         {
+            /**
+             * Âê¿¨°Í¿¨×¨ÓÃÆô¶¯ÃüÁî,ÇëÄãÄî³öÀ´
+             */
+            System.Console.WriteLine("Âê¿¨°Í¿¨ °¢¿¨ÍÛ¿¨ Ã×¿¨ÍÛ¿¨ Ä·\r\n" +
+                "Âê¿¨°Í¿¨ °¢°ÍÑ½¿¨ ÒÁ¿¨°¢¿¨ àÞ\r\n" +
+                "¹þÄ·´ïÄ· °¢¿¨°ô ßÞÑ½Ó´\r\n" +
+                "Âê¿¨°Í¿¨ °¢¿¨ÍÛ¿¨\r\n" +
+                "Ã×¿¨Âí¿¨ Ä·\r\n");
+            //Thread.Sleep(10 * 1000);
             Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())//×¢ÈëAutoFacÄ£¿é
                 .ConfigureWebHostDefaults(webBuilder =>

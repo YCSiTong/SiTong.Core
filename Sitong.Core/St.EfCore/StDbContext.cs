@@ -16,7 +16,7 @@ namespace St.EfCore
         protected override void OnModelCreating(ModelBuilder model)
         {
             base.OnModelCreating(model);
-            model.ModelSourceCreating();//自定义CodeFirst扩展
+            model.ModelSourceCreating();// 自定义CodeFirst扩展
         }
     }
 }

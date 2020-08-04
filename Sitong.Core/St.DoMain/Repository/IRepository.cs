@@ -1,16 +1,19 @@
 ﻿using St.DoMain.Entity;
+using St.DoMain.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace St.DoMain.Interfaces
+namespace St.DoMain.Repository
 {
     /// <summary>
     /// 泛型仓储，实现泛型仓储接口
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public interface IRepository<TEntity, TKey> : IAsyncDisposable, IDisposable where TEntity : class, IAggregateRoot<TKey>
+    public interface IRepository<TEntity, TKey> : IAsyncDisposable, IDisposable
+        where TEntity : class
+        where TKey :  IAggregateRoot<TKey>
     {
 
         /// <summary>

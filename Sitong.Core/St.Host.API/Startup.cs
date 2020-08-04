@@ -74,7 +74,10 @@ namespace St.Host.API
             }
             #endregion
             #region 注入MiniProfiler
-            services.AddMiniProfilerStartUp(op => op = RenderPosition.Left);
+            if (Configuration["MiniProfiler:Enabled"].ToBool())
+            {
+                services.AddMiniProfilerStartUp(op => op = RenderPosition.Left);
+            }
             #endregion
             #region 注入AutoMapper
             services.AddAutoMapperStartUp();
@@ -148,7 +151,6 @@ namespace St.Host.API
             #region 开启MiniProfiler性能检测
             app.UseMiniProfiler();
             #endregion
-
             #region Jwt官方验证
             //开启认证
             app.UseAuthentication();

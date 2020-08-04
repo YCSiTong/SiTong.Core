@@ -1,9 +1,12 @@
-﻿namespace St.Extensions
+﻿using System;
+using System.Reflection;
+
+namespace St.Extensions
 {
     /// <summary>
     /// 检查参数是否合格
     /// </summary>
-    public static class CheckParameter
+    public static class CheckObject
     {
         /// <summary>
         /// 判断<typeparamref name="T"/>对象是否为Null
@@ -36,18 +39,29 @@
         public static bool IsNotEmptyOrNull(this string val) => !val.IsNotEmptyOrNull();
 
         /// <summary>
-        /// 判断<see cref="int"/>是否 >= 0
+        /// 判断<see cref="int"/>是否大于等于0
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
         public static bool IsPositive(this int val) => val >= 0;
 
         /// <summary>
-        /// 判断<see cref="int"/>是否 < 0
+        /// 判断<see cref="int"/>是否小于0
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
         public static bool IsMinus(this int val) => !val.IsPositive();
+
+        /// <summary>
+        /// 判断是否包含<typeparamref name="TAttribute"/>特性
+        /// </summary>
+        /// <typeparam name="TAttribute"></typeparam>
+        /// <param name="memberInfo"></param>
+        /// <returns></returns>
+        public static bool HasAttribute<TAttribute>(this MemberInfo memberInfo)
+            where TAttribute : Attribute
+            => memberInfo.IsDefined(typeof(TAttribute), true);
+
 
 
     }

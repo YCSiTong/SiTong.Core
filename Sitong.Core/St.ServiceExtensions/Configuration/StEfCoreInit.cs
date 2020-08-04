@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using St.DoMain.Core.Interfaces;
-using St.DoMain.Interfaces;
+using St.DoMain.Core.Repository;
+using St.DoMain.Core.UnitOfWork;
+using St.DoMain.Repository;
+using St.DoMain.UnitOfWork;
 using St.Extensions;
 using System;
 
@@ -35,7 +37,8 @@ namespace St.ServiceExtensions.Configuration
                         op.UseSqlServer(model.ConnectionString);
                         break;
                     case DataBaseType.MySql:
-                        throw new Exception("当前未适配MySql形式数据");
+                        op.UseMySql(model.ConnectionString);
+                        break;
                 }
             });
         }
@@ -55,11 +58,17 @@ namespace St.ServiceExtensions.Configuration
         public DataBaseType DataBase { get; set; }
     }
     /// <summary>
-    /// 选择数据库
+    /// 数据库类型
     /// </summary>
     public enum DataBaseType
     {
+        /// <summary>
+        /// SqlServer
+        /// </summary>
         SqlServer,
+        /// <summary>
+        /// MySQL
+        /// </summary>
         MySql,
     }
 }

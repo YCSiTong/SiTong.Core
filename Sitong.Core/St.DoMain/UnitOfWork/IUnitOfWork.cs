@@ -3,7 +3,7 @@ using System;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace St.DoMain.Interfaces
+namespace St.DoMain.UnitOfWork
 {
     /// <summary>
     /// 工作单元 实现获取DbContext上下文以及事务
