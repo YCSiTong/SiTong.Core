@@ -250,16 +250,14 @@ namespace St.DoMain.Core.Repository
 
         #region CheckAudited
 
-
         //TODO:创建审计过滤添加信息.
-        //private TEntity CheckInsert(TEntity model)
-        //{
-        //    if (model is ICreationAudited)
-        //    {
-
-        //    }
-            
-        //}
+        private TEntity CheckInsert(TEntity model)
+        {
+            var IsExist = model.GetType().GetInterface(typeof(ICreationAudited<>).Name);
+            if (IsExist.IsNull())
+                return model;
+            throw new Exception("审计模型未完善!!!");
+        }
 
         #endregion
 

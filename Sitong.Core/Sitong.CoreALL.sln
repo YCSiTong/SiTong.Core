@@ -34,7 +34,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "St.Application", "St.Applic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "St.Application.Infrastruct", "St.Application.Infrastruct\St.Application.Infrastruct.csproj", "{F0C9304B-2343-4555-A747-6CFA5A6FD3FB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DoMain", "DoMain", "{8F06F20B-AE0C-431D-9D86-ED30506A40CB}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{8F06F20B-AE0C-431D-9D86-ED30506A40CB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "St.DoMain", "St.DoMain\St.DoMain.csproj", "{40D6E7AC-835B-4792-A912-12638C0D1FD0}"
 EndProject
@@ -46,7 +46,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "St.DoMain.Core", "St.DoMain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "St.AutoMapper", "St.AutoMapper\St.AutoMapper.csproj", "{F935FE15-D572-4F88-BB62-192DE3BCA269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "St.Model", "St.Model\St.Model.csproj", "{76A360C6-AB75-4688-B5F5-CD6754D0A65B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "St.Model", "St.Model\St.Model.csproj", "{76A360C6-AB75-4688-B5F5-CD6754D0A65B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

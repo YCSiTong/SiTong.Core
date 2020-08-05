@@ -1,7 +1,7 @@
 ﻿
 namespace St.DoMain.Entity.Audited
 {
-    public interface ISoftDelete
+    public interface ISoftDelete 
     {
         /// <summary>
         /// 是否删除

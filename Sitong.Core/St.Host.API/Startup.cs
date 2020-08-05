@@ -107,6 +107,8 @@ namespace St.Host.API
 
             services.AddControllers();
 
+            //services.AddHttpContextAccessor();// TODO:获取授权信息加载入同意权限验证实现.
+
         }
 
         /// <summary>

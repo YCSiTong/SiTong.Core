@@ -13,7 +13,7 @@ namespace St.DoMain.Repository
     /// <typeparam name="TEntity"></typeparam>
     public interface IRepository<TEntity, TKey> : IAsyncDisposable, IDisposable
         where TEntity : class
-        where TKey :  IAggregateRoot<TKey>
+        where TKey : IAggregateRoot<TKey>
     {
 
         /// <summary>

@@ -11,11 +11,8 @@ namespace St.Extensions
         /// <returns></returns>
         public static bool ToBool(this object val)
         {
-            if (val.ToString().Length > 0 && val != DBNull.Value)
-            {
-                bool.TryParse(val.ToString(), out bool result);
+            if (val.ToString().Length > 0 && val != DBNull.Value && bool.TryParse(val.ToString(), out bool result))
                 return result;
-            }
             else
                 return false;
         }
@@ -26,11 +23,8 @@ namespace St.Extensions
         /// <returns></returns>
         public static int ToInt(this object val)
         {
-            if (val.ToString().Length > 0 && val != DBNull.Value)
-            {
-                int.TryParse(val.ToString(), out int result);
+            if (val.ToString().Length > 0 && val != DBNull.Value && int.TryParse(val.ToString(), out int result))
                 return result;
-            }
             else
                 return -1;
         }
@@ -41,11 +35,8 @@ namespace St.Extensions
         /// <returns></returns>
         public static double ToDouble(this object val)
         {
-            if (val.ToString().Length > 0 && val != DBNull.Value)
-            {
-                double.TryParse(val.ToString(), out double result);
+            if (val.ToString().Length > 0 && val != DBNull.Value && double.TryParse(val.ToString(), out double result))
                 return result;
-            }
             else
                 return -1;
         }
@@ -56,11 +47,8 @@ namespace St.Extensions
         /// <returns></returns>
         public static decimal ToDecimal(this object val)
         {
-            if (val.ToString().Length > 0 && val != DBNull.Value)
-            {
-                decimal.TryParse(val.ToString(), out decimal result);
+            if (val.ToString().Length > 0 && val != DBNull.Value && decimal.TryParse(val.ToString(), out decimal result))
                 return result;
-            }
             else
                 return -1;
         }
@@ -71,11 +59,8 @@ namespace St.Extensions
         /// <returns></returns>
         public static DateTime ToDate(this object val)
         {
-            if (val.ToString().Length > 0 && val != DBNull.Value)
-            {
-                DateTime.TryParse(val.ToString(), out DateTime result);
+            if (val.ToString().Length > 0 && val != DBNull.Value && DateTime.TryParse(val.ToString(), out DateTime result))
                 return result;
-            }
             else
                 return DateTime.MinValue;
         }
@@ -86,11 +71,8 @@ namespace St.Extensions
         /// <returns></returns>
         public static Guid ToGuid(this object val)
         {
-            if (val.ToString().Length > 0 && val != DBNull.Value)
-            {
-                Guid.TryParse(val.ToString(), out Guid guid);
+            if (val.ToString().Length > 0 && val != DBNull.Value && Guid.TryParse(val.ToString(), out Guid guid))
                 return guid;
-            }
             else
                 return Guid.Empty;
         }

@@ -28,6 +28,8 @@ namespace St.DoMain.Core.UnitOfWork
 
         private DbTransaction _DbTransaction;
 
+        private DbConnection _DbConnection;
+
         private bool _IsCommit = false;
 
         /// <summary>
@@ -37,7 +39,10 @@ namespace St.DoMain.Core.UnitOfWork
         public DbContext GetDb()
         {
             if (_Db.IsNotNull())
+            {
+                _DbConnection = _Db.Database.GetDbConnection();
                 return _Db;
+            }
             throw new NullReferenceException("DbContext注入失败!");
         }
 
@@ -47,7 +52,7 @@ namespace St.DoMain.Core.UnitOfWork
         /// <param name="action">需要执行的代码块</param>
         public void UseTransaction(Action action)
         {
-            action.NotNull(nameof(Action));
+            action.NotNull(nameof(action));
 
             BeginTransaction();
             action.Invoke();
@@ -61,7 +66,7 @@ namespace St.DoMain.Core.UnitOfWork
         /// <returns><see cref="Task{TResult}"/></returns>
         public async Task<T> UseTransactionAsync<T>(Func<Task<T>> action)
         {
-            action.NotNull(nameof(Func<Task<T>>));
+            action.NotNull(nameof(action));
 
             await BeginTransactionAsync();
             var result = await action.Invoke();
@@ -76,7 +81,7 @@ namespace St.DoMain.Core.UnitOfWork
         /// <returns><see cref="Task"/></returns>
         public async Task UseTransactionAsync(Func<Task> action)
         {
-            action.NotNull(nameof(Func<Task>));
+            action.NotNull(nameof(action));
 
             await BeginTransactionAsync();
             await action.Invoke();
@@ -91,7 +96,7 @@ namespace St.DoMain.Core.UnitOfWork
         /// <returns><see cref="Task{TResult}"/></returns>
         public async Task<T> UseTransactionAsync<T>(Func<Task<T>> action, IsolationLevel isolationLevel)
         {
-            action.NotNull(nameof(Func<Task<T>>));
+            action.NotNull(nameof(action));
 
             await BeginTransactionAsync(isolationLevel);
             var result = await action.Invoke();
@@ -107,7 +112,7 @@ namespace St.DoMain.Core.UnitOfWork
         /// <returns><see cref="Task"/></returns>
         public async Task UseTransactionAsync(Func<Task> action, IsolationLevel isolationLevel)
         {
-            action.NotNull(nameof(Func<Task>));
+            action.NotNull(nameof(action));
 
             await BeginTransactionAsync(isolationLevel);
             await action.Invoke();
@@ -120,13 +125,11 @@ namespace St.DoMain.Core.UnitOfWork
         /// <returns></returns>
         public virtual async Task BeginTransactionAsync()
         {
-            if (_DbTransaction.Connection == null)
+            if (_DbTransaction?.Connection == null)
             {
-                if (_DbTransaction.Connection.State != ConnectionState.Open)
-                {
-                    await _DbTransaction.Connection.OpenAsync();
-                }
-                _DbTransaction = await _DbTransaction.Connection.BeginTransactionAsync();
+                if (_DbConnection.State != ConnectionState.Open)
+                    await _DbConnection.OpenAsync();
+                _DbTransaction = await _DbConnection.BeginTransactionAsync();
             }
 
             await _Db.Database.UseTransactionAsync(_DbTransaction);
@@ -140,11 +143,11 @@ namespace St.DoMain.Core.UnitOfWork
         /// <returns></returns>
         public virtual async Task BeginTransactionAsync(IsolationLevel isolationLevel)
         {
-            if (_DbTransaction.Connection == null)
+            if (_DbTransaction?.Connection == null)
             {
-                if (_DbTransaction.Connection.State != ConnectionState.Open)
-                    await _DbTransaction.Connection.OpenAsync();
-                _DbTransaction = await _DbTransaction.Connection.BeginTransactionAsync(isolationLevel);
+                if (_DbConnection.State != ConnectionState.Open)
+                    await _DbConnection.OpenAsync();
+                _DbTransaction = await _DbConnection.BeginTransactionAsync(isolationLevel);
             }
 
             await _Db.Database.UseTransactionAsync(_DbTransaction);
@@ -157,7 +160,7 @@ namespace St.DoMain.Core.UnitOfWork
         /// <returns></returns>
         public virtual async Task CommitAsync()
         {
-            if (_DbTransaction == null || !_IsCommit)
+            if (_DbConnection == null || !_IsCommit)
                 return;
 
             try
@@ -186,7 +189,7 @@ namespace St.DoMain.Core.UnitOfWork
         /// <returns></returns>
         public virtual async Task RollBackAsync()
         {
-            if (_DbTransaction.Connection != null)
+            if (_DbTransaction?.Connection != null)
             {
                 await _DbTransaction.RollbackAsync();
             }
@@ -203,13 +206,11 @@ namespace St.DoMain.Core.UnitOfWork
         /// </summary>
         public virtual void BeginTransaction()
         {
-            if (_DbTransaction.Connection == null)
+            if (_DbTransaction?.Connection == null)
             {
-                if (_DbTransaction.Connection.State != ConnectionState.Open)
-                {
-                    _DbTransaction.Connection.Open();
-                }
-                _DbTransaction = _DbTransaction.Connection.BeginTransaction();
+                if (_DbConnection.State != ConnectionState.Open)
+                    _DbConnection.Open();
+                _DbTransaction = _DbConnection.BeginTransaction();
             }
             _Db.Database.UseTransaction(_DbTransaction);
             _IsCommit = true;
@@ -221,11 +222,11 @@ namespace St.DoMain.Core.UnitOfWork
         /// <param name="isolationLevel">事务级别</param>
         public virtual void BeginTransaction(IsolationLevel isolationLevel)
         {
-            if (_DbTransaction.Connection == null)
+            if (_DbTransaction?.Connection == null)
             {
-                if (_DbTransaction.Connection.State != ConnectionState.Open)
-                    _DbTransaction.Connection.Open();
-                _DbTransaction = _DbTransaction.Connection.BeginTransaction(isolationLevel);
+                if (_DbConnection.State != ConnectionState.Open)
+                    _DbConnection.Open();
+                _DbTransaction = _DbConnection.BeginTransaction(isolationLevel);
             }
 
             _Db.Database.UseTransaction(_DbTransaction);
@@ -237,7 +238,7 @@ namespace St.DoMain.Core.UnitOfWork
         /// </summary>
         public virtual void Commit()
         {
-            if (_DbTransaction == null || !_IsCommit)
+            if (_DbConnection == null || !_IsCommit)
                 return;
             try
             {
@@ -263,7 +264,7 @@ namespace St.DoMain.Core.UnitOfWork
         /// </summary>
         public virtual void RollBack()
         {
-            if (_DbTransaction.Connection != null)
+            if (_DbTransaction?.Connection != null)
                 _DbTransaction.Rollback();
 
             if (_Db.Database.CurrentTransaction != null)

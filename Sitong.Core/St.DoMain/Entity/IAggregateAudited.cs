@@ -6,7 +6,7 @@ namespace St.DoMain.Entity
     /// 普通聚合审计(新增/修改)
     /// </summary>
     /// <typeparam name="TPrimaryKey"></typeparam>
-    public interface IAggregateAudited<TPrimaryKey> : ICreationAudited<TPrimaryKey>, IModificationAudited<TPrimaryKey>
+    public interface IAggregateAudited<TPrimaryKey> : ICreationAudited<TPrimaryKey>, IModificationAudited<TPrimaryKey>, IAggregateRoot<TPrimaryKey>
         where TPrimaryKey : struct
     {
 
