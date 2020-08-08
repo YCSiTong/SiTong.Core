@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\St.EfCore\St.EfCore.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\St.Common\St.Common.csproj" />
   </ItemGroup>
 
 </Project>

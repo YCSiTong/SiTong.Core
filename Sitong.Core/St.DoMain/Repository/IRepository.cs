@@ -1,5 +1,4 @@
-﻿using St.DoMain.Entity;
-using St.DoMain.UnitOfWork;
+﻿using St.DoMain.UnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +10,9 @@ namespace St.DoMain.Repository
     /// 泛型仓储，实现泛型仓储接口
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public interface IRepository<TEntity, TKey> : IAsyncDisposable, IDisposable
+    public interface IRepository<TEntity, TPrimaryKey> : IAsyncDisposable, IDisposable
         where TEntity : class
-        where TKey : IAggregateRoot<TKey>
+        where TPrimaryKey : struct
     {
 
         /// <summary>
@@ -39,13 +38,13 @@ namespace St.DoMain.Repository
         /// </summary>
         /// <param name="key">主键值</param>
         /// <returns></returns>
-        TEntity GetById(TKey key);
+        TEntity GetById(TPrimaryKey key);
         /// <summary>
         /// 根据主键<typeparamref name="TKey"/>异步获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <param name="key">主键值</param>
         /// <returns></returns>
-        Task<TEntity> GetByIdAsync(TKey key);
+        Task<TEntity> GetByIdAsync(TPrimaryKey key);
 
         #endregion
 
@@ -73,6 +72,12 @@ namespace St.DoMain.Repository
         /// <param name="model">实体</param>
         /// <returns><see cref="bool"/>是否成功</returns>
         Task<bool> DeleteAsync(TEntity model);
+        /// <summary>
+        /// 根据主键异步删除单条数据
+        /// </summary>
+        /// <param name="Id">主键</param>
+        /// <returns></returns>
+        Task<bool> DeleteAsync(TPrimaryKey Id);
         /// <summary>
         /// 批量删除数据
         /// </summary>
@@ -122,6 +127,12 @@ namespace St.DoMain.Repository
         /// <param name="model">实体</param>
         /// <returns><see cref="bool"/>是否成功</returns>
         bool Delete(TEntity model);
+        /// <summary>
+        /// 根据主键删除单条数据
+        /// </summary>
+        /// <param name="Id">主键</param>
+        /// <returns></returns>
+        bool Delete(TPrimaryKey Id);
         /// <summary>
         /// 批量删除数据
         /// </summary>

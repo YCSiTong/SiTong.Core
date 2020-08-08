@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using St.EfCore.ModelEx;
 
 namespace St.EfCore
 {
@@ -13,6 +14,11 @@ namespace St.EfCore
         /// <param name="builder"></param>
         public static void ModelSourceCreating(this ModelBuilder builder)
         {
+            builder.UseUserEntity();
+            builder.UseUserRoleEntity();
+            builder.UseRoleEntity();
+            builder.UseRoleMenuEntity();
+            builder.UserMenuEntity();
 
         }
     }

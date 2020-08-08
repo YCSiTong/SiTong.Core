@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using St.DoMain.Entity;
 using St.DoMain.Entity.Audited;
 using St.DoMain.Repository;
 using St.DoMain.UnitOfWork;
@@ -7,20 +6,21 @@ using St.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace St.DoMain.Core.Repository
 {
-    public class Repository<TEntity, TKey> : IRepository<TEntity, TKey>
+    public class Repository<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>
         where TEntity : class
-        where TKey : IAggregateRoot<TKey>
+        where TPrimaryKey : struct
     {
         private readonly DbContext _StDb;// 上下文对象
         private readonly DbSet<TEntity> _Entities;// 具体操作对象
 
-        public Repository(IServiceProvider provider)
+        public Repository(IUnitOfWork unitOfWork)
         {
-            UnitOfWork = provider.GetService(typeof(IUnitOfWork)) as IUnitOfWork;
+            UnitOfWork = unitOfWork;
             _StDb = UnitOfWork.GetDb();
             _Entities = _StDb.Set<TEntity>();
         }
@@ -42,27 +42,52 @@ namespace St.DoMain.Core.Repository
         /// 不追踪实体获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <returns><see cref="IQueryable"/>延迟加载</returns>
-        public virtual IQueryable<TEntity> AsNoTracking() => _Entities.AsNoTracking();
+        public virtual IQueryable<TEntity> AsNoTracking() => CheckIsFilterSoftDelete().AsNoTracking();
 
         /// <summary>
         /// 追踪实体获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <returns><see cref="IQueryable"/>延迟加载</returns>
-        public virtual IQueryable<TEntity> AsTracking() => _Entities;
+        public virtual IQueryable<TEntity> AsTracking() => CheckIsFilterSoftDelete();
 
         /// <summary>
-        /// 根据主键<typeparamref name="TKey"/>获取<typeparamref name="TEntity"/>
+        /// 根据主键<typeparamref name="TPrimaryKey"/>获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <param name="key">主键值</param>
         /// <returns></returns>
-        public virtual TEntity GetById(TKey key) => _Entities.Find(key);
+        public virtual TEntity GetById(TPrimaryKey key)
+        {
+            var result = _Entities.Find(key);
+            if (IsISoftDelete())
+            {
+                var softDelete = (ISoftDelete)result;
+                if (softDelete.IsDeleted)
+                    return default;
+                else
+                    return result;
+            }
+            return result;
+        }
 
         /// <summary>
-        /// 根据主键<typeparamref name="TKey"/>异步获取<typeparamref name="TEntity"/>
+        /// 根据主键<typeparamref name="TPrimaryKey"/>异步获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <param name="key">主键值</param>
         /// <returns></returns>
-        public virtual async Task<TEntity> GetByIdAsync(TKey key) => await _Entities.FindAsync(key);
+        public virtual async Task<TEntity> GetByIdAsync(TPrimaryKey key)
+        {
+            var result = await _Entities.FindAsync(key);
+            if (IsISoftDelete())
+            {
+                var softDelete = (ISoftDelete)result;
+                if (softDelete.IsDeleted)
+                    return default;
+                else
+                    return result;
+            }
+            return result;
+
+        }
 
         #endregion
 
@@ -76,7 +101,20 @@ namespace St.DoMain.Core.Repository
         public virtual bool Delete(TEntity model)
         {
             model.NotNull(nameof(TEntity));
-            _Entities.Remove(model);
+            CheckDelete(model);
+            return Save();
+        }
+
+        /// <summary>
+        /// 根据主键删除单条数据
+        /// </summary>
+        /// <param name="Id">主键</param>
+        /// <returns></returns>
+        public virtual bool Delete(TPrimaryKey Id)
+        {
+            var model = GetById(Id);
+            model.NotNull(nameof(model));
+            CheckDelete(model);
             return Save();
         }
 
@@ -89,7 +127,7 @@ namespace St.DoMain.Core.Repository
         {
             model.NotNull(nameof(IEnumerable<TEntity>));
 
-            _Entities.RemoveRange(model);
+            CheckDelete(model);
             return Save();
         }
 
@@ -101,7 +139,20 @@ namespace St.DoMain.Core.Repository
         public virtual async Task<bool> DeleteAsync(TEntity model)
         {
             model.NotNull(nameof(TEntity));
-            _Entities.Remove(model);
+            CheckDelete(model);
+            return await SaveAsync();
+        }
+
+        /// <summary>
+        /// 根据主键异步删除单条数据
+        /// </summary>
+        /// <param name="Id">主键</param>
+        /// <returns></returns>
+        public virtual async Task<bool> DeleteAsync(TPrimaryKey Id)
+        {
+            var model = await GetByIdAsync(Id);
+            model.NotNull(nameof(model));
+            CheckDelete(model);
             return await SaveAsync();
         }
 
@@ -113,7 +164,7 @@ namespace St.DoMain.Core.Repository
         public virtual async Task<bool> DeleteAsync(IEnumerable<TEntity> model)
         {
             model.NotNull(nameof(IEnumerable<TEntity>));
-            _Entities.RemoveRange(model);
+            CheckDelete(model);
             return await SaveAsync();
         }
 
@@ -250,7 +301,68 @@ namespace St.DoMain.Core.Repository
 
         #region CheckAudited
 
-        //TODO:创建审计过滤添加信息.
+        /// <summary>
+        ///  Check If Inherited `ISoftDelete` Interface
+        /// </summary>
+        /// <returns></returns>
+        private bool IsISoftDelete() => typeof(ISoftDelete).IsAssignableFrom(typeof(TEntity));
+
+
+        /// <summary>
+        /// Check If Inherited `ISoftDelete` Interface,Query Time Filtering.
+        /// 检查是否继承`ISoftDelete` 接口, 查询时过滤.
+        /// </summary>
+        /// <param name="model">实体</param>
+        /// <returns></returns>
+        private IQueryable<TEntity> CheckIsFilterSoftDelete()
+        {
+            if (IsISoftDelete())
+            {
+                var rootNode = Expression.Parameter(typeof(TEntity), "op"); // 根节点
+                var key = Expression.PropertyOrField(rootNode, "IsDeleted");// Key
+                var val = Expression.Constant(false);// Val
+                var conbine = Expression.Equal(key, val);//Key == Val
+                var sqlWhere = Expression.Lambda<Func<TEntity, bool>>(conbine, rootNode);// Builder Lambda
+                return _Entities.Where(sqlWhere);
+            }
+            else
+                return _Entities;
+
+        }
+
+        /// <summary>
+        /// Check If Inherited `ISoftDelete` Interface, Soft Delete Or Not.
+        /// 检查是否继承`ISoftDelete` 接口, 是否软删除
+        /// </summary>
+        /// <param name="model">实体</param>
+        private void CheckDelete(TEntity model)
+        {
+            if (IsISoftDelete())
+            {
+                var soft = (ISoftDelete)model;
+                soft.IsDeleted = true;
+                var entity = (TEntity)soft;
+                _StDb.Update(entity);
+            }
+            else
+                _StDb.Remove(model);
+        }
+
+        /// <summary>
+        /// Check If Inherited `ISoftDelete` Interface, Soft Delete Or Not.
+        /// 检查是否继承`ISoftDelete` 接口, 是否软删除
+        /// </summary>
+        /// <param name="model">实体</param>
+        private void CheckDelete(IEnumerable<TEntity> model)
+        {
+            foreach (var item in model)
+            {
+                CheckDelete(item);
+            }
+        }
+
+        // TODO:创建审计过滤添加信息.
+        // 实现权限控制后进行获取当前访问者进行存储
         private TEntity CheckInsert(TEntity model)
         {
             var IsExist = model.GetType().GetInterface(typeof(ICreationAudited<>).Name);

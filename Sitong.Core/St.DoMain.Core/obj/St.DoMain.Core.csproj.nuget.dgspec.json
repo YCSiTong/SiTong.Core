@@ -4,6 +4,92 @@
     "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain.Core\\St.DoMain.Core.csproj": {}
   },
   "projects": {
+    "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Common\\St.Common.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Common\\St.Common.csproj",
+        "projectName": "St.Common",
+        "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Common\\St.Common.csproj",
+        "packagesPath": "C:\\Users\\Sitong\\.nuget\\packages\\",
+        "outputPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Common\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Sitong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj": {
+                "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.Extensions.Caching.Memory": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.1.58, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.7.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain.Core\\St.DoMain.Core.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -29,6 +115,9 @@
             "projectReferences": {
               "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj": {
                 "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj"
+              },
+              "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.EfCore\\St.EfCore.csproj": {
+                "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.EfCore\\St.EfCore.csproj"
               },
               "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj": {
                 "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj"
@@ -86,8 +175,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.EfCore\\St.EfCore.csproj": {
-                "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.EfCore\\St.EfCore.csproj"
+              "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Common\\St.Common.csproj": {
+                "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Common\\St.Common.csproj"
               }
             }
           }
@@ -100,6 +189,12 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -141,7 +236,11 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj": {
+                "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

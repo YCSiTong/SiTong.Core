@@ -1,8 +1,16 @@
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.DoMain.Core.deps.json
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.DoMain.Core.dll
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.DoMain.Core.pdb
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Common.dll
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.DoMain.dll
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.EfCore.dll
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Exceptions.dll
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Extensions.dll
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.DoMain.pdb
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.EfCore.pdb
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Extensions.pdb
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Common.pdb
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Exceptions.pdb
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.csprojAssemblyReference.cache
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.AssemblyInfoInputs.cache
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.AssemblyInfo.cs
@@ -10,9 +18,3 @@ D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.csproj.CopyComplete
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.dll
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.pdb
-D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.EfCore.dll
-D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Exceptions.dll
-D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Extensions.dll
-D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Extensions.pdb
-D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.EfCore.pdb
-D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Exceptions.pdb

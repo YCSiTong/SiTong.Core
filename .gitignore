@@ -16,7 +16,9 @@
 /Sitong.Core/St.DoMain/bin
 /Sitong.Core/St.DoMain/obj
 /Sitong.Core/St.DoMain.Core/bin
+/Sitong.Core/St.DoMain.Core/bin/Debug/netcoreapp3.1
 /Sitong.Core/St.DoMain.Core/obj
+/Sitong.Core/St.DoMain.Core/obj/Debug/netcoreapp3.1
 /Sitong.Core/St.EfCore/bin
 /Sitong.Core/St.EfCore/obj
 /Sitong.Core/St.Exceptions/obj

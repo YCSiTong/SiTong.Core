@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\St.Application.Infrastruct\St.Application.Infrastruct.csproj" />
+    <ProjectReference Include="..\St.EfCore\St.EfCore.csproj" />
+  </ItemGroup>
+
 </Project>

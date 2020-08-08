@@ -40,7 +40,7 @@ namespace St.Extensions
         {
             query.NotNull(nameof(query));
             skipCount.IsPositive(nameof(skipCount));
-            resultCount.CustomVerify(resultCount > 0, "resultCount必须为>0的正整数");
+            CheckException.CustomVerify(resultCount > 0, "resultCount必须为>0的正整数");
 
             return query.Skip(skipCount).Take(resultCount);
         }

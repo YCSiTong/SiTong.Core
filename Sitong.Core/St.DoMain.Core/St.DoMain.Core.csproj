@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\St.DoMain\St.DoMain.csproj" />
+    <ProjectReference Include="..\St.EfCore\St.EfCore.csproj" />
     <ProjectReference Include="..\St.Extensions\St.Extensions.csproj" />
   </ItemGroup>
 

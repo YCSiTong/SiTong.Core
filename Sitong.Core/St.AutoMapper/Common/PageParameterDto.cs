@@ -1,0 +1,43 @@
+﻿using St.Extensions;
+
+namespace St.AutoMapper.Common
+{
+    /// <summary>
+    /// 公共分页请求参数
+    /// </summary>
+    public class PageParameterDto
+    {
+
+        private int _skipCount;
+        /// <summary>
+        /// 跳过数量
+        /// </summary>
+        public int SkipCount
+        {
+            get => _skipCount;
+            set
+            {
+                _skipCount.IsPositive(nameof(SkipCount));
+                _skipCount = value;
+            }
+        }
+
+
+        private int _maxResultCount;
+        /// <summary>
+        /// 返回数据量
+        /// </summary>
+        public int MaxResultCount
+        {
+            get => _maxResultCount;
+            set
+            {
+                _maxResultCount.IsPositive(nameof(MaxResultCount));
+                if (value > 0)
+                    _maxResultCount = value;
+                else
+                    _maxResultCount = 10;
+            }
+        }
+    }
+}

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\St.AutoMapper\St.AutoMapper.csproj" />
     <ProjectReference Include="..\St.DoMain.Core\St.DoMain.Core.csproj" />
     <ProjectReference Include="..\St.DoMain\St.DoMain.csproj" />
   </ItemGroup>

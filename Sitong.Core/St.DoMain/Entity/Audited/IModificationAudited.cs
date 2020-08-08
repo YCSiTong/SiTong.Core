@@ -6,7 +6,7 @@ namespace St.DoMain.Entity.Audited
     /// 修改者审计模型
     /// </summary>
     /// <typeparam name="TPrimaryKey"></typeparam>
-    public interface IModificationAudited<TPrimaryKey> : IAggregateRoot<TPrimaryKey>
+    public interface IModificationAudited<TPrimaryKey>
         where TPrimaryKey : struct
     {
         /// <summary>

@@ -32,9 +32,8 @@ namespace St.Extensions
         /// <param name="val">对象</param>
         /// <param name="verify">校验条件</param>
         /// <param name="exMsg">异常信息</param>
-        public static void CustomVerify<T>(this T val, bool verify, string exMsg)
+        public static void CustomVerify(bool verify, string exMsg)
         {
-            ThrowEx<ArgumentException>(val != null, $"自定义校验对象不能为Null");
             ThrowEx<AggregateException>(verify, exMsg);
         }
 
