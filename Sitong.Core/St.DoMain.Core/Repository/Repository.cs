@@ -228,7 +228,7 @@ namespace St.DoMain.Core.Repository
         /// </summary>
         /// <param name="model">需要修改的数据</param>
         /// <returns><see cref="bool"/>是否成功</returns>
-        public virtual bool Updata(TEntity model)
+        public virtual bool Update(TEntity model)
         {
             model.NotNull(nameof(TEntity));
             _Entities.Update(model);
@@ -240,7 +240,7 @@ namespace St.DoMain.Core.Repository
         /// </summary>
         /// <param name="model">需要修改的数据</param>
         /// <returns><see cref="bool"/>是否成功</returns>
-        public virtual bool Updata(IEnumerable<TEntity> model)
+        public virtual bool Update(IEnumerable<TEntity> model)
         {
             model.NotNull(nameof(IEnumerable<TEntity>));
             _Entities.UpdateRange(model);
@@ -252,7 +252,7 @@ namespace St.DoMain.Core.Repository
         /// </summary>
         /// <param name="model">需要修改的数据</param>
         /// <returns><see cref="bool"/>是否成功</returns>
-        public virtual async Task<bool> UpdataAsync(TEntity model)
+        public virtual async Task<bool> UpdateAsync(TEntity model)
         {
             model.NotNull(nameof(TEntity));
             _Entities.Update(model);
@@ -264,7 +264,7 @@ namespace St.DoMain.Core.Repository
         /// </summary>
         /// <param name="model">需要修改的数据</param>
         /// <returns><see cref="bool"/>是否成功</returns>
-        public virtual async Task<bool> UpdataAsync(IEnumerable<TEntity> model)
+        public virtual async Task<bool> UpdateAsync(IEnumerable<TEntity> model)
         {
             model.NotNull(nameof(TEntity));
             _Entities.UpdateRange(model);

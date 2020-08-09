@@ -5,7 +5,6 @@ using St.AutoMapper.Identity.UserRole;
 using St.AutoMapper.Identity.UserRole.Register;
 using St.DoMain.Model.Identity;
 using St.DoMain.Repository;
-using St.Exceptions;
 using St.Extensions;
 using System;
 using System.Collections.Generic;
@@ -28,7 +27,10 @@ namespace St.Application.Identity
         /// <param name="userId">管理员编号</param>
         /// <returns></returns>
         public async Task<IEnumerable<UserRoleViewDto>> GetListAsync(Guid userId)
-           => (await _userRoleRepository.AsNoTracking().Where(x => x.UserId == userId).ToListAsync()).ToMap<UserRoleViewDto>();
+        {
+            userId.NotEmpty(nameof(userId));
+            return (await _userRoleRepository.AsNoTracking().Where(x => x.UserId == userId).ToListAsync()).ToMap<UserRoleViewDto>();
+        }
 
         /// <summary>
         /// 新增管理员所属角色
@@ -37,10 +39,9 @@ namespace St.Application.Identity
         /// <returns></returns>
         public async Task<bool> InsertAsync(UserRoleCreateDto dto)
         {
+            dto.NotNull(nameof(UserRoleCreateDto));
             var userRoleModel = dto.ToMap<UserRole>();
-            if (userRoleModel.IsNotNull())
-                return await _userRoleRepository.InsertAsync(userRoleModel);
-            throw new BusinessException("请检查传入信息是否正确!!!");
+            return await _userRoleRepository.InsertAsync(userRoleModel);
         }
         /// <summary>
         /// 删除指定管理员所属角色
@@ -48,6 +49,9 @@ namespace St.Application.Identity
         /// <param name="userId">管理员编号</param>
         /// <returns></returns>
         public async Task<bool> DeleteAsync(Guid userId)
-            => await _userRoleRepository.DeleteAsync(userId);
+        {
+            userId.NotEmpty(nameof(userId));
+            return await _userRoleRepository.DeleteAsync(userId);
+        }
     }
 }

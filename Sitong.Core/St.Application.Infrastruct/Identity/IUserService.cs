@@ -1,7 +1,7 @@
 ﻿using St.AutoMapper.Common;
 using St.AutoMapper.Identity.User;
+using St.AutoMapper.Identity.User.Register;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace St.Application.Infrastruct.Identity
@@ -20,7 +20,7 @@ namespace St.Application.Infrastruct.Identity
         /// </summary>
         /// <param name="parDto">请求参数</param>
         /// <returns></returns>
-        Task<PageResultDto<IEnumerable<UserViewDto>>> GetListAsync(ParameterUserDto parDto);
+        Task<PageResultDto<UserViewDto>> GetListAsync(ParameterUserDto parDto);
         /// <summary>
         /// 开启管理员冻结
         /// </summary>
@@ -39,5 +39,18 @@ namespace St.Application.Infrastruct.Identity
         /// <param name="Id">主键</param>
         /// <returns></returns>
         Task<bool> DeleteAsync(Guid Id);
+        /// <summary>
+        /// 新增管理员信息
+        /// </summary>
+        /// <param name="dto">新增的信息</param>
+        /// <returns></returns>
+        Task<bool> InsertAsync(UserCreateDto dto);
+        /// <summary>
+        /// 修改管理员信息
+        /// </summary>
+        /// <param name="Id">主键</param>
+        /// <param name="dto">修改的内容</param>
+        /// <returns></returns>
+        Task<bool> UpdateAsync(Guid Id, UserUpdateDto dto);
     }
 }

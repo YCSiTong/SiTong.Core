@@ -11,6 +11,6 @@
             Id = id;
         }
 
-        public TPrimaryKey Id { get; set; }
+        public TPrimaryKey Id { get; protected set; }
     }
 }

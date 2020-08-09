@@ -92,13 +92,13 @@ namespace St.DoMain.Repository
         /// </summary>
         /// <param name="model">需要修改的数据</param>
         /// <returns><see cref="bool"/>是否成功</returns>
-        Task<bool> UpdataAsync(TEntity model);
+        Task<bool> UpdateAsync(TEntity model);
         /// <summary>
         /// 批量更新数据
         /// </summary>
         /// <param name="model">需要修改的数据</param>
         /// <returns><see cref="bool"/>是否成功</returns>
-        Task<bool> UpdataAsync(IEnumerable<TEntity> model);
+        Task<bool> UpdateAsync(IEnumerable<TEntity> model);
         #endregion
 
         #endregion
@@ -147,13 +147,13 @@ namespace St.DoMain.Repository
         /// </summary>
         /// <param name="model">需要修改的数据</param>
         /// <returns><see cref="bool"/>是否成功</returns>
-        bool Updata(TEntity model);
+        bool Update(TEntity model);
         /// <summary>
         /// 批量更新数据
         /// </summary>
         /// <param name="model">需要修改的数据</param>
         /// <returns><see cref="bool"/>是否成功</returns>
-        bool Updata(IEnumerable<TEntity> model);
+        bool Update(IEnumerable<TEntity> model);
         #endregion
 
         #endregion
