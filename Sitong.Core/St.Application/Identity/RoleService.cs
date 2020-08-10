@@ -44,8 +44,7 @@ namespace St.Application.Identity
         public async Task<IEnumerable<RoleViewDto>> GetByIds(params Guid[] Ids)
         {
             Ids.NotNull(nameof(Ids));
-            return (await _roleRepository.AsNoTracking()
-                .Where(op => Ids.Contains(op.Id)).ToListAsync()).ToMap<RoleViewDto>();
+            return (await _roleRepository.AsNoTracking().Where(op => Ids.Contains(op.Id)).ToListAsync()).ToMap<RoleViewDto>();
         }
         /// <summary>
         /// 新增角色信息

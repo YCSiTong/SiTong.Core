@@ -20,7 +20,7 @@ namespace St.Application.Infrastruct.Identity
         /// </summary>
         /// <param name="Ids">主键编号</param>
         /// <returns></returns>
-        Task<IEnumerable<RoleViewDto>> GetByIds(params Guid[] Ids);
+        Task<IEnumerable<RoleViewDto>> GetByIds(Guid[] Ids);
         /// <summary>
         /// 新增角色信息
         /// </summary>

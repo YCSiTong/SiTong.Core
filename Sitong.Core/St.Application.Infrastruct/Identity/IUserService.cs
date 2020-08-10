@@ -18,7 +18,7 @@ namespace St.Application.Infrastruct.Identity
         /// <summary>
         /// 分页所有管理员账户
         /// </summary>
-        /// <param name="parDto">请求参数</param>
+        /// <param name="parDto">查询条件</param>
         /// <returns></returns>
         Task<PageResultDto<UserViewDto>> GetListAsync(ParameterUserDto parDto);
         /// <summary>

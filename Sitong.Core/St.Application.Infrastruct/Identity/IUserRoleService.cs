@@ -17,7 +17,7 @@ namespace St.Application.Infrastruct.Identity
         /// <summary>
         /// 新增管理员所属角色
         /// </summary>
-        /// <param name="dto"></param>
+        /// <param name="dto">新增信息</param>
         /// <returns></returns>
         Task<bool> InsertAsync(UserRoleCreateDto dto);
         /// <summary>

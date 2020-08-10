@@ -6,6 +6,7 @@ using St.AutoMapper.Identity.Menu;
 using St.AutoMapper.Identity.Menu.Regiter;
 using St.DoMain.Model.Identity;
 using St.DoMain.Repository;
+using St.Exceptions;
 using St.Extensions;
 using System;
 using System.Threading.Tasks;
@@ -39,9 +40,11 @@ namespace St.Application.Identity
         /// </summary>
         /// <param name="dto">新增信息</param>
         /// <returns></returns>
-        public Task<bool> InsertAsync(MenuCreateDto dto)
+        public async Task<bool> InsertAsync(MenuCreateDto dto)
         {
-            throw new NotImplementedException();
+            dto.NotNull(nameof(MenuCreateDto));
+            var menuModel = dto.ToMap<Menu>();
+            return await _menuRepository.InsertAsync(menuModel);
         }
 
         /// <summary>
@@ -50,9 +53,17 @@ namespace St.Application.Identity
         /// <param name="Id">主键</param>
         /// <param name="dto">修改信息</param>
         /// <returns></returns>
-        public Task<bool> UpdateAsync(Guid Id, MenuUpdateDto dto)
+        public async Task<bool> UpdateAsync(Guid Id, MenuUpdateDto dto)
         {
-            throw new NotImplementedException();
+            Id.NotEmpty(nameof(Id));
+            dto.NotNull(nameof(MenuUpdateDto));
+            var menuModel = await _menuRepository.GetByIdAsync(Id);
+            if (menuModel.IsNotNull())
+            {
+                var menuResult = dto.ToMap(menuModel);
+                return await _menuRepository.UpdateAsync(menuResult);
+            }
+            throw new BusinessException("当前需修改菜单信息异常,请刷新重试!!!");
         }
 
         /// <summary>
@@ -60,9 +71,10 @@ namespace St.Application.Identity
         /// </summary>
         /// <param name="Id">主键</param>
         /// <returns></returns>
-        public Task<bool> DeleteAsync(Guid Id)
+        public async Task<bool> DeleteAsync(Guid Id)
         {
-            throw new NotImplementedException();
+            Id.NotEmpty(nameof(Id));
+            return await _menuRepository.DeleteAsync(Id);
         }
     }
 }

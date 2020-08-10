@@ -11,7 +11,7 @@ namespace St.Application.Infrastruct.Identity
         /// <summary>
         /// 分页所有菜单列表
         /// </summary>
-        /// <param name="parDto">请求参数</param>
+        /// <param name="parDto">查询条件</param>
         /// <returns></returns>
         Task<PageResultDto<MenuViewDto>> GetListAsync(ParameterMenuDto parDto);
         /// <summary>

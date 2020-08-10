@@ -2,7 +2,7 @@
 
 namespace St.AutoMapper.Identity.RoleMenu
 {
-    internal class RoleMenuViewDto
+    public class RoleMenuViewDto
     {
         /// <summary>
         /// 主键
