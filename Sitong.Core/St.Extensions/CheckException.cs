@@ -17,7 +17,6 @@ namespace St.Extensions
         private static void ThrowEx<TEx>(bool verify, string message) where TEx : Exception
         {
             if (verify) return;
-
             if (message.IsNullOrEmpty())
                 throw new AggregateException($"校验抛出信息为空,但校验结果异常.");
 

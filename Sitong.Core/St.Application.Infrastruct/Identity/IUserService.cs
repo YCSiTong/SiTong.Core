@@ -26,13 +26,13 @@ namespace St.Application.Infrastruct.Identity
         /// </summary>
         /// <param name="Id">主键</param>
         /// <returns></returns>
-        Task<bool> OpenLockAsync(Guid Id);
+        Task<bool> OpenFreezeAsync(Guid Id);
         /// <summary>
         /// 解除管理员冻结
         /// </summary>
         /// <param name="Id">主键</param>
         /// <returns></returns>
-        Task<bool> UnLockAsync(Guid Id);
+        Task<bool> UnFreezeAsync(Guid Id);
         /// <summary>
         /// 删除管理员
         /// </summary>

@@ -30,13 +30,25 @@ namespace St.Extensions
         /// <param name="val"></param>
         /// <returns></returns>
         public static bool IsNullOrEmpty(this string val) => string.IsNullOrEmpty(val);
+        /// <summary>
+        /// 判断ToString()后是否为Empty或Null
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public static bool IsNullOrEmpty(this object val) => val.ToString().IsNullOrEmpty();
 
         /// <summary>
         /// 判断<see cref="string"/>是否不为Empty或Null
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>
-        public static bool IsNotEmptyOrNull(this string val) => !val.IsNotEmptyOrNull();
+        public static bool IsNotEmptyOrNull(this string val) => !val.IsNullOrEmpty();
+        /// <summary>
+        /// 判断ToString()后是否不为Empty或Null
+        /// </summary>
+        /// <param name="val"></param>
+        /// <returns></returns>
+        public static bool IsNotEmptyOrNull(this object val) => val.ToString().IsNotEmptyOrNull();
 
         /// <summary>
         /// 判断<see cref="int"/>是否大于等于0

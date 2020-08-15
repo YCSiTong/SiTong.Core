@@ -1,28 +1,32 @@
 ﻿using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using St.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 
 namespace St.Common.Helper
 {
     public class JwtHelper
-    {/// <summary>
-     /// 获取JwtToken
-     /// </summary>
-     /// <param name="jwtModel">管理员信息</param>
-     /// <returns></returns>
+    {
+        /// <summary>
+        /// 获取JwtToken
+        /// </summary>
+        /// <param name="jwtModel">管理员信息</param>
+        /// <returns></returns>
         public static string GetJwtToken(JwtModel jwtModel)
         {
             //获取设定发行名
             var iss = AppSettings.GetVal("Authorize", "Name");
-            //获取设定发行名
+            //获取设定受众
             var aud = AppSettings.GetVal("Authorize", "Aud");
             //获取设定密码
             var pwd = AppSettings.GetVal("Authorize", "SginKey");
 
-            var cliams = new List<Claim>
+            var claims = new List<Claim>
             {
                 //用户id做唯一标识符
                 new Claim(JwtRegisteredClaimNames.Jti,jwtModel.UId.ToString()),
@@ -37,9 +41,15 @@ namespace St.Common.Helper
                 //发行人
                 new Claim(JwtRegisteredClaimNames.Iss,iss), 
                 //受众
-                new Claim(JwtRegisteredClaimNames.Aud,aud)
+                new Claim(JwtRegisteredClaimNames.Aud,aud),
+                //new Claim("123","123")
             };
 
+            // 可以将一个用户的多个角色全部赋予
+            jwtModel.Role.ForEach(x =>
+            {
+                claims.Add(new Claim(ClaimTypes.Role, x.ToString()));
+            });
             //获取Byte密码
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(pwd));
             //设定加密格式加密
@@ -48,12 +58,33 @@ namespace St.Common.Helper
             var jwt = new JwtSecurityToken
                     (
                         issuer: iss,
-                        claims: cliams,
+                        claims: claims,
                         signingCredentials: code
                     );
 
             //序列化JwtSecurityToken设定值
             return new JwtSecurityTokenHandler().WriteToken(jwt);
+
+        }
+
+        /// <summary>
+        /// 解析
+        /// </summary>
+        /// <param name="jwtStr"></param>
+        /// <returns></returns>
+        public static JwtModel SerializeJwt(string jwtStr)
+        {
+            var jwtHandler = new JwtSecurityTokenHandler();
+            JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(jwtStr);
+            jwtToken.Payload.TryGetValue(ClaimTypes.Role, out object role);
+
+            var tm = new JwtModel
+            {
+                UId = (jwtToken.Id).ToGuid(),
+                Role = role.IsNotEmptyOrNull() ? role.ToEntity<IEnumerable<Guid>>() : null
+            };
+            return tm;
+
 
         }
     }
@@ -66,12 +97,11 @@ namespace St.Common.Helper
         /// <summary>
         /// 管理员Id
         /// </summary>
-        public int UId { get; set; }
-
+        public Guid UId { get; set; }
         /// <summary>
-        /// 管理员名称
+        /// 角色
         /// </summary>
-        public string Name { get; set; }
+        public IEnumerable<Guid> Role { get; set; }
 
     }
 }

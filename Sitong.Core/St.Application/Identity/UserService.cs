@@ -61,7 +61,7 @@ namespace St.Application.Identity
         /// </summary>
         /// <param name="Id">主键</param>
         /// <returns></returns>
-        public async Task<bool> OpenLockAsync(Guid Id)
+        public async Task<bool> OpenFreezeAsync(Guid Id)
         {
             Id.NotEmpty(nameof(Id));
             var user = await _userRepository.GetByIdAsync(Id);
@@ -76,7 +76,7 @@ namespace St.Application.Identity
         /// </summary>
         /// <param name="Id">主键</param>
         /// <returns></returns>
-        public async Task<bool> UnLockAsync(Guid Id)
+        public async Task<bool> UnFreezeAsync(Guid Id)
         {
             Id.NotEmpty(nameof(Id));
             var user = await _userRepository.GetByIdAsync(Id);

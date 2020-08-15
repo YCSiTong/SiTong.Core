@@ -9,6 +9,7 @@ using St.EfCore;
 using St.Extensions;
 using St.ServiceExtensions.Configuration;
 using St.ServiceExtensions.Configuration.AutoFac;
+using St.ServiceExtensions.MiddleWare;
 using St.ServiceExtensions.MiddleWare.Configuration;
 using StackExchange.Profiling;
 
@@ -107,8 +108,9 @@ namespace St.Host.API
 
             services.AddControllers();
 
-            //services.AddHttpContextAccessor();// TODO:获取授权信息加载入同意权限验证实现.
-
+            /*
+             * TODO:考虑使用服务注入的形式对每次新进入的用户token进行校验
+             */
         }
 
         /// <summary>
@@ -127,10 +129,14 @@ namespace St.Host.API
         /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+
+            // 异常处理
+            app.UseExHandler();
+            //if (env.IsDevelopment())
+            //{
+
+            //    app.UseDeveloperExceptionPage();
+            //}
 
             #region 开启Swagger
             if (Configuration["SwaggerOptions:Enabled"].ToBool())

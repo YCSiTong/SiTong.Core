@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using St.Extensions;
 using System.Text;
 
 namespace St.Common.Helper
@@ -24,10 +25,9 @@ namespace St.Common.Helper
         /// <returns></returns>
         public static TEntity Deserialize<TEntity>(byte[] value)
         {
-            if (value == null)
-            {
+            if (value.IsNull())
                 return default;
-            }
+
             var jsonString = Encoding.UTF8.GetString(value);
             return JsonConvert.DeserializeObject<TEntity>(jsonString);
         }
