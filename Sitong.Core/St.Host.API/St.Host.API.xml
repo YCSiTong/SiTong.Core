@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>St.Host.API</name>
+    </assembly>
+    <members>
+        <member name="M:St.Host.API.Controller.TestController.CreateTokenTest">
+            <summary>
+            测试Jwt生成
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.TestController.ParseTokenTest">
+            <summary>
+            测试Jwt生成以及破解
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.TestController.GetIdentityInfo">
+            <summary>
+            获取解析的身份信息
+            </summary>
+        </member>
+        <member name="M:St.Host.API.Controller.TestController.ThrowExTest">
+            <summary>
+            Throw 异常测试
+            </summary>
+        </member>
+        <member name="M:St.Host.API.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            服务注册
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:St.Host.API.Startup.ConfigureContainer(Autofac.ContainerBuilder)">
+            <summary>
+            AutoFac工厂
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:St.Host.API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            管道
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>

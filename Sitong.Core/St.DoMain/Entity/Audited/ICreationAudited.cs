@@ -12,10 +12,10 @@ namespace St.DoMain.Entity.Audited
         /// <summary>
         /// 创造者Id
         /// </summary>
-        TPrimaryKey CreatorId { get; set; }
+        TPrimaryKey? CreatorId { get; set; }
         /// <summary>
         /// 创建时间
         /// </summary>
-        DateTime CreatedTime { get; set; }
+        DateTime? CreatedTime { get; set; }
     }
 }

@@ -58,9 +58,9 @@ namespace St.Common.RedisCaChe
         public string GetVal(string key)
             => _Redis.GetDatabase().StringGet(key);
         /// <summary>
-        /// 获取<see cref="{TEntity}"/>类型的值,不存在返回default
+        /// 获取<typeparamref name="TEntity"/>类型的值,不存在返回default
         /// </summary>
-        /// <typeparam name="SiTong"></typeparam>
+        /// <typeparam name="TEntity"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
         public TEntity GetVal<TEntity>(string key)
@@ -126,9 +126,9 @@ namespace St.Common.RedisCaChe
         public async Task<string> GetValAsync(string key)
             => await _Redis.GetDatabase().StringGetAsync(key);
         /// <summary>
-        /// 获取<see cref="{TEntity}"/>类型的值,不存在返回default
+        /// 获取<typeparamref name="TEntity"/>类型的值,不存在返回default
         /// </summary>
-        /// <typeparam name="SiTong"></typeparam>
+        /// <typeparam name="TEntity"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
         public async Task<TEntity> GetValAsync<TEntity>(string key)

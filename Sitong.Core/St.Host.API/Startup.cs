@@ -1,10 +1,13 @@
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using St.Common.Helper;
+using St.DoMain.Core.Identity;
+using St.DoMain.Identity;
 using St.EfCore;
 using St.Extensions;
 using St.ServiceExtensions.Configuration;
@@ -59,6 +62,7 @@ namespace St.Host.API
                     op.Version = Configuration["SwaggerOptions:Version"];
                     op.Email = Configuration["SwaggerOptions:Email"];
                     op.Description = Configuration["SwaggerOptions:Description"];
+                    op.XmlComments = Configuration["SwaggerOptions:XMLComments"].Split(',');
                 });
             }
             #endregion
@@ -67,9 +71,9 @@ namespace St.Host.API
             {
                 services.AddAuthorizeStartUp(op =>
                 {
-                    op.Name = Configuration["Authorize:Name"];
+                    op.Issuer = Configuration["Authorize:Issuer"];
                     op.Aud = Configuration["Authorize:Aud"];
-                    op.Minutes = 2;
+                    op.Minutes = 60 * 60;
                     op.SginKey = Configuration["Authorize:SginKey"];
                 });
             }
@@ -105,12 +109,18 @@ namespace St.Host.API
                 op.DataBase = DataBaseType.SqlServer;
             });
             #endregion
-
+            #region 解析Token => 全局可注入`IdentityInfo`接口 获取身份信息
+            services.AddHttpContextAccessor();
+            services.AddScoped<IdentityInfo>(x =>
+            {
+                var accessor = x.GetService<IHttpContextAccessor>();
+                var token = accessor.HttpContext.Request.Headers["Authorization"].ToString();
+                return new IdentityInfoRealize(JwtHelper.SerializeJwt(token));
+            });
+            #endregion
             services.AddControllers();
 
-            /*
-             * TODO:考虑使用服务注入的形式对每次新进入的用户token进行校验
-             */
+
         }
 
         /// <summary>
@@ -132,11 +142,11 @@ namespace St.Host.API
 
             // 异常处理
             app.UseExHandler();
-            //if (env.IsDevelopment())
-            //{
+            if (env.IsDevelopment() && false)
+            {
 
-            //    app.UseDeveloperExceptionPage();
-            //}
+                app.UseDeveloperExceptionPage();
+            }
 
             #region 开启Swagger
             if (Configuration["SwaggerOptions:Enabled"].ToBool())
@@ -156,16 +166,17 @@ namespace St.Host.API
             }
             #endregion
             app.UseRouting();
-            #region 开启MiniProfiler性能检测
-            app.UseMiniProfiler();
-            #endregion
-            #region Jwt官方验证
+
+            #region Jwt授权验证
             //开启认证
             app.UseAuthentication();
             //授权中间件
             app.UseAuthorization();
-            #endregion
+            #endregion。
 
+            #region 开启MiniProfiler性能检测
+            app.UseMiniProfiler();
+            #endregion
             app.UseEndpoints(endpoints =>
             {
                 //endpoints.MapGet("/", async context =>

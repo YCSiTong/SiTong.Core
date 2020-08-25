@@ -15,8 +15,8 @@ namespace St.DoMain.Entity.Full
         {
         }
 
-        public TPrimaryKey CreatorId { get; set; }
-        public DateTime CreatedTime { get; set; }
+        public TPrimaryKey? CreatorId { get; set; }
+        public DateTime? CreatedTime { get; set; }
         public TPrimaryKey? LastModifierId { get; set; }
         public DateTime? LastModifierTime { get; set; }
         public bool IsDeleted { get; set; }

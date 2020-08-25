@@ -20,9 +20,9 @@ namespace St.Common.RedisCaChe
         /// <returns></returns>
         string GetVal(string key);
         /// <summary>
-        /// 获取<see cref="{TEntity}"/>类型的值,不存在返回default
+        /// 获取<typeparamref name="TEntity"/>类型的值,不存在返回default
         /// </summary>
-        /// <typeparam name="SiTong"></typeparam>
+        /// <typeparam name="TEntity"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
         TEntity GetVal<TEntity>(string key);
@@ -60,9 +60,9 @@ namespace St.Common.RedisCaChe
         /// <returns></returns>
         Task<string> GetValAsync(string key);
         /// <summary>
-        /// 获取<see cref="{TEntity}"/>类型的值,不存在返回default
+        /// 获取<typeparamref name="TEntity"/>类型的值,不存在返回default
         /// </summary>
-        /// <typeparam name="SiTong"></typeparam>
+        /// <typeparam name="TEntity"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
         Task<TEntity> GetValAsync<TEntity>(string key);

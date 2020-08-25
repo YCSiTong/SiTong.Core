@@ -9,6 +9,7 @@ namespace St.DoMain.Repository
     /// <summary>
     /// 泛型仓储，实现泛型仓储接口
     /// </summary>
+    /// <typeparam name="TPrimaryKey"></typeparam>
     /// <typeparam name="TEntity"></typeparam>
     public interface IRepository<TEntity, TPrimaryKey> : IAsyncDisposable, IDisposable
         where TEntity : class
@@ -34,13 +35,13 @@ namespace St.DoMain.Repository
         /// <returns><see cref="IQueryable"/>延迟加载</returns>
         IQueryable<TEntity> AsTracking();
         /// <summary>
-        /// 根据主键<typeparamref name="TKey"/>获取<typeparamref name="TEntity"/>
+        /// 根据主键<typeparamref name="TPrimaryKey"/>获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <param name="key">主键值</param>
         /// <returns></returns>
         TEntity GetById(TPrimaryKey key);
         /// <summary>
-        /// 根据主键<typeparamref name="TKey"/>异步获取<typeparamref name="TEntity"/>
+        /// 根据主键<typeparamref name="TPrimaryKey"/>异步获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <param name="key">主键值</param>
         /// <returns></returns>

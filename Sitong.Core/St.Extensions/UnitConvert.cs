@@ -136,7 +136,7 @@ namespace St.Extensions
         /// <typeparam name="TResult">目标类型</typeparam>
         /// <param name="val">源数据</param>
         /// <returns></returns>
-        public static TResult AsTo<TResult>(this object val) where TResult : class
+        public static TResult AsTo<TResult>(this object val)
         {
             return (TResult)AsTo(val, typeof(TResult));
         }

@@ -3,7 +3,7 @@
     /// <summary>
     /// 核心聚合
     /// </summary>
-    /// <typeparam name="TKey"></typeparam>
+    /// <typeparam name="TPrimaryKey"></typeparam>
     public interface IAggregateRoot<out TPrimaryKey>
         where TPrimaryKey : struct
     {

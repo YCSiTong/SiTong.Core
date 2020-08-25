@@ -18,3 +18,5 @@ D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.csproj.CopyComplete
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.dll
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.pdb
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.DoMain.xml
+D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Common.xml

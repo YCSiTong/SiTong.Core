@@ -1,0 +1,462 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>St.DoMain</name>
+    </assembly>
+    <members>
+        <member name="T:St.DoMain.Entity.AddAndEdit.IAggregateAudited`1">
+            <summary>
+            普通聚合审计(新增/修改)
+            </summary>
+            <typeparam name="TPrimaryKey"></typeparam>
+        </member>
+        <member name="T:St.DoMain.Entity.AggregateRoot.IAggregateRoot`1">
+            <summary>
+            核心聚合
+            </summary>
+            <typeparam name="TPrimaryKey"></typeparam>
+        </member>
+        <member name="P:St.DoMain.Entity.AggregateRoot.IAggregateRoot`1.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="T:St.DoMain.Entity.Audited.ICreationAudited`1">
+            <summary>
+            创造者审计模型
+            </summary>
+            <typeparam name="TPrimaryKey"></typeparam>
+        </member>
+        <member name="P:St.DoMain.Entity.Audited.ICreationAudited`1.CreatorId">
+            <summary>
+            创造者Id
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Entity.Audited.ICreationAudited`1.CreatedTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:St.DoMain.Entity.Audited.IModificationAudited`1">
+            <summary>
+            修改者审计模型
+            </summary>
+            <typeparam name="TPrimaryKey"></typeparam>
+        </member>
+        <member name="P:St.DoMain.Entity.Audited.IModificationAudited`1.LastModifierId">
+            <summary>
+            最后修改人Id
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Entity.Audited.IModificationAudited`1.LastModifierTime">
+            <summary>
+            最后修改时间
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Entity.Audited.ISoftDelete.IsDeleted">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="T:St.DoMain.Entity.Full.IFullAudited`1">
+            <summary>
+            全部聚合审计(新增/修改/删除)
+            </summary>
+            <typeparam name="TPrimaryKey"></typeparam>
+        </member>
+        <member name="T:St.DoMain.Identity.IdentityInfo">
+            <summary>
+            身份信息
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Identity.IdentityInfo.Identity">
+            <summary>
+            身份信息实体
+            </summary>
+        </member>
+        <member name="T:St.DoMain.Model.Identity.Enum.MenuTypeEnum">
+            <summary>
+            菜单类型
+            </summary>
+        </member>
+        <member name="F:St.DoMain.Model.Identity.Enum.MenuTypeEnum.Modul">
+            <summary>
+            模块
+            </summary>
+        </member>
+        <member name="F:St.DoMain.Model.Identity.Enum.MenuTypeEnum.Action">
+            <summary>
+            方法(按钮/接口一类)
+            </summary>
+        </member>
+        <member name="T:St.DoMain.Model.Identity.Menu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.Menu.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.Menu.Url">
+            <summary>
+            路由地址
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.Menu.Icon">
+            <summary>
+            Icon图标
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.Menu.SuperiorId">
+            <summary>
+            上级主键
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.Menu.OrderId">
+            <summary>
+            顺序
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.Menu.IsLock">
+            <summary>
+            是否锁定
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.Menu.MenuType">
+            <summary>
+            菜单类型
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.Menu.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="T:St.DoMain.Model.Identity.Role">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.Role.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.Role.IsAdmin">
+            <summary>
+            是否管理员
+            </summary>
+        </member>
+        <member name="T:St.DoMain.Model.Identity.RoleMenu">
+            <summary>
+            角色拥有菜单
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.RoleMenu.RoleId">
+            <summary>
+            角色编号
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.RoleMenu.MenuId">
+            <summary>
+            菜单编号
+            </summary>
+        </member>
+        <member name="T:St.DoMain.Model.Identity.User">
+            <summary>
+            管理员基础信息
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.User.Account">
+            <summary>
+            账户名
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.User.PassWord">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.User.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.User.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.User.Email">
+            <summary>
+            QQ邮箱
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.User.HeadPic">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.User.PhoneNumber">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.User.TwoFactorVerifyEnable">
+            <summary>
+            双因子身份验证是否开启
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.User.IsFreeze">
+            <summary>
+            是否冻结
+            </summary>
+        </member>
+        <member name="T:St.DoMain.Model.Identity.UserRole">
+            <summary>
+            管理员拥有角色
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.UserRole.UserId">
+            <summary>
+            用户编号
+            </summary>
+        </member>
+        <member name="P:St.DoMain.Model.Identity.UserRole.RoleId">
+            <summary>
+            角色编号
+            </summary>
+        </member>
+        <member name="T:St.DoMain.Repository.IRepository`2">
+            <summary>
+            泛型仓储，实现泛型仓储接口
+            </summary>
+            <typeparam name="TPrimaryKey"></typeparam>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="P:St.DoMain.Repository.IRepository`2.UnitOfWork">
+            <summary>
+            工作单元
+            </summary>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.AsNoTracking">
+            <summary>
+            不追踪实体获取<typeparamref name="TEntity"/>
+            </summary>
+            <returns><see cref="T:System.Linq.IQueryable"/>延迟加载</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.AsTracking">
+            <summary>
+            追踪实体获取<typeparamref name="TEntity"/>
+            </summary>
+            <returns><see cref="T:System.Linq.IQueryable"/>延迟加载</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.GetById(`1)">
+            <summary>
+            根据主键<typeparamref name="TPrimaryKey"/>获取<typeparamref name="TEntity"/>
+            </summary>
+            <param name="key">主键值</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.GetByIdAsync(`1)">
+            <summary>
+            根据主键<typeparamref name="TPrimaryKey"/>异步获取<typeparamref name="TEntity"/>
+            </summary>
+            <param name="key">主键值</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.InsertAsync(`0)">
+            <summary>
+            新增单条数据
+            </summary>
+            <param name="model">实体类</param>
+            <returns><see cref="T:System.Boolean"/>是否成功</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.InsertAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量新增数据
+            </summary>
+            <param name="model"></param>
+            <returns><see cref="T:System.Boolean"/>是否成功</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.DeleteAsync(`0)">
+            <summary>
+            删除单条数据
+            </summary>
+            <param name="model">实体</param>
+            <returns><see cref="T:System.Boolean"/>是否成功</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.DeleteAsync(`1)">
+            <summary>
+            根据主键异步删除单条数据
+            </summary>
+            <param name="Id">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.DeleteAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量删除数据
+            </summary>
+            <param name="model">实体</param>
+            <returns><see cref="T:System.Boolean"/>是否成功</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.UpdateAsync(`0)">
+            <summary>
+            更新单条数据
+            </summary>
+            <param name="model">需要修改的数据</param>
+            <returns><see cref="T:System.Boolean"/>是否成功</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.UpdateAsync(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量更新数据
+            </summary>
+            <param name="model">需要修改的数据</param>
+            <returns><see cref="T:System.Boolean"/>是否成功</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.Insert(`0)">
+            <summary>
+            新增单条数据
+            </summary>
+            <param name="model"></param>
+            <returns><see cref="T:System.Boolean"/>是否成功</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.Insert(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量新增数据
+            </summary>
+            <param name="model"></param>
+            <returns><see cref="T:System.Boolean"/>是否成功</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.Delete(`0)">
+            <summary>
+            删除单条数据
+            </summary>
+            <param name="model">实体</param>
+            <returns><see cref="T:System.Boolean"/>是否成功</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.Delete(`1)">
+            <summary>
+            根据主键删除单条数据
+            </summary>
+            <param name="Id">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.Delete(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量删除数据
+            </summary>
+            <param name="model">实体</param>
+            <returns><see cref="T:System.Boolean"/>是否成功</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.Update(`0)">
+            <summary>
+            更新单条数据
+            </summary>
+            <param name="model">需要修改的数据</param>
+            <returns><see cref="T:System.Boolean"/>是否成功</returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.Update(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量更新数据
+            </summary>
+            <param name="model">需要修改的数据</param>
+            <returns><see cref="T:System.Boolean"/>是否成功</returns>
+        </member>
+        <member name="T:St.DoMain.UnitOfWork.IUnitOfWork">
+            <summary>
+            工作单元 实现获取DbContext上下文以及事务
+            </summary>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.GetDb">
+            <summary>
+            获取上下文
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.UseTransaction(System.Action)">
+            <summary>
+            执行委托<see cref="T:System.Action"/>事务
+            </summary>
+            <param name="action">需要执行的代码块</param>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.UseTransactionAsync``1(System.Func{System.Threading.Tasks.Task{``0}})">
+            <summary>
+            执行委托<see cref="T:System.Func`1"/>事务
+            </summary>
+            <param name="action">需要执行的代码块</param>
+            <returns><see cref="T:System.Threading.Tasks.Task`1"/></returns>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.UseTransactionAsync(System.Func{System.Threading.Tasks.Task})">
+            <summary>
+            执行委托<see cref="T:System.Func`1"/>事务
+            </summary>
+            <param name="action">需要执行的代码块</param>
+            <returns><see cref="T:System.Threading.Tasks.Task"/></returns>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.UseTransactionAsync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Data.IsolationLevel)">
+            <summary>
+            执行委托<see cref="T:System.Func`1"/>事务
+            </summary>
+            <param name="action">需要执行的代码块</param>
+            <param name="isolationLevel">事务级别</param>
+            <returns><see cref="T:System.Threading.Tasks.Task`1"/></returns>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.UseTransactionAsync(System.Func{System.Threading.Tasks.Task},System.Data.IsolationLevel)">
+            <summary>
+            执行委托<see cref="T:System.Func`1"/>事务
+            </summary>
+            <param name="action">需要执行的代码块</param>
+            <param name="isolationLevel">事务级别</param>
+            <returns><see cref="T:System.Threading.Tasks.Task"/></returns>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.BeginTransactionAsync">
+            <summary>
+            开启事务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.BeginTransactionAsync(System.Data.IsolationLevel)">
+            <summary>
+            开启事务
+            </summary>
+            <param name="isolationLevel">事务级别</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.CommitAsync">
+            <summary>
+            提交事务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.RollBackAsync">
+            <summary>
+            事务回滚
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.BeginTransaction">
+            <summary>
+            开启事务
+            </summary>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.BeginTransaction(System.Data.IsolationLevel)">
+            <summary>
+            开启事务
+            </summary>
+            <param name="isolationLevel">事务级别</param>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.Commit">
+            <summary>
+            事务提交
+            </summary>
+        </member>
+        <member name="M:St.DoMain.UnitOfWork.IUnitOfWork.RollBack">
+            <summary>
+            事务回滚
+            </summary>
+        </member>
+    </members>
+</doc>

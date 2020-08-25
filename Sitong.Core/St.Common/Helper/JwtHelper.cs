@@ -15,12 +15,13 @@ namespace St.Common.Helper
         /// <summary>
         /// 获取JwtToken
         /// </summary>
-        /// <param name="jwtModel">管理员信息</param>
+        /// <param name="identity">管理员信息</param>
         /// <returns></returns>
-        public static string GetJwtToken(JwtModel jwtModel)
+        public static string GetJwtToken(IdentityModel identity)
         {
+            identity.NotNull(nameof(IdentityModel));
             //获取设定发行名
-            var iss = AppSettings.GetVal("Authorize", "Name");
+            var iss = AppSettings.GetVal("Authorize", "Issuer");
             //获取设定受众
             var aud = AppSettings.GetVal("Authorize", "Aud");
             //获取设定密码
@@ -29,24 +30,21 @@ namespace St.Common.Helper
             var claims = new List<Claim>
             {
                 //用户id做唯一标识符
-                new Claim(JwtRegisteredClaimNames.Jti,jwtModel.UId.ToString()),
+                new Claim(JwtRegisteredClaimNames.Jti,identity.UId.ToString()),
                 //开始时间
                 new Claim(JwtRegisteredClaimNames.Iat,new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
                 //限制不可早于这个时间
                 new Claim(JwtRegisteredClaimNames.Nbf,new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds().ToString()),
                 //过期时间
-                //new Claim(JwtRegisteredClaimNames.Exp,new DateTimeOffset(DateTime.Now.AddHours(1)).ToUnixTimeSeconds().ToString()),
-                //过期时间
-                new Claim(ClaimTypes.Expiration,DateTime.Now.AddHours(3).ToString()),
+                new Claim(JwtRegisteredClaimNames.Exp,new DateTimeOffset(DateTime.Now.AddHours(1)).ToUnixTimeSeconds().ToString()),
                 //发行人
                 new Claim(JwtRegisteredClaimNames.Iss,iss), 
                 //受众
                 new Claim(JwtRegisteredClaimNames.Aud,aud),
-                //new Claim("123","123")
             };
 
             // 可以将一个用户的多个角色全部赋予
-            jwtModel.Role.ForEach(x =>
+            identity.Role.ForEach(x =>
             {
                 claims.Add(new Claim(ClaimTypes.Role, x.ToString()));
             });
@@ -70,29 +68,36 @@ namespace St.Common.Helper
         /// <summary>
         /// 解析
         /// </summary>
-        /// <param name="jwtStr"></param>
+        /// <param name="jwtStr">ToKen</param>
         /// <returns></returns>
-        public static JwtModel SerializeJwt(string jwtStr)
+        public static IdentityModel SerializeJwt(string jwtStr)
         {
-            var jwtHandler = new JwtSecurityTokenHandler();
-            JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(jwtStr);
-            jwtToken.Payload.TryGetValue(ClaimTypes.Role, out object role);
-
-            var tm = new JwtModel
+            if (jwtStr.IsNotEmptyOrNull())
             {
-                UId = (jwtToken.Id).ToGuid(),
-                Role = role.IsNotEmptyOrNull() ? role.ToEntity<IEnumerable<Guid>>() : null
-            };
-            return tm;
+                var jwtHandler = new JwtSecurityTokenHandler();
+                if (jwtStr.Contains("Bearer"))
+                {
+                    jwtStr = jwtStr.Split(' ')[1];
+                }
+                JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(jwtStr);
+                jwtToken.Payload.TryGetValue(ClaimTypes.Role, out object role);
 
+                var identity = new IdentityModel
+                {
+                    UId = (jwtToken.Id).ToGuid(),
+                    Role = role.IsNotEmptyOrNull() ? role.ToEntity<IEnumerable<Guid>>() : null
+                };
+                return identity;
 
+            }
+            return new IdentityModel();
         }
     }
 
     /// <summary>
     /// Jwt管理员信息
     /// </summary>
-    public class JwtModel
+    public class IdentityModel
     {
         /// <summary>
         /// 管理员Id

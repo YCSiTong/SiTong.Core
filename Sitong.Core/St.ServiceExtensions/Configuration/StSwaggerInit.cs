@@ -3,6 +3,8 @@ using Microsoft.OpenApi.Models;
 using St.Extensions;
 using Swashbuckle.AspNetCore.Filters;
 using System;
+using System.Collections;
+using System.IO;
 
 namespace St.ServiceExtensions.Configuration
 {
@@ -32,13 +34,16 @@ namespace St.ServiceExtensions.Configuration
                 });
                 a.OrderActionsBy(o => o.RelativePath);
 
+                if (model.XmlComments.Length > 0)
+                {
+                    var BasePath = AppDomain.CurrentDomain.BaseDirectory;
+                    model.XmlComments.ForEach(x =>
+                    {
+                        var xmlPath = Path.Combine(BasePath, x);
+                        a.IncludeXmlComments(xmlPath, true);
+                    });
 
-                var BasePath = AppDomain.CurrentDomain.BaseDirectory;
-                //var xmlPath = Path.Combine(BasePath, "Sitong.Core.xml");
-                //a.IncludeXmlComments(xmlPath, true);
-                //var ModelsxmlPath = Path.Combine(BasePath, "Sitong.Models.xml");
-                //a.IncludeXmlComments(ModelsxmlPath);
-
+                }
 
                 // 开启加权小锁
                 a.OperationFilter<AddResponseHeadersFilter>();
@@ -51,7 +56,7 @@ namespace St.ServiceExtensions.Configuration
                 // 必须是 oauth2
                 a.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
                 {
-                    Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）\"",
+                    Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）",
                     Name = "Authorization",//jwt默认的参数名称
                     In = ParameterLocation.Header,//jwt默认存放Authorization信息的位置(请求头中)
                     Type = SecuritySchemeType.ApiKey
@@ -86,5 +91,9 @@ namespace St.ServiceExtensions.Configuration
         /// 联系地址
         /// </summary>
         public string Url { get; set; }
+        /// <summary>
+        /// XML注释
+        /// </summary>
+        public string[] XmlComments { get; set; }
     }
 }

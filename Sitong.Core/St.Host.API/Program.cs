@@ -8,7 +8,7 @@ namespace St.Host.API
     {
         public static void Main(string[] args)
         {
-            /**
+            /*
              * Âê¿¨°Í¿¨×¨ÓÃÆô¶¯ÃüÁî,ÇëÄãÄî³öÀ´
              */
             System.Console.WriteLine("Âê¿¨°Í¿¨ °¢¿¨ÍÛ¿¨ Ã×¿¨ÍÛ¿¨ Ä·\r\n" +

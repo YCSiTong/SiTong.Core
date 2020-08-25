@@ -17,7 +17,7 @@ namespace St.ServiceExtensions.Configuration
             var model = new AuthorizeOptions();
             options(model);
 
-            model.Name.NotEmptyOrNull(nameof(model.Name));
+            model.Issuer.NotEmptyOrNull(nameof(model.Issuer));
             model.Aud.NotEmptyOrNull(nameof(model.Aud));
             model.SginKey.NotEmptyOrNull(nameof(model.SginKey));
 
@@ -27,11 +27,11 @@ namespace St.ServiceExtensions.Configuration
                 ValidateIssuerSigningKey = true,
                 IssuerSigningKey = sginKey,
                 ValidateIssuer = true,
-                ValidIssuer = model.Name,
+                ValidIssuer = model.Issuer,
                 ValidAudience = model.Aud,
                 ValidateAudience = true,
                 ValidateLifetime = true,
-                ClockSkew = model.Minutes.HasValue ? TimeSpan.FromMinutes(model.Minutes.Value) : TimeSpan.FromMinutes(1),//偏差值1s
+                ClockSkew = model.Minutes.HasValue ? TimeSpan.FromSeconds(model.Minutes.Value) : TimeSpan.FromSeconds(60),//偏差值60s
                 RequireExpirationTime = true
             };
             services.AddAuthentication(o =>
@@ -55,9 +55,9 @@ namespace St.ServiceExtensions.Configuration
         /// </summary>
         public string SginKey { get; set; }
         /// <summary>
-        /// 解决方案名称
+        /// 发行人
         /// </summary>
-        public string Name { get; set; }
+        public string Issuer { get; set; }
         /// <summary>
         /// 有效使用人
         /// </summary>
