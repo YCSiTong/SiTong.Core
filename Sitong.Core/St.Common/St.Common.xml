@@ -56,6 +56,11 @@
             管理员Id
             </summary>
         </member>
+        <member name="P:St.Common.Helper.IdentityModel.Role">
+            <summary>
+            角色
+            </summary>
+        </member>
         <member name="M:St.Common.Helper.MD5Helper.MD5Created16(System.String)">
             <summary>
             16位MD5加密

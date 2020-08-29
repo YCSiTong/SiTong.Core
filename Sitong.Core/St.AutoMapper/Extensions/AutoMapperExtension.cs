@@ -12,7 +12,7 @@ namespace St.AutoMapper.Extensions
         /// </summary>
         private static void CheckMapper()
         {
-            CheckException.CustomVerify(_mapper.IsNull(), "使用AutoMapper转换扩展失败,请检查是否注入获取`IMapper`");
+            CheckException.CustomVerify(_mapper.IsNotNull(), "使用AutoMapper转换扩展失败,请检查是否注入获取`IMapper`");
         }
 
         /// <summary>

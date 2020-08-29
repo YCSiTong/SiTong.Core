@@ -2,6 +2,7 @@ using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -38,7 +39,7 @@ namespace St.Host.API
         public void ConfigureServices(IServiceCollection services)
         {
             #region 注入AppSettings操作帮助类
-            services.AddSingleton(new AppSettings(Env.ContentRootPath));
+            services.AddSingleton(new AppSettings(Env.ContentRootPath, Env.IsDevelopment()));
             #endregion
             #region 注入Redis服务 
             if (Configuration["Redis:Enabled"].ToBool())
@@ -142,11 +143,11 @@ namespace St.Host.API
 
             // 异常处理
             app.UseExHandler();
-            if (env.IsDevelopment() && false)
-            {
+            //if (env.IsDevelopment())
+            //{
 
-                app.UseDeveloperExceptionPage();
-            }
+            //    app.UseDeveloperExceptionPage();
+            //}
 
             #region 开启Swagger
             if (Configuration["SwaggerOptions:Enabled"].ToBool())

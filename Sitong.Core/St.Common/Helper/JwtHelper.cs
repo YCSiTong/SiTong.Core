@@ -82,12 +82,26 @@ namespace St.Common.Helper
                 JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(jwtStr);
                 jwtToken.Payload.TryGetValue(ClaimTypes.Role, out object role);
 
-                var identity = new IdentityModel
+                // 判断是否为多角色
+                if (role.ToString().Length > 50)
                 {
-                    UId = (jwtToken.Id).ToGuid(),
-                    Role = role.IsNotEmptyOrNull() ? role.ToEntity<IEnumerable<Guid>>() : null
-                };
-                return identity;
+                    var identity = new IdentityModel
+                    {
+                        UId = (jwtToken.Id).ToGuid(),
+                        Role = role.IsNotEmptyOrNull() ? role.ToEntity<Guid[]>() : null
+                    };
+                    return identity;
+                }
+                else
+                {
+                    var identity = new IdentityModel
+                    {
+                        UId = (jwtToken.Id).ToGuid(),
+                        Role = role.IsNotEmptyOrNull() ? new Guid[] { role.ToGuid() } : null
+                    };
+                    return identity;
+                }
+
 
             }
             return new IdentityModel();

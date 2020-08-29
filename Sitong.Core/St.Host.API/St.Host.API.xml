@@ -4,6 +4,38 @@
         <name>St.Host.API</name>
     </assembly>
     <members>
+        <member name="T:St.Host.API.Controller.AuthorityManagement.HomePageController">
+            <summary>
+            首页相关
+            </summary>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.HomePageController.CreateMenu(St.AutoMapper.Identity.Menu.Regiter.MenuCreateDto)">
+            <summary>
+            新增菜单信息
+            </summary>
+            <param name="dto">所需新增信息</param>
+            <returns>是否成功</returns>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.HomePageController.CreateAdminUser(St.AutoMapper.Identity.User.Register.UserCreateDto)">
+            <summary>
+            新增管理员信息
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:St.Host.API.Controller.AuthorityManagement.LoginController">
+            <summary>
+            登录相关控制
+            </summary>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.LoginController.LoginAdmin(System.String,System.String)">
+            <summary>
+            登录后台账户
+            </summary>
+            <param name="account">账户</param>
+            <param name="pwd">密码</param>
+            <returns></returns>
+        </member>
         <member name="M:St.Host.API.Controller.TestController.CreateTokenTest">
             <summary>
             测试Jwt生成

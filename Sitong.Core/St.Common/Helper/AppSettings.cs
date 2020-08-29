@@ -9,12 +9,22 @@ namespace St.Common.Helper
     {
         private static IConfiguration _Configuration;
 
-        public AppSettings(string Path)
+        public AppSettings(string Path, bool IsDevelopment)
         {
-            _Configuration = new ConfigurationBuilder()
+            if (IsDevelopment)
+            {
+                _Configuration = new ConfigurationBuilder()
+                           .SetBasePath(Path)
+                           .Add(new JsonConfigurationSource { Path = "appsettings.Development.json", Optional = false, ReloadOnChange = true })
+                           .Build();
+            }
+            else
+            {
+                _Configuration = new ConfigurationBuilder()
                             .SetBasePath(Path)
                             .Add(new JsonConfigurationSource { Path = "appsettings.json", Optional = false, ReloadOnChange = true })
                             .Build();
+            }
         }
 
         /// <summary>

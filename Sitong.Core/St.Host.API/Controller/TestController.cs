@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using St.Common.GuidMethods;
 using St.Common.Helper;
 using St.DoMain.Identity;
 using St.Exceptions;
@@ -29,7 +30,7 @@ namespace St.Host.API.Controller
         [HttpGet]
         public string CreateTokenTest()
         {
-            IdentityModel jwt = new IdentityModel { UId = Guid.NewGuid()/*, Role = new List<Guid> { "5f692903-f473-5062-7a79-adc673f5a287".ToGuid(), Guid.NewGuid(), Guid.NewGuid() }*/ };
+            IdentityModel jwt = new IdentityModel { UId = Guid.NewGuid(), Role = new List<Guid> { GuidAll.NewGuid(), GuidAll.NewGuid(), GuidAll.NewGuid() } };
             return JwtHelper.GetJwtToken(jwt);
 
         }
@@ -41,7 +42,7 @@ namespace St.Host.API.Controller
         [HttpGet]
         public IdentityModel ParseTokenTest()
         {
-            IdentityModel jwt = new IdentityModel { UId = Guid.NewGuid()/*, Role = new List<Guid> { Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid() }*/ };
+            IdentityModel jwt = new IdentityModel { UId = Guid.NewGuid(), Role = new List<Guid> { Guid.NewGuid(), Guid.NewGuid() } };
             var token = JwtHelper.GetJwtToken(jwt);
             return JwtHelper.SerializeJwt(token);
         }
@@ -49,7 +50,7 @@ namespace St.Host.API.Controller
         /// <summary>
         /// 获取解析的身份信息
         /// </summary>
-        [HttpGet, Authorize]
+        [HttpGet]
         public IdentityModel GetIdentityInfo()
             => _identityInfo.Identity;
 

@@ -105,6 +105,7 @@ namespace St.Application.Identity
         {
             dto.NotNull(nameof(UserCreateDto));
             var userModel = dto.ToMap<User>();
+            userModel.PassWord = MD5Helper.MD5Encrypt32(userModel.PassWord);
             return await _userRepository.InsertAsync(userModel);
         }
         /// <summary>

@@ -5,7 +5,6 @@ namespace St.EfCore
 {
     public class StDbContext : DbContext
     {
-
         public StDbContext(DbContextOptions<StDbContext> options) : base(options)
         {
 
