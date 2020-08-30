@@ -44,7 +44,7 @@ namespace St.Host.API
             #region 注入Redis服务 
             if (Configuration["Redis:Enabled"].ToBool())
             {
-                services.AddRedisStartUp();
+                services.AddRedisStartUp(Configuration["Redis:RedisConnection"]);
             }
             #endregion
             #region 注入MemoryCaChe服务
@@ -106,8 +106,12 @@ namespace St.Host.API
             #region 注入EfCore中DbContext
             services.AddDbContextStartUp<StDbContext>(op =>
             {
-                op.ConnectionString = Configuration["SqlDbContext:SqlServer:SqlConnection"];
-                op.DataBase = DataBaseType.SqlServer;
+                var dbType = Configuration["SqlDbContext:DbType"];
+                if (dbType.IsNotEmptyOrNull())
+                {
+                    op.ConnectionString = Configuration["SqlDbContext:" + dbType + ":SqlConnection"];
+                    op.DataBase = dbType.AsTo<DataBaseType>();
+                }
             });
             #endregion
             #region 解析Token => 全局可注入`IdentityInfo`接口 获取身份信息

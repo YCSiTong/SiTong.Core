@@ -19,7 +19,7 @@ namespace St.DoMain.Core.Repository
     {
         private readonly DbContext _StDb;// 上下文对象
         private readonly DbSet<TEntity> _Entities;// 具体操作对象
-        private readonly IdentityInfo _IdentityInfo;
+        private readonly IdentityInfo _IdentityInfo;// 获取当前登录角色相关信息
 
         public Repository(IUnitOfWork unitOfWork, IdentityInfo identityInfo)
         {
