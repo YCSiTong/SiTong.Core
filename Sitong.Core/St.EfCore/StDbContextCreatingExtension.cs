@@ -18,8 +18,9 @@ namespace St.EfCore
             builder.UseUserRoleEntity();
             builder.UseRoleEntity();
             builder.UseRoleMenuEntity();
-            builder.UserMenuEntity();
-
+            builder.UseMenuEntity();
+            builder.UseAPIManagementEntity();
+            builder.UseRoleAPIManagementEntity();
         }
     }
 }

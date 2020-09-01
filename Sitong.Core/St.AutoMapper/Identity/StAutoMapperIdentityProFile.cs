@@ -1,8 +1,12 @@
 ﻿using AutoMapper;
+using St.AutoMapper.Identity.APIManagement;
+using St.AutoMapper.Identity.APIManagement.Regiter;
 using St.AutoMapper.Identity.Menu;
 using St.AutoMapper.Identity.Menu.Regiter;
 using St.AutoMapper.Identity.Role;
 using St.AutoMapper.Identity.Role.Regiter;
+using St.AutoMapper.Identity.RoleAPIManagement;
+using St.AutoMapper.Identity.RoleAPIManagement.Regiter;
 using St.AutoMapper.Identity.RoleMenu;
 using St.AutoMapper.Identity.RoleMenu.Regiter;
 using St.AutoMapper.Identity.User;
@@ -43,6 +47,16 @@ namespace St.AutoMapper.Identity
             CreateMap<DoMain.Model.Identity.Menu, MenuViewDto>();
             CreateMap<MenuCreateDto, DoMain.Model.Identity.Menu>();
             CreateMap<MenuUpdateDto, DoMain.Model.Identity.Menu>();
+
+            //APIManagement
+            CreateMap<DoMain.Model.Identity.APIManagement, APIManagementViewDto>();
+            CreateMap<APIManagementCreateDto, DoMain.Model.Identity.APIManagement>();
+            CreateMap<APIManagementUpdateDto, DoMain.Model.Identity.APIManagement>();
+
+            //RoleAPIManagement
+            CreateMap<DoMain.Model.Identity.RoleAPIManagement, RoleAPIManagementViewDto>();
+            CreateMap<RoleAPIManagementCreateDto, DoMain.Model.Identity.RoleAPIManagement>();
+            CreateMap<RoleAPIManagementUpdateDto, DoMain.Model.Identity.RoleAPIManagement>();
         }
     }
 }

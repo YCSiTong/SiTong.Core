@@ -178,9 +178,11 @@ namespace St.Host.API
             //授权中间件
             app.UseAuthorization();
             #endregion。
-
             #region 开启MiniProfiler性能检测
-            app.UseMiniProfiler();
+            if (Configuration["MiniProfiler:Enabled"].ToBool())
+            {
+                app.UseMiniProfiler();
+            }
             #endregion
             app.UseEndpoints(endpoints =>
             {

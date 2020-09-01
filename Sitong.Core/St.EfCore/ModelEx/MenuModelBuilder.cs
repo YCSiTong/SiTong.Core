@@ -9,7 +9,7 @@ namespace St.EfCore.ModelEx
         /// 菜单表
         /// </summary>
         /// <param name="builder"></param>
-        public static void UserMenuEntity(this ModelBuilder builder)
+        public static void UseMenuEntity(this ModelBuilder builder)
         {
             builder.Entity<Menu>(op =>
             {

@@ -15,11 +15,13 @@ namespace St.ServiceExtensions.Configuration
         {
             services.NotNull(nameof(IServiceCollection));
 
+            //services.AddMemoryCache();
             services.AddScoped<IMemoryCaChe, MemoryCaChe>();
             services.AddSingleton<IMemoryCache>(op =>
             {//Microsoft.Extensions.Caching.Memory
                 return new MemoryCache(new MemoryCacheOptions());
             });
+
         }
     }
 }

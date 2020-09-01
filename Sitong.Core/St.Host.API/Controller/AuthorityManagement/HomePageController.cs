@@ -15,7 +15,7 @@ namespace St.Host.API.Controller.AuthorityManagement
     /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class HomePageController : ControllerBase
     {
         private readonly IMenuService _menuService;

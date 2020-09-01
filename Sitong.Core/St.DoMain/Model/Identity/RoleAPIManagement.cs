@@ -4,22 +4,20 @@ using System;
 
 namespace St.DoMain.Model.Identity
 {
-    /// <summary>
-    /// 角色
-    /// </summary>
-    public class Role : FullAudited<Guid>
+    public class RoleAPIManagement : FullAudited<Guid>
     {
-        public Role()
+        public RoleAPIManagement()
         {
             Id = GuidAll.NewGuid();
         }
+
         /// <summary>
-        /// 角色名称
+        /// 角色编号
         /// </summary>
-        public string Name { get; set; }
+        public Guid RoleId { get; set; }
         /// <summary>
-        /// 是否管理员
+        /// 接口编号
         /// </summary>
-        public bool IsAdmin { get; set; }
+        public Guid APIId { get; set; }
     }
 }
