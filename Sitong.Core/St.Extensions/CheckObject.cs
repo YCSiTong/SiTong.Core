@@ -58,7 +58,7 @@ namespace St.Extensions
         public static bool IsPositive(this int val) => val >= 0;
 
         /// <summary>
-        /// 判断<see cref="int"/>是否小于0
+        /// 判断<see cref="int"/>是否小于0或不等于0
         /// </summary>
         /// <param name="val"></param>
         /// <returns></returns>

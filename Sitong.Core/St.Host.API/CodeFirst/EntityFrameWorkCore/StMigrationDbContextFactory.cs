@@ -17,19 +17,19 @@ namespace St.Host.API.CodeFirst.EntityFrameWorkCore
              *      进行快速迁移数据库
              */
 
-            #region DeBug ·Configuration·
+#if DEBUG
             var configuration = new ConfigurationBuilder()
                                         .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                                         .AddJsonFile("appsettings.Development.json")
-                                        .Build();
-            #endregion
+                                   .Build();
+#else
+            var configuration = new ConfigurationBuilder()
+                                    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                                    .AddJsonFile("appsettings.json")
+                                    .Build();
+#endif
 
-            #region Release ·Configuration·
-            //var configuration = new ConfigurationBuilder()
-            //                        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-            //                        .AddJsonFile("appsettings.json")
-            //                        .Build(); 
-            #endregion
+
 
             var dbType = configuration["SqlDbContext:DbType"];
             var thisDbType = dbType.AsTo<DataBaseType>();

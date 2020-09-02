@@ -21,6 +21,17 @@ namespace St.DoMain.Repository
         /// </summary>
         IUnitOfWork UnitOfWork { get; }
 
+        /// <summary>
+        /// 同步保存提交
+        /// </summary>
+        /// <returns></returns>
+        bool Save();
+        /// <summary>
+        /// 异步保存提交
+        /// </summary>
+        /// <returns></returns>
+        Task<bool> SaveAsync();
+
 
         #region Query
         /// <summary>

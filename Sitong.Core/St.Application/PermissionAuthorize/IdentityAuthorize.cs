@@ -1,8 +1,11 @@
-﻿using St.Application.Infrastruct.PermissionAuthorize;
+﻿using Microsoft.EntityFrameworkCore;
+using St.Application.Infrastruct.PermissionAuthorize;
 using St.DoMain.Identity;
 using St.DoMain.Model.Identity;
 using St.DoMain.Repository;
+using St.Extensions;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace St.Application.PermissionAuthorize
@@ -10,15 +13,21 @@ namespace St.Application.PermissionAuthorize
     public class IdentityAuthorize : IIdentityAuthorize
     {
         private readonly IdentityInfo _identityInfo;
-        private readonly IRepository<RoleMenu, Guid> _roleMenuRepository;
+        private readonly IRepository<RoleAPIManagement, Guid> _roleAPIManagementRepository;
+        private readonly IRepository<APIManagement, Guid> _apiManagementRepository;
+        private readonly IRepository<User, Guid> _userRepository;
 
         public IdentityAuthorize(
             IdentityInfo identityInfo
-            , IRepository<RoleMenu, Guid> roleMenuRepository
+            , IRepository<RoleAPIManagement, Guid> roleAPIManagementRepository
+            , IRepository<APIManagement, Guid> apiManagementRepository
+            , IRepository<User, Guid> userRepository
             )
         {
             _identityInfo = identityInfo;
-            _roleMenuRepository = roleMenuRepository;
+            _roleAPIManagementRepository = roleAPIManagementRepository;
+            _apiManagementRepository = apiManagementRepository;
+            _userRepository = userRepository;
         }
 
 
@@ -26,7 +35,9 @@ namespace St.Application.PermissionAuthorize
         {
             var userId = _identityInfo.Identity.UId;
             var userRole = _identityInfo.Identity.Role;
-            throw new Exception("");
+            var roleModels = await _roleAPIManagementRepository.AsNoTracking().Where(op => userRole.Contains(op.RoleId)).ToListAsync();// 查询所有角色接口权限
+            var apiModels = await _apiManagementRepository.AsNoTracking().Where(op => op.ApiUrl == apiUrl).FirstOrDefaultAsync();// 查询当前访问的接口地址是否存在
+            return roleModels.Where(op => op.APIId == apiModels.Id).Count().IsPositive(); // 是否存在该接口权限
         }
     }
 }

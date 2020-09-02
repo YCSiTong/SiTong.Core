@@ -153,6 +153,20 @@ namespace St.Host.API
             //    app.UseDeveloperExceptionPage();
             //}
 
+            
+            #region 是否开启Cors跨域
+            if (Configuration["Cors:Enabled"].ToBool())
+            {
+                app.UseCors(_DefaultCorsName);
+            }
+            #endregion
+            app.UseRouting();
+            #region Jwt授权验证
+            //开启认证
+            app.UseAuthentication();
+            //授权中间件
+            app.UseAuthorization();
+            #endregion
             #region 开启Swagger
             if (Configuration["SwaggerOptions:Enabled"].ToBool())
             {
@@ -164,20 +178,6 @@ namespace St.Host.API
                 });
             }
             #endregion
-            #region 是否开启Cors跨域
-            if (Configuration["Cors:Enabled"].ToBool())
-            {
-                app.UseCors(_DefaultCorsName);
-            }
-            #endregion
-            app.UseRouting();
-
-            #region Jwt授权验证
-            //开启认证
-            app.UseAuthentication();
-            //授权中间件
-            app.UseAuthorization();
-            #endregion。
             #region 开启MiniProfiler性能检测
             if (Configuration["MiniProfiler:Enabled"].ToBool())
             {

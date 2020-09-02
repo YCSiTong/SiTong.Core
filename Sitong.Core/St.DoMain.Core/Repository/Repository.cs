@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Security.Principal;
 using System.Threading.Tasks;
 
 namespace St.DoMain.Core.Repository
@@ -29,9 +28,17 @@ namespace St.DoMain.Core.Repository
             _Entities = _StDb.Set<TEntity>();
         }
 
-        private bool Save()
+        /// <summary>
+        /// 同步保存提交
+        /// </summary>
+        /// <returns></returns>
+        public bool Save()
             => _StDb.SaveChanges() > 0;
-        private async Task<bool> SaveAsync()
+        /// <summary>
+        /// 异步保存提交
+        /// </summary>
+        /// <returns></returns>
+        public async Task<bool> SaveAsync()
             => await _StDb.SaveChangesAsync() > 0;
 
 

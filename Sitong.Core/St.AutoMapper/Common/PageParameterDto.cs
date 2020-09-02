@@ -29,14 +29,20 @@ namespace St.AutoMapper.Common
         /// </summary>
         public int MaxResultCount
         {
-            get => _maxResultCount;
+            get
+            {
+                if (_maxResultCount == 0)
+                    return _maxResultCount = 10;
+                else
+                    return _maxResultCount;
+            }
             set
             {
                 _maxResultCount.IsPositive(nameof(MaxResultCount));
-                if (value > 0)
-                    _maxResultCount = value;
-                else
+                if (value == 0)
                     _maxResultCount = 10;
+                else
+                    _maxResultCount = value;
             }
         }
     }

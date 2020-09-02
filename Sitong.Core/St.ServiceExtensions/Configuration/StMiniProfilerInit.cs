@@ -22,7 +22,7 @@ namespace St.ServiceExtensions.Configuration
             services.AddMiniProfiler(op =>
             {
                 op.RouteBasePath = "/profiler";
-                op.PopupRenderPosition = model;
+                op.PopupRenderPosition = RenderPosition.Left;
                 op.PopupShowTimeWithChildren = true;
             });
         }
