@@ -91,7 +91,12 @@ namespace St.Extensions
         {
             return JsonConvert.SerializeObject(val);
         }
-
+        /// <summary>
+        /// obj反序列化成实体对象
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="val"></param>
+        /// <returns></returns>
         public static T ToEntity<T>(this object val)
         {
             return JsonConvert.DeserializeObject<T>(val.ToString());

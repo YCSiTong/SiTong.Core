@@ -20,7 +20,7 @@ namespace St.ServiceExtensions.Configuration
             redisConnectionStr.NotEmptyOrNull(nameof(redisConnectionStr));
 
             services.AddScoped<IRedisCaChe, RedisCaChe>();
-            services.AddSingleton<ConnectionMultiplexer>(op =>
+            services.AddSingleton(op =>
             {
                 var redisConfiguration = ConfigurationOptions.Parse(redisConnectionStr, true); // 忽略链接字符串中无法识别
                 redisConfiguration.ResolveDns = true; // 连接前解析DNS,连接失败会重新链接.
