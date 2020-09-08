@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain.Core\\St.DoMain.Core.csproj": {}
+    "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain.Core\\St.DoMain.Core.csproj": {}
   },
   "projects": {
-    "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Common\\St.Common.csproj": {
+    "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Common\\St.Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Common\\St.Common.csproj",
+        "projectUniqueName": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Common\\St.Common.csproj",
         "projectName": "St.Common",
-        "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Common\\St.Common.csproj",
-        "packagesPath": "C:\\Users\\sn001\\.nuget\\packages\\",
-        "outputPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Common\\obj\\",
+        "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Common\\St.Common.csproj",
+        "packagesPath": "C:\\Users\\Sitong\\.nuget\\packages\\",
+        "outputPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Common\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sn001\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sitong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -27,8 +27,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Extensions\\St.Extensions.csproj": {
-                "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Extensions\\St.Extensions.csproj"
+              "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj": {
+                "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj"
               }
             }
           }
@@ -82,21 +82,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain.Core\\St.DoMain.Core.csproj": {
+    "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain.Core\\St.DoMain.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain.Core\\St.DoMain.Core.csproj",
+        "projectUniqueName": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain.Core\\St.DoMain.Core.csproj",
         "projectName": "St.DoMain.Core",
-        "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain.Core\\St.DoMain.Core.csproj",
-        "packagesPath": "C:\\Users\\sn001\\.nuget\\packages\\",
-        "outputPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain.Core\\obj\\",
+        "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain.Core\\St.DoMain.Core.csproj",
+        "packagesPath": "C:\\Users\\Sitong\\.nuget\\packages\\",
+        "outputPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain.Core\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sn001\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sitong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -109,14 +109,14 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain\\St.DoMain.csproj": {
-                "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain\\St.DoMain.csproj"
+              "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj": {
+                "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj"
               },
-              "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.EfCore\\St.EfCore.csproj": {
-                "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.EfCore\\St.EfCore.csproj"
+              "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.EfCore\\St.EfCore.csproj": {
+                "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.EfCore\\St.EfCore.csproj"
               },
-              "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Extensions\\St.Extensions.csproj": {
-                "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Extensions\\St.Extensions.csproj"
+              "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj": {
+                "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj"
               }
             }
           }
@@ -144,21 +144,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain\\St.DoMain.csproj": {
+    "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain\\St.DoMain.csproj",
+        "projectUniqueName": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj",
         "projectName": "St.DoMain",
-        "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain\\St.DoMain.csproj",
-        "packagesPath": "C:\\Users\\sn001\\.nuget\\packages\\",
-        "outputPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain\\obj\\",
+        "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj",
+        "packagesPath": "C:\\Users\\Sitong\\.nuget\\packages\\",
+        "outputPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sn001\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sitong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -171,8 +171,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Common\\St.Common.csproj": {
-                "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Common\\St.Common.csproj"
+              "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Common\\St.Common.csproj": {
+                "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Common\\St.Common.csproj"
               }
             }
           }
@@ -206,21 +206,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.EfCore\\St.EfCore.csproj": {
+    "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.EfCore\\St.EfCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.EfCore\\St.EfCore.csproj",
+        "projectUniqueName": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.EfCore\\St.EfCore.csproj",
         "projectName": "St.EfCore",
-        "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.EfCore\\St.EfCore.csproj",
-        "packagesPath": "C:\\Users\\sn001\\.nuget\\packages\\",
-        "outputPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.EfCore\\obj\\",
+        "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.EfCore\\St.EfCore.csproj",
+        "packagesPath": "C:\\Users\\Sitong\\.nuget\\packages\\",
+        "outputPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.EfCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sn001\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sitong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -233,8 +233,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain\\St.DoMain.csproj": {
-                "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain\\St.DoMain.csproj"
+              "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj": {
+                "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj"
               }
             }
           }
@@ -282,21 +282,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Exceptions\\St.Exceptions.csproj": {
+    "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Exceptions\\St.Exceptions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Exceptions\\St.Exceptions.csproj",
+        "projectUniqueName": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Exceptions\\St.Exceptions.csproj",
         "projectName": "St.Exceptions",
-        "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Exceptions\\St.Exceptions.csproj",
-        "packagesPath": "C:\\Users\\sn001\\.nuget\\packages\\",
-        "outputPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Exceptions\\obj\\",
+        "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Exceptions\\St.Exceptions.csproj",
+        "packagesPath": "C:\\Users\\Sitong\\.nuget\\packages\\",
+        "outputPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Exceptions\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sn001\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sitong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -334,21 +334,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Extensions\\St.Extensions.csproj": {
+    "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Extensions\\St.Extensions.csproj",
+        "projectUniqueName": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj",
         "projectName": "St.Extensions",
-        "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Extensions\\St.Extensions.csproj",
-        "packagesPath": "C:\\Users\\sn001\\.nuget\\packages\\",
-        "outputPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Extensions\\obj\\",
+        "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\St.Extensions.csproj",
+        "packagesPath": "C:\\Users\\Sitong\\.nuget\\packages\\",
+        "outputPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Extensions\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\sn001\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Sitong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -361,8 +361,8 @@
         "frameworks": {
           "netcoreapp3.1": {
             "projectReferences": {
-              "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Exceptions\\St.Exceptions.csproj": {
-                "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.Exceptions\\St.Exceptions.csproj"
+              "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Exceptions\\St.Exceptions.csproj": {
+                "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.Exceptions\\St.Exceptions.csproj"
               }
             }
           }
@@ -396,7 +396,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

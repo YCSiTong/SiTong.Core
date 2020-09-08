@@ -271,6 +271,18 @@
             工作单元
             </summary>
         </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.Save">
+            <summary>
+            同步保存提交
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.SaveAsync">
+            <summary>
+            异步保存提交
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:St.DoMain.Repository.IRepository`2.AsNoTracking">
             <summary>
             不追踪实体获取<typeparamref name="TEntity"/>

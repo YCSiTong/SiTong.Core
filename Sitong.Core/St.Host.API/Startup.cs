@@ -153,7 +153,7 @@ namespace St.Host.API
             //    app.UseDeveloperExceptionPage();
             //}
 
-            
+           
             #region ÊÇ·ñ¿ªÆôCors¿çÓò
             if (Configuration["Cors:Enabled"].ToBool())
             {
