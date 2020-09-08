@@ -68,27 +68,27 @@ namespace St.Common.Helper
         /// <summary>
         /// 解析
         /// </summary>
-        /// <param name="jwtStr">ToKen</param>
+        /// <param name="token">ToKen</param>
         /// <returns></returns>
-        public static IdentityModel SerializeJwt(string jwtStr)
+        public static IdentityModel SerializeJwt(string token)
         {
-            if (jwtStr.IsNotEmptyOrNull())
+            if (token.IsNotEmptyOrNull())
             {
                 var jwtHandler = new JwtSecurityTokenHandler();
-                if (jwtStr.Contains("Bearer"))
+                if (token.Contains("Bearer"))
                 {
-                    jwtStr = jwtStr.Split(' ')[1];
+                    token = token.Split(' ')[1];
                 }
-                JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(jwtStr);
+                JwtSecurityToken jwtToken = jwtHandler.ReadJwtToken(token);
                 jwtToken.Payload.TryGetValue(ClaimTypes.Role, out object role);
 
                 // 判断是否为多角色
-                if (role.ToString().Length > 50)
+                if (role.ToString().IndexOf(',') != -1)
                 {
                     var identity = new IdentityModel
                     {
                         UId = (jwtToken.Id).ToGuid(),
-                        Role = role.IsNotEmptyOrNull() ? role.ToEntity<Guid[]>() : null
+                        Role = role.IsNotEmptyOrNull() ? role.ToEntity<IEnumerable<Guid>>() : null
                     };
                     return identity;
                 }
