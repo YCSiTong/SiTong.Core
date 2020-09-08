@@ -10,18 +10,21 @@ using System.Threading.Tasks;
 
 namespace St.Application.PermissionAuthorize
 {
+    /// <summary>
+    /// 身份验证
+    /// </summary>
     public class IdentityAuthorize : IIdentityAuthorize
     {
         private readonly IdentityInfo _identityInfo;
         private readonly IRepository<RoleAPIManagement, Guid> _roleAPIManagementRepository;
         private readonly IRepository<APIManagement, Guid> _apiManagementRepository;
-        private readonly IRepository<User, Guid> _userRepository;
+        //private readonly IRepository<User, Guid> _userRepository;
 
         public IdentityAuthorize(
             IdentityInfo identityInfo
             , IRepository<RoleAPIManagement, Guid> roleAPIManagementRepository
             , IRepository<APIManagement, Guid> apiManagementRepository
-            , IRepository<User, Guid> userRepository
+            //, IRepository<User, Guid> userRepository
             )
         {
             _identityInfo = identityInfo;
@@ -29,7 +32,6 @@ namespace St.Application.PermissionAuthorize
             _apiManagementRepository = apiManagementRepository;
             _userRepository = userRepository;
         }
-
 
         public async Task<bool> IsPassAuthorize(string apiUrl)
         {
