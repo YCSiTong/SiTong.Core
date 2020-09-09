@@ -29,6 +29,7 @@ namespace St.AutoMapper.Common
         /// </summary>
         public int MaxResultCount
         {
+            //get; set;
             get
             {
                 if (_maxResultCount == 0)
