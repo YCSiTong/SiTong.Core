@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace St.DoMain.Repository
@@ -39,7 +40,6 @@ namespace St.DoMain.Repository
         /// </summary>
         /// <returns><see cref="IQueryable"/>延迟加载</returns>
         IQueryable<TEntity> AsNoTracking();
-
         /// <summary>
         /// 追踪实体获取<typeparamref name="TEntity"/>
         /// </summary>
@@ -51,6 +51,24 @@ namespace St.DoMain.Repository
         /// <param name="key">主键值</param>
         /// <returns></returns>
         TEntity GetById(TPrimaryKey key);
+        /// <summary>
+        /// 根据条件排序查询不追踪实体的分页数据
+        /// </summary>
+        /// <param name="order">倒序</param>
+        /// <param name="sqlWhere">条件</param>
+        /// <param name="skipCount">跳过数据</param>
+        /// <param name="resultCount">返回数据</param>
+        /// <returns></returns>
+        (List<TEntity>, int) GetList(Expression<Func<TEntity, TPrimaryKey>> order, Expression<Func<TEntity, bool>> sqlWhere, int skipCount, int resultCount);
+        /// <summary>
+        /// 根据条件排序查询不追踪实体的分页数据
+        /// </summary>
+        /// <param name="order">倒序</param>
+        /// <param name="sqlWhere">条件</param>
+        /// <param name="skipCount">跳过数据</param>
+        /// <param name="resultCount">返回数据</param>
+        /// <returns></returns>
+        Task<(List<TEntity>, int)> GetListAsync(Expression<Func<TEntity, TPrimaryKey>> order, Expression<Func<TEntity, bool>> sqlWhere, int skipCount, int resultCount);
         /// <summary>
         /// 根据主键<typeparamref name="TPrimaryKey"/>异步获取<typeparamref name="TEntity"/>
         /// </summary>

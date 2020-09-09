@@ -1,11 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using St.Application.Infrastruct.PermissionAuthorize;
+using St.Common.Helper;
 using St.Common.RedisCaChe;
 using St.DoMain.Identity;
 using St.DoMain.Model.Identity;
 using St.DoMain.Repository;
 using St.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,13 +43,26 @@ namespace St.Application.PermissionAuthorize
         {
             var userId = _identityInfo.Identity.UId;
             var userRole = _identityInfo.Identity.Role;
-            if (true)
+            if (userRole.Any() && userId.IsNotNull())// 是否拥有角色信息
             {
-
+                var userRoleStr = userRole.AsToAll<Guid, string>();
+                if (await _redisCaChe.HIsExistAsync(AllStaticHelper.HRedisRoleAPI, userRoleStr))
+                {
+                    var roleAPIResult = (await _redisCaChe.HGetAsync<RoleAPIManagement>(AllStaticHelper.HRedisRoleAPI, userRoleStr)).Select(x => x.APIId).ToList();
+                    var APIResult = (await _redisCaChe.HGetAsync<APIManagement>(AllStaticHelper.HRedisAPI)).FirstOrDefault(op => op.Value.ApiUrl == apiUrl);
+                    if (roleAPIResult.Any())
+                    {
+                        return roleAPIResult.Any(op => op == APIResult.Key.ToGuid());
+                    }
+                }
+                else
+                {
+                    var roleModels = await _roleAPIManagementRepository.AsNoTracking().Where(op => userRole.Contains(op.RoleId)).Select(x => x.APIId).ToListAsync();// 查询所有角色接口权限
+                    var apiModels = await _apiManagementRepository.AsNoTracking().Where(op => op.ApiUrl == apiUrl).FirstOrDefaultAsync();// 查询当前访问的接口地址是否存在
+                    return roleModels.Any(op => op == apiModels.Id); // 是否存在该接口权限
+                }
             }
-            var roleModels = await _roleAPIManagementRepository.AsNoTracking().Where(op => userRole.Contains(op.RoleId)).Select(x => x.APIId).ToListAsync();// 查询所有角色接口权限
-            var apiModels = await _apiManagementRepository.AsNoTracking().Where(op => op.ApiUrl == apiUrl).FirstOrDefaultAsync();// 查询当前访问的接口地址是否存在
-            return roleModels.Where(op => op == apiModels.Id).Count().IsPositive(); // 是否存在该接口权限
+            return false;
         }
     }
 }

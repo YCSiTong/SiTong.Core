@@ -26,7 +26,7 @@ namespace St.ServiceExtensions.Aop
             {
                 var cacheKey = CaCheKey(invocation);
                 //注意是 string 类型，方法GetValue
-                var cacheValue = _RedisCaChe.GetValAsync(cacheKey).Result;
+                var cacheValue = _RedisCaChe.GetAsync(cacheKey).Result;
                 if (!string.IsNullOrEmpty(cacheValue))
                 {
                     //将当前获取到的缓存值，赋值给当前执行方法
@@ -54,7 +54,7 @@ namespace St.ServiceExtensions.Aop
                     else
                     {
                         // 核心2，要进行 ChangeType
-                        response = Convert.ChangeType(_RedisCaChe.GetValAsync<object>(cacheKey).Result, type);
+                        response = Convert.ChangeType(_RedisCaChe.GetAsync<object>(cacheKey).Result, type);
                     }
 
                     invocation.ReturnValue = response;
@@ -81,7 +81,7 @@ namespace St.ServiceExtensions.Aop
                     }
                     if (response == null) response = string.Empty;
 
-                    _RedisCaChe.SetValAsync(cacheKey, response, TimeSpan.FromMinutes(stCaChe.ExpirationTime)).Wait();
+                    _RedisCaChe.SetAsync(cacheKey, response, TimeSpan.FromMinutes(stCaChe.ExpirationTime)).Wait();
                 }
             }
             else

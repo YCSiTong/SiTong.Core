@@ -302,6 +302,26 @@
             <param name="key">主键值</param>
             <returns></returns>
         </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.GetList(System.Linq.Expressions.Expression{System.Func{`0,`1}},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Int32,System.Int32)">
+            <summary>
+            根据条件排序查询不追踪实体的分页数据
+            </summary>
+            <param name="order">倒序</param>
+            <param name="sqlWhere">条件</param>
+            <param name="skipCount">跳过数据</param>
+            <param name="resultCount">返回数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.GetListAsync(System.Linq.Expressions.Expression{System.Func{`0,`1}},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Int32,System.Int32)">
+            <summary>
+            根据条件排序查询不追踪实体的分页数据
+            </summary>
+            <param name="order">倒序</param>
+            <param name="sqlWhere">条件</param>
+            <param name="skipCount">跳过数据</param>
+            <param name="resultCount">返回数据</param>
+            <returns></returns>
+        </member>
         <member name="M:St.DoMain.Repository.IRepository`2.GetByIdAsync(`1)">
             <summary>
             根据主键<typeparamref name="TPrimaryKey"/>异步获取<typeparamref name="TEntity"/>

@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v3.1": {
       "St.DoMain.Core/1.0.0": {
         "dependencies": {
+          "St.Common": "1.0.0",
           "St.DoMain": "1.0.0",
           "St.EfCore": "1.0.0",
           "St.Extensions": "1.0.0"

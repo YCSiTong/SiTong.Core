@@ -81,6 +81,35 @@ namespace St.DoMain.Core.Repository
         }
 
         /// <summary>
+        /// 根据条件排序查询不追踪实体的分页数据
+        /// </summary>
+        /// <param name="order">倒序</param>
+        /// <param name="sqlWhere">条件</param>
+        /// <param name="skipCount">跳过数据</param>
+        /// <param name="resultCount">返回数据</param>
+        /// <returns></returns>
+        public virtual (List<TEntity>, int) GetList(Expression<Func<TEntity, TPrimaryKey>> order, Expression<Func<TEntity, bool>> sqlWhere, int skipCount, int resultCount)
+        {
+            var resultList = _Entities.OrderByDescending(order).Where(GetFilterSoftDelete()).Where(sqlWhere).Page(skipCount, resultCount).ToList();
+            var resultTotalCount = _Entities.Where(GetFilterSoftDelete()).Where(sqlWhere).Count();
+            return (resultList, resultTotalCount);
+        }
+        /// <summary>
+        /// 根据条件排序查询不追踪实体的分页数据
+        /// </summary>
+        /// <param name="order">倒序</param>
+        /// <param name="sqlWhere">条件</param>
+        /// <param name="skipCount">跳过数据</param>
+        /// <param name="resultCount">返回数据</param>
+        /// <returns></returns>
+        public virtual async Task<(List<TEntity>, int)> GetListAsync(Expression<Func<TEntity, TPrimaryKey>> order, Expression<Func<TEntity, bool>> sqlWhere, int skipCount, int resultCount)
+        {
+            var resultList = await _Entities.OrderByDescending(order).Where(GetFilterSoftDelete()).Where(sqlWhere).Page(skipCount, resultCount).ToListAsync();
+            var resultTotalCount = await _Entities.Where(GetFilterSoftDelete()).Where(sqlWhere).CountAsync();
+            return (resultList, resultTotalCount);
+        }
+
+        /// <summary>
         /// 根据主键<typeparamref name="TPrimaryKey"/>异步获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <param name="key">主键值</param>
@@ -351,16 +380,25 @@ namespace St.DoMain.Core.Repository
         {
             if (IsISoftDelete())
             {
-                var rootNode = Expression.Parameter(typeof(TEntity), "op"); // 根节点
-                var key = Expression.PropertyOrField(rootNode, "IsDeleted");// Key
-                var val = Expression.Constant(false);// Val
-                var conbine = Expression.Equal(key, val);//Key == Val
-                var sqlWhere = Expression.Lambda<Func<TEntity, bool>>(conbine, rootNode);// Builder Lambda
+                Expression<Func<TEntity, bool>> sqlWhere = GetFilterSoftDelete();
                 return _Entities.Where(sqlWhere);
             }
             else
                 return _Entities;
 
+        }
+        /// <summary>
+        /// 生成软删除过滤Lambda
+        /// </summary>
+        /// <returns></returns>
+        private Expression<Func<TEntity, bool>> GetFilterSoftDelete()
+        {
+            var rootNode = Expression.Parameter(typeof(TEntity), "op"); // 根节点
+            var key = Expression.PropertyOrField(rootNode, "IsDeleted");// Key
+            var val = Expression.Constant(false);// Val
+            var conbine = Expression.Equal(key, val);//Key == Val
+            var sqlWhere = Expression.Lambda<Func<TEntity, bool>>(conbine, rootNode);// Builder Lambda
+            return sqlWhere;
         }
 
         /// <summary>
