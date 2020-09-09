@@ -8,6 +8,7 @@ namespace St.Application.Infrastruct.Identity
 {
     public interface IUserRoleService
     {
+
         /// <summary>
         /// 根据管理员编号获取所有所属角色
         /// </summary>

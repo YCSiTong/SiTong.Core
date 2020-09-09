@@ -21,7 +21,12 @@ namespace St.Application.Identity
             _roleMenuRepository = roleMenuRepository;
         }
 
-
+        /// <summary>
+        /// 获取所有数据存储在Redis中
+        /// </summary>
+        /// <returns></returns>
+        public List<RoleMenu> GetRedis()
+            => _roleMenuRepository.AsNoTracking().ToList();
         /// <summary>
         /// 分页获取角色菜单信息
         /// </summary>

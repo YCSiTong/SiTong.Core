@@ -9,6 +9,7 @@ using St.DoMain.Repository;
 using St.Exceptions;
 using St.Extensions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,6 +24,12 @@ namespace St.Application.Identity
             _roleAPIManagementRepository = roleAPIManagementRepository;
         }
 
+        /// <summary>
+        /// 获取所有数据存储在Redis中
+        /// </summary>
+        /// <returns></returns>
+        public List<RoleAPIManagement> GetRedis()
+            => _roleAPIManagementRepository.AsNoTracking().ToList();
         /// <summary>
         /// 根据条件分页获取角色接口权限信息
         /// </summary>

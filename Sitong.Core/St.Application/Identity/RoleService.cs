@@ -25,6 +25,12 @@ namespace St.Application.Identity
         }
 
         /// <summary>
+        /// 获取所有数据存储在Redis中
+        /// </summary>
+        /// <returns></returns>
+        public List<Role> GetRedis()
+          => _roleRepository.AsNoTracking().ToList();
+        /// <summary>
         /// 获取分页查询角色数据
         /// </summary>
         /// <param name="dto">查询条件</param>

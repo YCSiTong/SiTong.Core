@@ -1,13 +1,20 @@
 ﻿using St.AutoMapper.Common;
 using St.AutoMapper.Identity.RoleAPIManagement;
 using St.AutoMapper.Identity.RoleAPIManagement.Regiter;
+using St.DoMain.Model.Identity;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace St.Application.Infrastruct.Identity
 {
     public interface IRoleAPIManagementService
     {
+        /// <summary>
+        /// 获取所有数据存储在Redis中
+        /// </summary>
+        /// <returns></returns>
+        List<RoleAPIManagement> GetRedis();
         /// <summary>
         /// 根据条件分页获取角色接口权限信息
         /// </summary>

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using St.Application.Infrastruct.Identity;
 using St.Common.Helper;
 using St.DoMain.Core.Identity;
 using St.DoMain.Identity;
@@ -13,7 +14,9 @@ using St.EfCore;
 using St.Extensions;
 using St.ServiceExtensions.Configuration;
 using St.ServiceExtensions.Configuration.AutoFac;
+using St.ServiceExtensions.Filter;
 using St.ServiceExtensions.MiddleWare;
+using St.ServiceExtensions.MiddleWare.ApplicationBuilder;
 using St.ServiceExtensions.MiddleWare.Configuration;
 using StackExchange.Profiling;
 
@@ -119,11 +122,19 @@ namespace St.Host.API
             services.AddScoped<IdentityInfo>(x =>
             {
                 var accessor = x.GetService<IHttpContextAccessor>();
-                var token = accessor.HttpContext.Request.Headers["Authorization"].ToString();
+                var token = accessor.HttpContext?.Request?.Headers["Authorization"].ToString();
                 return new IdentityInfoRealize(JwtHelper.SerializeJwt(token));
             });
             #endregion
-            services.AddControllers();
+            services.AddControllers(op =>
+            {
+                op.SuppressAsyncSuffixInActionNames = false;// 是否去除`Async`
+                op.Filters.Add<AuthorizeFilter>();
+            }).AddNewtonsoftJson(op =>
+            {
+                op.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+                op.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+            });
 
 
         }
@@ -144,7 +155,7 @@ namespace St.Host.API
         /// <param name="env"></param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-
+            app.AddAuthorizeRedis();
             // 异常处理
             app.UseExHandler();
             //if (env.IsDevelopment())
@@ -153,7 +164,7 @@ namespace St.Host.API
             //    app.UseDeveloperExceptionPage();
             //}
 
-           
+
             #region 是否开启Cors跨域
             if (Configuration["Cors:Enabled"].ToBool())
             {

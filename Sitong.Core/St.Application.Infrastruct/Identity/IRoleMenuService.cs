@@ -1,12 +1,19 @@
 ﻿using St.AutoMapper.Common;
 using St.AutoMapper.Identity.RoleMenu;
+using St.DoMain.Model.Identity;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace St.Application.Infrastruct.Identity
 {
     public interface IRoleMenuService
     {
+        /// <summary>
+        /// 获取所有数据存储在Redis中
+        /// </summary>
+        /// <returns></returns>
+        List<RoleMenu> GetRedis();
         /// <summary>
         /// 分页获取角色菜单信息
         /// </summary>

@@ -1,6 +1,7 @@
 ﻿using St.AutoMapper.Common;
 using St.AutoMapper.Identity.Role;
 using St.AutoMapper.Identity.Role.Regiter;
+using St.DoMain.Model.Identity;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,6 +10,11 @@ namespace St.Application.Infrastruct.Identity
 {
     public interface IRoleService
     {
+        /// <summary>
+        /// 获取所有数据存储在Redis中
+        /// </summary>
+        /// <returns></returns>
+        List<Role> GetRedis();
         /// <summary>
         /// 获取分页查询角色数据
         /// </summary>

@@ -1,13 +1,20 @@
 ﻿using St.AutoMapper.Common;
 using St.AutoMapper.Identity.Menu;
 using St.AutoMapper.Identity.Menu.Regiter;
+using St.DoMain.Model.Identity;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace St.Application.Infrastruct.Identity
 {
     public interface IMenuService
     {
+        /// <summary>
+        /// 获取所有数据存储在Redis中
+        /// </summary>
+        /// <returns></returns>
+        List<Menu> GetRedis();
         /// <summary>
         /// 分页所有菜单列表
         /// </summary>

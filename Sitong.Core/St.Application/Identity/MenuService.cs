@@ -9,6 +9,8 @@ using St.DoMain.Repository;
 using St.Exceptions;
 using St.Extensions;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace St.Application.Identity
@@ -21,7 +23,12 @@ namespace St.Application.Identity
             _menuRepository = menuRepository;
         }
 
-
+        /// <summary>
+        /// 获取所有数据存储在Redis中
+        /// </summary>
+        /// <returns></returns>
+        public List<Menu> GetRedis()
+            => _menuRepository.AsNoTracking().ToList();
         /// <summary>
         /// 分页所有菜单列表
         /// </summary>

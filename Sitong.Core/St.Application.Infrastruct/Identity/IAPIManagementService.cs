@@ -1,6 +1,7 @@
 ﻿using St.AutoMapper.Common;
 using St.AutoMapper.Identity.APIManagement;
 using St.AutoMapper.Identity.APIManagement.Regiter;
+using St.DoMain.Model.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,11 @@ namespace St.Application.Infrastruct.Identity
 {
     public interface IAPIManagementService
     {
+        /// <summary>
+        /// 获取所有数据存储在Redis中
+        /// </summary>
+        /// <returns></returns>
+        List<APIManagement> GetRedis();
         /// <summary>
         /// 根据条件分页获取接口信息
         /// </summary>
