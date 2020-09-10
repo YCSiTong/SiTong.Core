@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json.Serialization;
 using St.Application.Infrastruct.Identity;
 using St.Common.Helper;
 using St.DoMain.Core.Identity;
@@ -132,7 +133,7 @@ namespace St.Host.API
                 op.Filters.Add<AuthorizeFilter>();
             }).AddNewtonsoftJson(op =>
             {
-                op.SerializerSettings.ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver();
+                op.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 op.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
             });
 
