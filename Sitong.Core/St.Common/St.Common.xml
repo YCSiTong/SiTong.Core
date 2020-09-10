@@ -35,6 +35,21 @@
             存储接口信息的Hash名
             </summary>
         </member>
+        <member name="F:St.Common.Helper.AllStaticHelper.HRedisMenu">
+            <summary>
+            存储菜单信息的Hash名
+            </summary>
+        </member>
+        <member name="F:St.Common.Helper.AllStaticHelper.HRedisRole">
+            <summary>
+            存储角色信息的Hash名
+            </summary>
+        </member>
+        <member name="F:St.Common.Helper.AllStaticHelper.HRedisRoleMenu">
+            <summary>
+            存储角色菜单权限信息的Hash名
+            </summary>
+        </member>
         <member name="M:St.Common.Helper.AppSettings.GetVal(System.String[])">
             <summary>
             获取配置文件值
