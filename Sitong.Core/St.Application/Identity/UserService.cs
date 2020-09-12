@@ -61,28 +61,16 @@ namespace St.Application.Identity
         /// </summary>
         /// <param name="Id">主键</param>
         /// <returns></returns>
-        public async Task<bool> OpenFreezeAsync(Guid Id)
+        public async Task<bool> OpenOrCloseFreezeAsync(Guid Id)
         {
             Id.NotEmpty(nameof(Id));
             var user = await _userRepository.GetByIdAsync(Id);
             if (user.IsNull())
                 throw new BusinessException("当前管理员账户异常,请刷新后重试!!!");
-            user.IsFreeze = true;
-            return await _userRepository.UpdateAsync(user);
-        }
-
-        /// <summary>
-        /// 解除管理员冻结
-        /// </summary>
-        /// <param name="Id">主键</param>
-        /// <returns></returns>
-        public async Task<bool> UnFreezeAsync(Guid Id)
-        {
-            Id.NotEmpty(nameof(Id));
-            var user = await _userRepository.GetByIdAsync(Id);
-            if (user.IsNull())
-                throw new BusinessException("当前管理员账户异常,请刷新!!!");
-            user.IsFreeze = false;
+            if (user.IsFreeze)
+                user.IsFreeze = false;
+            else
+                user.IsFreeze = true;
             return await _userRepository.UpdateAsync(user);
         }
 

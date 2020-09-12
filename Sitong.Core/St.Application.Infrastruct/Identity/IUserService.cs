@@ -22,17 +22,11 @@ namespace St.Application.Infrastruct.Identity
         /// <returns></returns>
         Task<PageResultDto<UserViewDto>> GetListAsync(ParameterUserDto parDto);
         /// <summary>
-        /// 开启管理员冻结
+        /// 开启或关闭管理员冻结
         /// </summary>
         /// <param name="Id">主键</param>
         /// <returns></returns>
-        Task<bool> OpenFreezeAsync(Guid Id);
-        /// <summary>
-        /// 解除管理员冻结
-        /// </summary>
-        /// <param name="Id">主键</param>
-        /// <returns></returns>
-        Task<bool> UnFreezeAsync(Guid Id);
+        Task<bool> OpenOrCloseFreezeAsync(Guid Id);
         /// <summary>
         /// 删除管理员
         /// </summary>

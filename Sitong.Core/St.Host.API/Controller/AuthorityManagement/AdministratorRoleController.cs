@@ -10,7 +10,7 @@ namespace St.Host.API.Controller.AuthorityManagement
     /// <summary>
     /// 管理员权限管理
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class AdministratorRoleController : ControllerBase
     {

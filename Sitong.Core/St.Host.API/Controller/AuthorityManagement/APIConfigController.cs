@@ -10,7 +10,7 @@ namespace St.Host.API.Controller.AuthorityManagement
     /// <summary>
     /// API信息以及权限信息管理
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class APIConfigController : ControllerBase
     {
