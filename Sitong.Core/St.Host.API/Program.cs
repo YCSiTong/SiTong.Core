@@ -18,7 +18,6 @@ namespace St.Host.API
                 "Âê¿¨°Í¿¨ °¢¿¨ÍÛ¿¨\r\n" +
                 "Ã×¿¨Âí¿¨ Ä·\r\n");
 
-
             Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())//×¢ÈëAutoFacÄ£¿é
                 .ConfigureWebHostDefaults(webBuilder =>

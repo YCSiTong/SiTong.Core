@@ -40,7 +40,7 @@ namespace St.ServiceExtensions.MiddleWare.ApplicationBuilder
                     do
                     {
                         var redisResult = redisService.HSetAsync(AllStaticHelper.HRedisRole, item.Id.ToString(), item).Result;
-                        if (redisResult) count += 5;
+                        if (redisResult) break;
                         if (count > 0)
                         {
                             Console.Out.WriteLine($">>> 第{count + 1}次重试记录Id为{{{item.Id}}}的信息录入失败！");
@@ -63,7 +63,7 @@ namespace St.ServiceExtensions.MiddleWare.ApplicationBuilder
                     do
                     {
                         var redisResult = redisService.HSetAsync(AllStaticHelper.HRedisRoleMenu, item.Id.ToString(), item).Result;
-                        if (redisResult) count += 5;
+                        if (redisResult) break;
                         if (count > 0)
                         {
                             Console.Out.WriteLine($">>> 第{count + 1}次重试记录Id为{{{item.Id}}}的信息录入失败！");
@@ -86,7 +86,7 @@ namespace St.ServiceExtensions.MiddleWare.ApplicationBuilder
                     do
                     {
                         var redisResult = redisService.HSetAsync(AllStaticHelper.HRedisMenu, item.Id.ToString(), item).Result;
-                        if (redisResult) count += 5;
+                        if (redisResult) break;
                         if (count > 0)
                         {
                             Console.Out.WriteLine($">>> 第{count + 1}次重试记录Id为{{{item.Id}}}的信息录入失败！");
@@ -109,7 +109,7 @@ namespace St.ServiceExtensions.MiddleWare.ApplicationBuilder
                     do
                     {
                         var redisResult = redisService.HSetAsync(AllStaticHelper.HRedisAPI, item.Id.ToString(), item).Result;
-                        if (!redisResult) count += 5;
+                        if (!redisResult) break;
                         if (count > 0)
                         {
                             Console.Out.WriteLine($">>> 第{count + 1}次重试记录Id为{{{item.Id}}}的信息录入失败！");
@@ -132,7 +132,7 @@ namespace St.ServiceExtensions.MiddleWare.ApplicationBuilder
                     do
                     {
                         var redisResult = redisService.HSetAsync(AllStaticHelper.HRedisRoleAPI, item.Id.ToString(), item).Result;
-                        if (redisResult) count += 5;
+                        if (redisResult) break;
                         if (count > 0)
                         {
                             Console.Out.WriteLine($">>> 第{count + 1}次重试记录Id为{{{item.Id}}}的信息录入失败！");
