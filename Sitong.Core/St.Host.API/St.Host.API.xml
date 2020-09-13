@@ -4,6 +4,114 @@
         <name>St.Host.API</name>
     </assembly>
     <members>
+        <member name="T:St.Host.API.Controller.AuthorityManagement.AdministratorController">
+            <summary>
+            管理员账户管理
+            </summary>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.AdministratorController.GetListAsync(St.AutoMapper.Identity.User.ParameterUserDto)">
+            <summary>
+            分页获取管理员列表
+            </summary>
+            <param name="dto">条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.AdministratorController.DeleteAsync(System.Guid)">
+            <summary>
+            删除管理员
+            </summary>
+            <param name="Id">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.AdministratorController.UpdateAsync(System.Guid,St.AutoMapper.Identity.User.Register.UserUpdateDto)">
+            <summary>
+            修改管理员基本信息
+            </summary>
+            <param name="Id">主键</param>
+            <param name="dto">修改信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.AdministratorController.OpenOrCloseFreezeAsync(System.Guid)">
+            <summary>
+            冻结或解冻管理员账户
+            </summary>
+            <param name="Id">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.AdministratorController.CreateAsync(St.AutoMapper.Identity.User.Register.UserCreateDto)">
+            <summary>
+            新增管理员基本信息
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="T:St.Host.API.Controller.AuthorityManagement.AdministratorRoleController">
+            <summary>
+            管理员权限管理
+            </summary>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.AdministratorRoleController.GetListAsync(System.Guid)">
+            <summary>
+            根据管理员编号获取所有所属角色
+            </summary>
+            <param name="userId">管理员编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.AdministratorRoleController.CreateAsync(St.AutoMapper.Identity.UserRole.Register.UserRoleCreateDto)">
+            <summary>
+            新增管理员所属角色
+            </summary>
+            <param name="dto">新增信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.AdministratorRoleController.DeleteAsync(System.Guid)">
+            <summary>
+            删除指定管理员所属角色
+            </summary>
+            <param name="userId">管理员编号</param>
+            <returns></returns>
+        </member>
+        <member name="T:St.Host.API.Controller.AuthorityManagement.APIConfigController">
+            <summary>
+            API信息以及权限信息管理
+            </summary>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.APIConfigController.GetListAsync(St.AutoMapper.Identity.APIManagement.ParameterAPIManagementDto)">
+            <summary>
+            根据条件分页获取接口信息
+            </summary>
+            <param name="dto">条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.APIConfigController.CreateAsync(St.AutoMapper.Identity.APIManagement.Regiter.APIManagementCreateDto)">
+            <summary>
+            新增接口信息
+            </summary>
+            <param name="dto">新增信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.APIConfigController.UpdateAsync(System.Guid,St.AutoMapper.Identity.APIManagement.Regiter.APIManagementUpdateDto)">
+            <summary>
+            修改接口信息
+            </summary>
+            <param name="Id">主键编号</param>
+            <param name="dto">修改信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.APIConfigController.DeleteAsync(System.Guid)">
+            <summary>
+            删除接口
+            </summary>
+            <param name="Id">主键编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.APIConfigController.OpenOrCloseAPIAsync(System.Guid)">
+            <summary>
+            开启或关闭接口
+            </summary>
+            <param name="Id">主键编号</param>
+            <returns></returns>
+        </member>
         <member name="T:St.Host.API.Controller.AuthorityManagement.HomePageController">
             <summary>
             首页相关
@@ -35,6 +143,11 @@
             <param name="account">账户</param>
             <param name="pwd">密码</param>
             <returns></returns>
+        </member>
+        <member name="T:St.Host.API.Controller.AuthorityManagement.SystemConfigController">
+            <summary>
+            系统配置
+            </summary>
         </member>
         <member name="M:St.Host.API.Controller.TestController.CreateTokenTest">
             <summary>

@@ -302,7 +302,7 @@
             <param name="key">主键值</param>
             <returns></returns>
         </member>
-        <member name="M:St.DoMain.Repository.IRepository`2.GetList(System.Linq.Expressions.Expression{System.Func{`0,`1}},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Int32,System.Int32)">
+        <member name="M:St.DoMain.Repository.IRepository`2.GetList``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Int32,System.Int32)">
             <summary>
             根据条件排序查询不追踪实体的分页数据
             </summary>
@@ -312,10 +312,39 @@
             <param name="resultCount">返回数据</param>
             <returns></returns>
         </member>
-        <member name="M:St.DoMain.Repository.IRepository`2.GetListAsync(System.Linq.Expressions.Expression{System.Func{`0,`1}},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Int32,System.Int32)">
+        <member name="M:St.DoMain.Repository.IRepository`2.IsExist(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据条件筛选数据是否存在
+            </summary>
+            <param name="sqlWhere">条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.IsExist(`1)">
+            <summary>
+            根据主键筛选数据是否存在
+            </summary>
+            <param name="key">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.IsExistAsync(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据条件筛选数据是否存在
+            </summary>
+            <param name="sqlWhere">条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.IsExistAsync(`1)">
+            <summary>
+            根据主键筛选数据是否存在
+            </summary>
+            <param name="key">主键</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.DoMain.Repository.IRepository`2.GetListAsync``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Int32,System.Int32)">
             <summary>
             根据条件排序查询不追踪实体的分页数据
             </summary>
+            <typeparam name="TOrderByKey"></typeparam>
             <param name="order">倒序</param>
             <param name="sqlWhere">条件</param>
             <param name="skipCount">跳过数据</param>
