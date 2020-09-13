@@ -18,9 +18,9 @@ namespace St.Application.Infrastruct.Identity
         /// <summary>
         /// 分页所有菜单列表
         /// </summary>
-        /// <param name="parDto">查询条件</param>
+        /// <param name="dto">查询条件</param>
         /// <returns></returns>
-        Task<PageResultDto<MenuViewDto>> GetListAsync(ParameterMenuDto parDto);
+        Task<PageResultDto<MenuViewDto>> GetListAsync(ParameterMenuDto dto);
         /// <summary>
         /// 新增菜单信息
         /// </summary>

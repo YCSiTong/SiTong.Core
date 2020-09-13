@@ -38,8 +38,9 @@ namespace St.Application.Identity
         public async Task<PageResultDto<APIManagementViewDto>> GetListAsync(ParameterAPIManagementDto dto)
         {
             dto.NotNull(nameof(ParameterAPIManagementDto));
-            var APIDtos = (await _apiManagementRepository.AsNoTracking().Skip(dto.SkipCount).Take(dto.MaxResultCount).ToListAsync()).ToMap<APIManagementViewDto>();
-            var APICount = await _apiManagementRepository.AsNoTracking().CountAsync();
+            var APIResult = await _apiManagementRepository.GetListAsync(x => x.CreatedTime, null, dto.SkipCount, dto.MaxResultCount);
+            var APIDtos = APIResult.Item1.ToMap<APIManagementViewDto>();
+            var APICount = APIResult.Item2;
             return new PageResultDto<APIManagementViewDto> { TotalCount = APICount, Result = APIDtos };
         }
         /// <summary>
@@ -50,8 +51,7 @@ namespace St.Application.Identity
         public async Task<bool> InsertAsync(APIManagementCreateDto dto)
         {
             dto.NotNull(nameof(APIManagementCreateDto));
-            var isExist = await _apiManagementRepository.AsNoTracking().Where(op => op.ApiUrl == dto.ApiUrl).CountAsync();
-            if (isExist.IsMinus())
+            if (await _apiManagementRepository.IsExistAsync(op => op.ApiUrl == dto.ApiUrl))
             {
                 var APIModel = dto.ToMap<APIManagement>();
                 APIModel.IsEnabled = true;// 开启接口
@@ -68,7 +68,7 @@ namespace St.Application.Identity
         public async Task<bool> UpdateAsync(Guid Id, APIManagementUpdateDto dto)
         {
             dto.NotNull(nameof(APIManagementCreateDto));
-            var APIModel = await _apiManagementRepository.AsNoTracking().Where(op => op.Id == Id).FirstOrDefaultAsync();
+            var APIModel = await _apiManagementRepository.GetByIdAsync(Id);
             if (APIModel.IsNotNull())
             {
                 var APIResult = dto.ToMap(APIModel);
@@ -84,10 +84,9 @@ namespace St.Application.Identity
         public async Task<bool> DeleteAsync(Guid Id)
         {
             Id.NotEmpty(nameof(Id));
-            var APIModel = await _apiManagementRepository.AsNoTracking().Where(op => op.Id == Id).FirstOrDefaultAsync();
-            if (APIModel.IsNotNull())
+            if (await _apiManagementRepository.IsExistAsync(Id))
             {
-                return await _apiManagementRepository.DeleteAsync(APIModel);
+                return await _apiManagementRepository.DeleteAsync(Id);
             }
             throw new BusinessException("当前需删除的接口信息不存在!!!");
         }
@@ -96,17 +95,17 @@ namespace St.Application.Identity
         /// </summary>
         /// <param name="Id">主键编号</param>
         /// <returns></returns>
-        public async Task<bool> OpenOrCloseAPI(Guid Id)
+        public async Task<bool> OpenOrCloseAPIAsync(Guid Id)
         {
             Id.NotEmpty(nameof(Id));
-            var APIModel = await _apiManagementRepository.AsTracking().Where(op => op.Id == Id).FirstOrDefaultAsync();
+            var APIModel = await _apiManagementRepository.GetByIdAsync(Id);
             if (APIModel.IsNotNull())
             {
                 if (APIModel.IsEnabled)
                     APIModel.IsEnabled = false;
                 else
                     APIModel.IsEnabled = true;
-                return await _apiManagementRepository.SaveAsync();
+                return await _apiManagementRepository.UpdateAsync(APIModel);
             }
             throw new BusinessException("当前需开/关的接口信息不存在!!!");
         }

@@ -32,13 +32,13 @@ namespace St.DoMain.Core.Repository
         /// 同步保存提交
         /// </summary>
         /// <returns></returns>
-        public bool Save()
+        public virtual bool Save()
             => _StDb.SaveChanges() > 0;
         /// <summary>
         /// 异步保存提交
         /// </summary>
         /// <returns></returns>
-        public async Task<bool> SaveAsync()
+        public virtual async Task<bool> SaveAsync()
             => await _StDb.SaveChangesAsync() > 0;
 
 
@@ -88,12 +88,40 @@ namespace St.DoMain.Core.Repository
         /// <param name="skipCount">跳过数据</param>
         /// <param name="resultCount">返回数据</param>
         /// <returns></returns>
-        public virtual (List<TEntity>, int) GetList(Expression<Func<TEntity, TPrimaryKey>> order, Expression<Func<TEntity, bool>> sqlWhere, int skipCount, int resultCount)
+        public virtual (List<TEntity>, int) GetList<TOrderByKey>(Expression<Func<TEntity, TOrderByKey>> order, Expression<Func<TEntity, bool>> sqlWhere, int skipCount, int resultCount)
         {
             var resultList = _Entities.OrderByDescending(order).Where(GetFilterSoftDelete()).Where(sqlWhere).Page(skipCount, resultCount).ToList();
             var resultTotalCount = _Entities.Where(GetFilterSoftDelete()).Where(sqlWhere).Count();
             return (resultList, resultTotalCount);
         }
+        /// <summary>
+        /// 根据条件筛选数据是否存在
+        /// </summary>
+        /// <param name="sqlWhere">条件</param>
+        /// <returns></returns>
+        public virtual bool IsExist(Expression<Func<TEntity, bool>> sqlWhere)
+            => _Entities.Where(GetFilterSoftDelete()).Where(sqlWhere).Count() > 0;
+        /// <summary>
+        /// 根据主键筛选数据是否存在
+        /// </summary>
+        /// <param name="key">主键</param>
+        /// <returns></returns>
+        public virtual bool IsExist(TPrimaryKey key)
+            => GetById(key).IsNotNull();
+        /// <summary>
+        /// 根据条件筛选数据是否存在
+        /// </summary>
+        /// <param name="sqlWhere">条件</param>
+        /// <returns></returns>
+        public virtual async Task<bool> IsExistAsync(Expression<Func<TEntity, bool>> sqlWhere)
+             => await _Entities.Where(GetFilterSoftDelete()).Where(sqlWhere).CountAsync() > 0;
+        /// <summary>
+        /// 根据主键筛选数据是否存在
+        /// </summary>
+        /// <param name="key">主键</param>
+        /// <returns></returns>
+        public virtual async Task<bool> IsExistAsync(TPrimaryKey key)
+            => (await GetByIdAsync(key)).IsNotNull();
         /// <summary>
         /// 根据条件排序查询不追踪实体的分页数据
         /// </summary>
@@ -102,13 +130,22 @@ namespace St.DoMain.Core.Repository
         /// <param name="skipCount">跳过数据</param>
         /// <param name="resultCount">返回数据</param>
         /// <returns></returns>
-        public virtual async Task<(List<TEntity>, int)> GetListAsync(Expression<Func<TEntity, TPrimaryKey>> order, Expression<Func<TEntity, bool>> sqlWhere, int skipCount, int resultCount)
+        public virtual async Task<(List<TEntity>, int)> GetListAsync<TOrderByKey>(Expression<Func<TEntity, TOrderByKey>> order, Expression<Func<TEntity, bool>> sqlWhere, int skipCount, int resultCount)
         {
-            var resultList = await _Entities.OrderByDescending(order).Where(GetFilterSoftDelete()).Where(sqlWhere).Page(skipCount, resultCount).ToListAsync();
-            var resultTotalCount = await _Entities.Where(GetFilterSoftDelete()).Where(sqlWhere).CountAsync();
-            return (resultList, resultTotalCount);
-        }
+            if (sqlWhere.IsNotNull())
+            {
+                var resultList = await _Entities.OrderByDescending(order).Where(GetFilterSoftDelete()).Where(sqlWhere).Page(skipCount, resultCount).ToListAsync();
+                var resultTotalCount = await _Entities.Where(GetFilterSoftDelete()).Where(sqlWhere).CountAsync();
+                return (resultList, resultTotalCount);
 
+            }
+            else
+            {
+                var resultList = await _Entities.OrderByDescending(order).Where(GetFilterSoftDelete()).Page(skipCount, resultCount).ToListAsync();
+                var resultTotalCount = await _Entities.Where(GetFilterSoftDelete()).CountAsync();
+                return (resultList, resultTotalCount);
+            }
+        }
         /// <summary>
         /// 根据主键<typeparamref name="TPrimaryKey"/>异步获取<typeparamref name="TEntity"/>
         /// </summary>

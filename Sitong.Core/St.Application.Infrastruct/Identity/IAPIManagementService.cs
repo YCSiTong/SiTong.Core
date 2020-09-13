@@ -46,6 +46,6 @@ namespace St.Application.Infrastruct.Identity
         /// </summary>
         /// <param name="Id">主键编号</param>
         /// <returns></returns>
-        Task<bool> OpenOrCloseAPI(Guid Id);
+        Task<bool> OpenOrCloseAPIAsync(Guid Id);
     }
 }

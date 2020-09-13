@@ -34,11 +34,12 @@ namespace St.Application.Identity
         /// </summary>
         /// <param name="parDto">请求参数</param>
         /// <returns></returns>
-        public async Task<PageResultDto<MenuViewDto>> GetListAsync(ParameterMenuDto parDto)
+        public async Task<PageResultDto<MenuViewDto>> GetListAsync(ParameterMenuDto dto)
         {
-            parDto.NotNull(nameof(ParameterMenuDto));
-            var menuDtos = (await _menuRepository.AsNoTracking().Page(parDto.SkipCount, parDto.MaxResultCount).ToListAsync()).ToMap<MenuViewDto>();
-            var totalCount = await _menuRepository.AsNoTracking().CountAsync();
+            dto.NotNull(nameof(ParameterMenuDto));
+            var menuResult = await _menuRepository.GetListAsync(x => x.CreatedTime, null, dto.SkipCount, dto.MaxResultCount);
+            var menuDtos = menuResult.Item1.ToMap<MenuViewDto>();
+            var totalCount = menuResult.Item2;
             return new PageResultDto<MenuViewDto> { TotalCount = totalCount, Result = menuDtos };
         }
 
@@ -50,8 +51,12 @@ namespace St.Application.Identity
         public async Task<bool> InsertAsync(MenuCreateDto dto)
         {
             dto.NotNull(nameof(MenuCreateDto));
-            var menuModel = dto.ToMap<Menu>();
-            return await _menuRepository.InsertAsync(menuModel);
+            if (!await _menuRepository.IsExistAsync(op => op.Name == dto.Name || op.Url == dto.Url))
+            {
+                var menuModel = dto.ToMap<Menu>();
+                return await _menuRepository.InsertAsync(menuModel);
+            }
+            throw new BusinessException("菜单名称或地址已存在相同数据!!!");
         }
 
         /// <summary>

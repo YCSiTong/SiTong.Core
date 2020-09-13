@@ -30,6 +30,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// </summary>
         /// <param name="dto">条件</param>
         /// <returns></returns>
+        [HttpGet]
         public async Task<PageResultDto<UserViewDto>> GetListAsync(ParameterUserDto dto)
            => await _userService.GetListAsync(dto);
 
@@ -38,6 +39,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// </summary>
         /// <param name="Id">主键</param>
         /// <returns></returns>
+        [HttpDelete]
         public async Task<ResultDto<bool>> DeleteAsync(Guid Id)
             => new ResultDto<bool> { Result = await _userService.DeleteAsync(Id) };
 
@@ -47,6 +49,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// <param name="Id">主键</param>
         /// <param name="dto">修改信息</param>
         /// <returns></returns>
+        [HttpPut]
         public async Task<ResultDto<bool>> UpdateAsync(Guid Id, UserUpdateDto dto)
             => new ResultDto<bool> { Result = await _userService.UpdateAsync(Id, dto) };
 
@@ -55,6 +58,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// </summary>
         /// <param name="Id">主键</param>
         /// <returns></returns>
+        [HttpPost]
         public async Task<ResultDto<bool>> OpenOrCloseFreezeAsync(Guid Id)
             => new ResultDto<bool> { Result = await _userService.OpenOrCloseFreezeAsync(Id) };
 
@@ -63,6 +67,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// </summary>
         /// <param name="dto"></param>
         /// <returns></returns>
+        [HttpPost]
         public async Task<ResultDto<bool>> CreateAsync(UserCreateDto dto)
             => new ResultDto<bool> { Result = await _userService.InsertAsync(dto) };
     }

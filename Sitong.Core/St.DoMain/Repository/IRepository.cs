@@ -59,22 +59,48 @@ namespace St.DoMain.Repository
         /// <param name="skipCount">跳过数据</param>
         /// <param name="resultCount">返回数据</param>
         /// <returns></returns>
-        (List<TEntity>, int) GetList(Expression<Func<TEntity, TPrimaryKey>> order, Expression<Func<TEntity, bool>> sqlWhere, int skipCount, int resultCount);
+        (List<TEntity>, int) GetList<TOrderByKey>(Expression<Func<TEntity, TOrderByKey>> order, Expression<Func<TEntity, bool>> sqlWhere, int skipCount, int resultCount);
+        /// <summary>
+        /// 根据条件筛选数据是否存在
+        /// </summary>
+        /// <param name="sqlWhere">条件</param>
+        /// <returns></returns>
+        bool IsExist(Expression<Func<TEntity, bool>> sqlWhere);
+        /// <summary>
+        /// 根据主键筛选数据是否存在
+        /// </summary>
+        /// <param name="key">主键</param>
+        /// <returns></returns>
+        bool IsExist(TPrimaryKey key);
+        /// <summary>
+        /// 根据条件筛选数据是否存在
+        /// </summary>
+        /// <param name="sqlWhere">条件</param>
+        /// <returns></returns>
+        Task<bool> IsExistAsync(Expression<Func<TEntity, bool>> sqlWhere);
+        /// <summary>
+        /// 根据主键筛选数据是否存在
+        /// </summary>
+        /// <param name="key">主键</param>
+        /// <returns></returns>
+        Task<bool> IsExistAsync(TPrimaryKey key);
         /// <summary>
         /// 根据条件排序查询不追踪实体的分页数据
         /// </summary>
+        /// <typeparam name="TOrderByKey"></typeparam>
         /// <param name="order">倒序</param>
         /// <param name="sqlWhere">条件</param>
         /// <param name="skipCount">跳过数据</param>
         /// <param name="resultCount">返回数据</param>
         /// <returns></returns>
-        Task<(List<TEntity>, int)> GetListAsync(Expression<Func<TEntity, TPrimaryKey>> order, Expression<Func<TEntity, bool>> sqlWhere, int skipCount, int resultCount);
+        Task<(List<TEntity>, int)> GetListAsync<TOrderByKey>(Expression<Func<TEntity, TOrderByKey>> order, Expression<Func<TEntity, bool>> sqlWhere, int skipCount, int resultCount);
         /// <summary>
         /// 根据主键<typeparamref name="TPrimaryKey"/>异步获取<typeparamref name="TEntity"/>
         /// </summary>
         /// <param name="key">主键值</param>
         /// <returns></returns>
         Task<TEntity> GetByIdAsync(TPrimaryKey key);
+
 
         #endregion
 

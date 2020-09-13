@@ -72,7 +72,7 @@ namespace St.Application.Identity
              * TODO：
              *      是否需要验证角色/接口存在！
              */
-            var roleAPIModel = await _roleAPIManagementRepository.AsNoTracking().Where(op => op.Id == Id).FirstOrDefaultAsync();
+            var roleAPIModel = await _roleAPIManagementRepository.GetByIdAsync(Id);
             if (roleAPIModel.IsNull())
             {
                 var isExist = await _roleAPIManagementRepository.AsNoTracking().Where(op => op.RoleId == dto.RoleId && op.APIId == dto.APIId).CountAsync();
