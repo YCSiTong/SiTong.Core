@@ -35,8 +35,9 @@ namespace St.Application.Identity
         public async Task<PageResultDto<RoleMenuViewDto>> GetListAsync(ParameterRoleMenuDto dto)
         {
             dto.NotNull(nameof(ParameterRoleMenuDto));
-            var roleMenuDtos = (await _roleMenuRepository.AsNoTracking().Page(dto.SkipCount, dto.MaxResultCount).ToListAsync()).ToMap<RoleMenuViewDto>();
-            var totalCount = await _roleMenuRepository.AsNoTracking().CountAsync();
+            var roleMenuResult = await _roleMenuRepository.GetListAsync(x => x.CreatedTime, null, dto.SkipCount, dto.MaxResultCount);
+            var roleMenuDtos = roleMenuResult.Item1.ToMap<RoleMenuViewDto>();
+            var totalCount = roleMenuResult.Item2;
             return new PageResultDto<RoleMenuViewDto> { TotalCount = totalCount, Result = roleMenuDtos };
         }
 
@@ -65,7 +66,7 @@ namespace St.Application.Identity
                      List<RoleMenu> roleMenuList = new List<RoleMenu>();
                      foreach (var item in menuIds)
                      {
-                         var IsExistRole = roleMenuModels.Where(x => x.MenuId == item).FirstOrDefault();
+                         var IsExistRole = roleMenuModels.FirstOrDefault(x => x.MenuId == item);
                          if (IsExistRole.IsNull())
                              roleMenuList.Add(new RoleMenu { RoleId = Id, MenuId = item });
                      }

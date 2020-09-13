@@ -30,6 +30,7 @@ namespace St.Application.Identity
         /// <returns></returns>
         public List<RoleAPIManagement> GetRedis()
             => _roleAPIManagementRepository.AsNoTracking().ToList();
+
         /// <summary>
         /// 根据条件分页获取角色接口权限信息
         /// </summary>
@@ -38,8 +39,9 @@ namespace St.Application.Identity
         public async Task<PageResultDto<RoleAPIManagementViewDto>> GetListAsync(ParameterRoleAPIManagementDto dto)
         {
             dto.NotNull(nameof(ParameterRoleAPIManagementDto));
-            var roleAPIDtos = (await _roleAPIManagementRepository.AsNoTracking().Skip(dto.SkipCount).Take(dto.MaxResultCount).ToListAsync()).ToMap<RoleAPIManagementViewDto>();
-            var roleAPICount = await _roleAPIManagementRepository.AsNoTracking().CountAsync();
+            var roleAPIResult = await _roleAPIManagementRepository.GetListAsync(x => x.CreatedTime, null, dto.SkipCount, dto.MaxResultCount);
+            var roleAPIDtos = roleAPIResult.Item1.ToMap<RoleAPIManagementViewDto>();
+            var roleAPICount = roleAPIResult.Item2;
             return new PageResultDto<RoleAPIManagementViewDto> { TotalCount = roleAPICount, Result = roleAPIDtos };
         }
         /// <summary>
@@ -50,8 +52,7 @@ namespace St.Application.Identity
         public async Task<bool> InsertAsync(RoleAPIManagementCreateDto dto)
         {
             dto.NotNull(nameof(RoleAPIManagementCreateDto));
-            var isExsit = await _roleAPIManagementRepository.AsNoTracking().Where(op => op.RoleId == dto.RoleId && op.APIId == dto.APIId).CountAsync();
-            if (isExsit.IsMinus())
+            if (await _roleAPIManagementRepository.IsExistAsync(op => op.RoleId == dto.RoleId && op.APIId == dto.APIId))
             {
                 var roleAPIModel = dto.ToMap<RoleAPIManagement>();
                 return await _roleAPIManagementRepository.InsertAsync(roleAPIModel);
@@ -75,8 +76,7 @@ namespace St.Application.Identity
             var roleAPIModel = await _roleAPIManagementRepository.GetByIdAsync(Id);
             if (roleAPIModel.IsNull())
             {
-                var isExist = await _roleAPIManagementRepository.AsNoTracking().Where(op => op.RoleId == dto.RoleId && op.APIId == dto.APIId).CountAsync();
-                if (isExist.IsMinus())
+                if (await _roleAPIManagementRepository.IsExistAsync(op => op.RoleId == dto.RoleId && op.APIId == dto.APIId))
                 {
                     var roleAPIResult = dto.ToMap(roleAPIModel);
                     return await _roleAPIManagementRepository.UpdateAsync(roleAPIResult);
@@ -93,12 +93,8 @@ namespace St.Application.Identity
         /// <returns></returns>
         public async Task<bool> DeleteAsync(Guid Id)
         {
-            var roleAPIModel = await _roleAPIManagementRepository.AsNoTracking().Where(op => op.Id == Id).FirstOrDefaultAsync();
-            if (roleAPIModel.IsNotNull())
-            {
-                return await _roleAPIManagementRepository.DeleteAsync(roleAPIModel);
-            }
-            throw new BusinessException("当前需删除的角色接口权限不存在!!!");
+            Id.NotEmpty(nameof(Id));
+            return await _roleAPIManagementRepository.DeleteAsync(Id);
         }
     }
 }

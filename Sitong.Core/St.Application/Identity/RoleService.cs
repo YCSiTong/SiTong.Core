@@ -30,6 +30,7 @@ namespace St.Application.Identity
         /// <returns></returns>
         public List<Role> GetRedis()
           => _roleRepository.AsNoTracking().ToList();
+
         /// <summary>
         /// 获取分页查询角色数据
         /// </summary>
@@ -38,8 +39,9 @@ namespace St.Application.Identity
         public async Task<PageResultDto<RoleViewDto>> GetListAsync(ParameterRoleDto dto)
         {
             dto.NotNull(nameof(ParameterRoleDto));
-            var roleDtos = (await _roleRepository.AsNoTracking().Page(dto.SkipCount, dto.MaxResultCount).ToListAsync()).ToMap<RoleViewDto>();
-            var totalCoune = await _roleRepository.AsNoTracking().CountAsync();
+            var roleResult = await _roleRepository.GetListAsync(x => x.CreatedTime, null, dto.SkipCount, dto.MaxResultCount);
+            var roleDtos = roleResult.Item1.ToMap<RoleViewDto>();
+            var totalCoune = roleResult.Item2;
             return new PageResultDto<RoleViewDto> { TotalCount = totalCoune, Result = roleDtos };
         }
         /// <summary>
@@ -60,8 +62,12 @@ namespace St.Application.Identity
         public async Task<bool> InsertAsync(RoleCreateDto dto)
         {
             dto.NotNull(nameof(RoleCreateDto));
-            var roleModel = dto.ToMap<Role>();
-            return await _roleRepository.InsertAsync(roleModel);
+            if (!await _roleRepository.IsExistAsync(op => op.Name == dto.Name))
+            {
+                var roleModel = dto.ToMap<Role>();
+                return await _roleRepository.InsertAsync(roleModel);
+            }
+            throw new BusinessException("当前角色名称已存在!!!");
         }
         /// <summary>
         /// 删除角色信息

@@ -48,11 +48,12 @@ namespace St.Application.Identity
         /// </summary>
         /// <param name="parDto">请求参数</param>
         /// <returns></returns>
-        public async Task<PageResultDto<UserViewDto>> GetListAsync(ParameterUserDto parDto)
+        public async Task<PageResultDto<UserViewDto>> GetListAsync(ParameterUserDto dto)
         {
-            parDto.NotNull(nameof(ParameterUserDto));
-            var userDtos = (await _userRepository.AsNoTracking().Page(parDto.SkipCount, parDto.MaxResultCount).ToListAsync()).ToMap<UserViewDto>();
-            var userTotalCount = await _userRepository.AsNoTracking().CountAsync();
+            dto.NotNull(nameof(ParameterUserDto));
+            var userResult = await _userRepository.GetListAsync(x => x.CreatedTime, null, dto.SkipCount, dto.MaxResultCount);
+            var userDtos = userResult.Item1.ToMap<UserViewDto>();
+            var userTotalCount = userResult.Item2;
             return new PageResultDto<UserViewDto> { TotalCount = userTotalCount, Result = userDtos };
         }
 
@@ -92,6 +93,10 @@ namespace St.Application.Identity
         public async Task<bool> InsertAsync(UserCreateDto dto)
         {
             dto.NotNull(nameof(UserCreateDto));
+            /*
+             * TODO:
+             *  判断是否合格
+             */
             var userModel = dto.ToMap<User>();
             userModel.PassWord = MD5Helper.MD5Encrypt32(userModel.PassWord);
             return await _userRepository.InsertAsync(userModel);

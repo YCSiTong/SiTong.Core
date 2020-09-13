@@ -29,6 +29,7 @@ namespace St.Application.Identity
         /// <returns></returns>
         public List<Menu> GetRedis()
             => _menuRepository.AsNoTracking().ToList();
+
         /// <summary>
         /// 分页所有菜单列表
         /// </summary>

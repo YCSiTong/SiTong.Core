@@ -5,6 +5,7 @@ using St.AutoMapper.Identity.UserRole;
 using St.AutoMapper.Identity.UserRole.Register;
 using St.DoMain.Model.Identity;
 using St.DoMain.Repository;
+using St.Exceptions;
 using St.Extensions;
 using System;
 using System.Collections.Generic;
@@ -40,8 +41,12 @@ namespace St.Application.Identity
         public async Task<bool> InsertAsync(UserRoleCreateDto dto)
         {
             dto.NotNull(nameof(UserRoleCreateDto));
-            var userRoleModel = dto.ToMap<UserRole>();
-            return await _userRoleRepository.InsertAsync(userRoleModel);
+            if (!await _userRoleRepository.IsExistAsync(op => op.RoleId == dto.RoleId && op.UserId == dto.UserId))
+            {
+                var userRoleModel = dto.ToMap<UserRole>();
+                return await _userRoleRepository.InsertAsync(userRoleModel);
+            }
+            throw new BusinessException("当前用户角色权限信息已存在!!!");
         }
         /// <summary>
         /// 删除指定管理员所属角色
