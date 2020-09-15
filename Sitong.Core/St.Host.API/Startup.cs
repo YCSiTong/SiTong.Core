@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
+using St.Application.Identity;
 using St.Application.Infrastruct.Identity;
 using St.Common.Helper;
 using St.DoMain.Core.Identity;
@@ -137,7 +138,7 @@ namespace St.Host.API
                 op.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
             });
 
-
+            //services.Add(new ServiceDescriptor(typeof(IAPIManagementService), typeof(APIManagementService), ServiceLifetime.Scoped));
         }
 
         /// <summary>
