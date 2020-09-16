@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3pieovV53UM7mOJaSvj6VCLosZ1d9knDtY4X2quJLVHMVXBCdfSqG90k3M0Bu4kpHoiyc6xcniozuwX1PK4MeQ==",
+  "dgSpecHash": "BlvxWlXLjUoGXK6gq9fDKB9dJGc36UbRZMwOgerlaP1NcvL9qYAUDapKbk1qy3HALbnyoGVh1QZcytSCYGIH1A==",
   "success": true,
   "projectFilePath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain.Core\\St.DoMain.Core.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,7 @@
     "C:\\Users\\Sitong\\.nuget\\packages\\microsoft.extensions.configuration.json\\3.1.7\\microsoft.extensions.configuration.json.3.1.7.nupkg.sha512",
     "C:\\Users\\Sitong\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.7\\microsoft.extensions.dependencyinjection.3.1.7.nupkg.sha512",
     "C:\\Users\\Sitong\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.7\\microsoft.extensions.dependencyinjection.abstractions.3.1.7.nupkg.sha512",
+    "C:\\Users\\Sitong\\.nuget\\packages\\microsoft.extensions.dependencymodel\\3.1.6\\microsoft.extensions.dependencymodel.3.1.6.nupkg.sha512",
     "C:\\Users\\Sitong\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\3.1.7\\microsoft.extensions.fileproviders.abstractions.3.1.7.nupkg.sha512",
     "C:\\Users\\Sitong\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\3.1.7\\microsoft.extensions.fileproviders.physical.3.1.7.nupkg.sha512",
     "C:\\Users\\Sitong\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\3.1.7\\microsoft.extensions.filesystemglobbing.3.1.7.nupkg.sha512",
@@ -105,6 +106,7 @@
     "C:\\Users\\Sitong\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
     "C:\\Users\\Sitong\\.nuget\\packages\\system.text.encoding.codepages\\4.5.0\\system.text.encoding.codepages.4.5.0.nupkg.sha512",
     "C:\\Users\\Sitong\\.nuget\\packages\\system.text.encoding.extensions\\4.3.0\\system.text.encoding.extensions.4.3.0.nupkg.sha512",
+    "C:\\Users\\Sitong\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
     "C:\\Users\\Sitong\\.nuget\\packages\\system.text.regularexpressions\\4.3.0\\system.text.regularexpressions.4.3.0.nupkg.sha512",
     "C:\\Users\\Sitong\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
     "C:\\Users\\Sitong\\.nuget\\packages\\system.threading.channels\\4.7.1\\system.threading.channels.4.7.1.nupkg.sha512",

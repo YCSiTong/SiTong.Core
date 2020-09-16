@@ -57,6 +57,17 @@
             <param name="key">键名</param>
             <returns></returns>
         </member>
+        <member name="T:St.Common.Helper.AssemblyHelper">
+            <summary>
+            程序集封装
+            </summary>
+        </member>
+        <member name="M:St.Common.Helper.AssemblyHelper.GetAssemblys">
+            <summary>
+            获取项目所有的程序集
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:St.Common.Helper.JwtHelper.GetJwtToken(St.Common.Helper.IdentityModel)">
             <summary>
             获取JwtToken
