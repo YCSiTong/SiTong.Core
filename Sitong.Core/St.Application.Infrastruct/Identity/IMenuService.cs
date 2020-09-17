@@ -1,6 +1,7 @@
 ﻿using St.AutoMapper.Common;
 using St.AutoMapper.Identity.Menu;
 using St.AutoMapper.Identity.Menu.Regiter;
+using St.Common.Attributes;
 using St.DoMain.Model.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace St.Application.Infrastruct.Identity
 {
+    [StDI]
     public interface IMenuService
     {
         /// <summary>

@@ -14,6 +14,16 @@
             过期时间(分钟)
             </summary>
         </member>
+        <member name="T:St.Common.Attributes.StDIAttribute">
+            <summary>
+            此接口将进行依赖注入
+            </summary>
+        </member>
+        <member name="P:St.Common.Attributes.StDIAttribute.ServiceLifetime">
+            <summary>
+            服务生命周期
+            </summary>
+        </member>
         <member name="T:St.Common.GuidMethods.GuidAll">
             <summary>
             All of the Guid methods

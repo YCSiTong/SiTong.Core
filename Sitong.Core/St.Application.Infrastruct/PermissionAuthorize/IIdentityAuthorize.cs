@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using St.Common.Attributes;
+using System.Threading.Tasks;
 
 namespace St.Application.Infrastruct.PermissionAuthorize
 {
     /// <summary>
     /// 权限校验
     /// </summary>
+    [StDI]
     public interface IIdentityAuthorize
     {
         /// <summary>

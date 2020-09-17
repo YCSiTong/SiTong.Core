@@ -1,11 +1,13 @@
 ﻿using St.AutoMapper.Identity.UserRole;
 using St.AutoMapper.Identity.UserRole.Register;
+using St.Common.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace St.Application.Infrastruct.Identity
 {
+    [StDI]
     public interface IUserRoleService
     {
 

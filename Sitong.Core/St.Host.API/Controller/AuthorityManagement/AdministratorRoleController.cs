@@ -30,6 +30,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// </summary>
         /// <param name="userId">管理员编号</param>
         /// <returns></returns>
+        [HttpGet]
         public async Task<IEnumerable<UserRoleViewDto>> GetListAsync(Guid userId)
             => await _userRoleService.GetListAsync(userId);
 
@@ -38,6 +39,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// </summary>
         /// <param name="dto">新增信息</param>
         /// <returns></returns>
+        [HttpPost]
         public async Task<ResultDto<bool>> CreateAsync(UserRoleCreateDto dto)
             => new ResultDto<bool> { Result = await _userRoleService.InsertAsync(dto) };
         /// <summary>
@@ -45,6 +47,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// </summary>
         /// <param name="userId">管理员编号</param>
         /// <returns></returns>
+        [HttpDelete]
         public async Task<ResultDto<bool>> DeleteAsync(Guid userId)
             => new ResultDto<bool> { Result = await _userRoleService.DeleteAsync(userId) };
     }

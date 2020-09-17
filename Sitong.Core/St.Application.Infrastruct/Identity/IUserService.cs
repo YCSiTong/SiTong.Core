@@ -1,11 +1,13 @@
 ﻿using St.AutoMapper.Common;
 using St.AutoMapper.Identity.User;
 using St.AutoMapper.Identity.User.Register;
+using St.Common.Attributes;
 using System;
 using System.Threading.Tasks;
 
 namespace St.Application.Infrastruct.Identity
 {
+    [StDI]
     public interface IUserService
     {
         /// <summary>

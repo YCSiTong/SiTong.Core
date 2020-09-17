@@ -10,6 +10,7 @@ using Newtonsoft.Json.Serialization;
 using St.Application.Identity;
 using St.Application.Infrastruct.Identity;
 using St.Common.Helper;
+using St.Common.RedisCaChe;
 using St.DoMain.Core.Identity;
 using St.DoMain.Identity;
 using St.EfCore;
@@ -45,6 +46,9 @@ namespace St.Host.API
         {
             #region 注入AppSettings操作帮助类
             services.AddSingleton(new AppSettings(Env.ContentRootPath, Env.IsDevelopment()));
+            #endregion
+            #region 自定义全局依赖注入
+            services.AddDIAllStartUp();
             #endregion
             #region 注入Redis服务 
             if (Configuration["Redis:Enabled"].ToBool())
@@ -141,21 +145,21 @@ namespace St.Host.API
             //services.Add(new ServiceDescriptor(typeof(IAPIManagementService), typeof(APIManagementService), ServiceLifetime.Scoped));
         }
 
-        /// <summary>
-        /// AutoFac工厂
-        /// </summary>
-        /// <param name="builder"></param>
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            builder.RegisterModule(new StAutoFacModuleRegister());//模块加载.
-        }
+        ///// <summary>
+        ///// AutoFac工厂
+        ///// </summary>
+        ///// <param name="builder"></param>
+        //public void ConfigureContainer(ContainerBuilder builder)
+        //{
+        //    builder.RegisterModule(new StAutoFacModuleRegister());//模块加载.
+        //}
 
         /// <summary>
         /// 管道
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IRedisCaChe redisCaChe)
         {
             app.AddAuthorizeRedis();
             // 异常处理

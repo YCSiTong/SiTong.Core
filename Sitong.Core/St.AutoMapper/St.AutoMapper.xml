@@ -1,0 +1,496 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>St.AutoMapper</name>
+    </assembly>
+    <members>
+        <member name="T:St.AutoMapper.Common.PageParameterDto">
+            <summary>
+            公共分页请求参数
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Common.PageParameterDto.SkipCount">
+            <summary>
+            跳过数量
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Common.PageParameterDto.MaxResultCount">
+            <summary>
+            返回数据量
+            </summary>
+        </member>
+        <member name="T:St.AutoMapper.Common.PageResultDto`1">
+            <summary>
+            分页数据Dto
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="P:St.AutoMapper.Common.PageResultDto`1.TotalCount">
+            <summary>
+            总数据量
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Common.PageResultDto`1.Result">
+            <summary>
+            返回数据
+            </summary>
+        </member>
+        <member name="M:St.AutoMapper.Extensions.AutoMapperExtension.CheckMapper">
+            <summary>
+            校验是否注入Mapper
+            </summary>
+        </member>
+        <member name="M:St.AutoMapper.Extensions.AutoMapperExtension.InitMapper(AutoMapper.IMapper)">
+            <summary>
+            初始化加载Mapper获取
+            </summary>
+            <param name="mapper"></param>
+        </member>
+        <member name="M:St.AutoMapper.Extensions.AutoMapperExtension.ToMap``1(System.Object)">
+            <summary>
+            将对象映射指定类型
+            </summary>
+            <typeparam name="TResult">需映射类型</typeparam>
+            <param name="val">当前对象</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.AutoMapper.Extensions.AutoMapperExtension.ToMap``2(``0,``1)">
+            <summary>
+            将源对象映射赋值至目标源
+            </summary>
+            <typeparam name="TSouce">源对象类型</typeparam>
+            <typeparam name="TResult">目标源类型</typeparam>
+            <param name="val">源对象</param>
+            <param name="result">目标源</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.AutoMapper.Extensions.AutoMapperExtension.ToMap``1(System.Collections.Generic.IEnumerable{System.Object})">
+            <summary>
+            将<see cref="T:System.Collections.Generic.IEnumerable`1"/>对象映射指定<see cref="T:System.Collections.Generic.IEnumerable`1"/>类型
+            </summary>
+            <typeparam name="TResult">需映射类型</typeparam>
+            <param name="val">当前对象</param>
+            <returns></returns>
+        </member>
+        <member name="P:St.AutoMapper.Identity.APIManagement.APIManagementViewDto.Id">
+            <summary>
+            主键编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.APIManagement.APIManagementViewDto.Name">
+            <summary>
+            接口名称
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.APIManagement.APIManagementViewDto.ApiUrl">
+            <summary>
+            接口地址
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.APIManagement.APIManagementViewDto.Description">
+            <summary>
+            详细描述
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.APIManagement.Regiter.APIManagementCreateDto.Name">
+            <summary>
+            接口名称
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.APIManagement.Regiter.APIManagementCreateDto.ApiUrl">
+            <summary>
+            接口地址
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.APIManagement.Regiter.APIManagementCreateDto.Description">
+            <summary>
+            详细描述
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.APIManagement.Regiter.APIManagementUpdateDto.Name">
+            <summary>
+            接口名称
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.APIManagement.Regiter.APIManagementUpdateDto.ApiUrl">
+            <summary>
+            接口地址
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.APIManagement.Regiter.APIManagementUpdateDto.Description">
+            <summary>
+            详细描述
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.MenuViewDto.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.MenuViewDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.MenuViewDto.Url">
+            <summary>
+            路由地址
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.MenuViewDto.Icon">
+            <summary>
+            Icon图标
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.MenuViewDto.SuperiorId">
+            <summary>
+            上级主键
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.MenuViewDto.OrderId">
+            <summary>
+            顺序
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.MenuViewDto.IsLock">
+            <summary>
+            是否锁定
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.MenuViewDto.MenuType">
+            <summary>
+            菜单类型
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.MenuViewDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuCreateDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuCreateDto.Url">
+            <summary>
+            路由地址
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuCreateDto.Icon">
+            <summary>
+            Icon图标
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuCreateDto.SuperiorId">
+            <summary>
+            上级主键
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuCreateDto.OrderId">
+            <summary>
+            顺序
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuCreateDto.IsLock">
+            <summary>
+            是否锁定
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuCreateDto.MenuType">
+            <summary>
+            菜单类型
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuCreateDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuUpdateDto.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuUpdateDto.Url">
+            <summary>
+            路由地址
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuUpdateDto.Icon">
+            <summary>
+            Icon图标
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuUpdateDto.SuperiorId">
+            <summary>
+            上级主键
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuUpdateDto.OrderId">
+            <summary>
+            顺序
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuUpdateDto.IsLock">
+            <summary>
+            是否锁定
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuUpdateDto.MenuType">
+            <summary>
+            菜单类型
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Menu.Regiter.MenuUpdateDto.Description">
+            <summary>
+            描述
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleAPIManagement.Regiter.RoleAPIManagementCreateDto.RoleId">
+            <summary>
+            角色编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleAPIManagement.Regiter.RoleAPIManagementCreateDto.APIId">
+            <summary>
+            接口编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleAPIManagement.Regiter.RoleAPIManagementUpdateDto.RoleId">
+            <summary>
+            角色编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleAPIManagement.Regiter.RoleAPIManagementUpdateDto.APIId">
+            <summary>
+            接口编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleAPIManagement.RoleAPIManagementViewDto.RoleId">
+            <summary>
+            角色编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleAPIManagement.RoleAPIManagementViewDto.APIId">
+            <summary>
+            接口编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleMenu.Regiter.RoleMenuCreateDto.RoleId">
+            <summary>
+            角色编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleMenu.Regiter.RoleMenuCreateDto.MenuId">
+            <summary>
+            菜单编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleMenu.Regiter.RoleMenuUpdateDto.RoleId">
+            <summary>
+            角色编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleMenu.Regiter.RoleMenuUpdateDto.MenuId">
+            <summary>
+            菜单编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleMenu.RoleMenuViewDto.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleMenu.RoleMenuViewDto.RoleId">
+            <summary>
+            角色编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.RoleMenu.RoleMenuViewDto.MenuId">
+            <summary>
+            菜单编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Role.Regiter.RoleCreateDto.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Role.Regiter.RoleCreateDto.IsAdmin">
+            <summary>
+            是否管理员
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Role.Regiter.RoleUpdateDto.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Role.Regiter.RoleUpdateDto.IsAdmin">
+            <summary>
+            是否管理员
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Role.RoleViewDto.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.Role.RoleViewDto.IsAdmin">
+            <summary>
+            是否管理员
+            </summary>
+        </member>
+        <member name="T:St.AutoMapper.Identity.StAutoMapperIdentityProFile">
+            <summary>
+            注入Identity自写权限Mapper映射
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.UserRole.Register.UserRoleCreateDto.UserId">
+            <summary>
+            用户编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.UserRole.Register.UserRoleCreateDto.RoleId">
+            <summary>
+            角色编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.UserRole.Register.UserRoleUpdateDto.UserId">
+            <summary>
+            用户编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.UserRole.Register.UserRoleUpdateDto.RoleId">
+            <summary>
+            角色编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.UserRole.UserRoleViewDto.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.UserRole.UserRoleViewDto.UserId">
+            <summary>
+            用户编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.UserRole.UserRoleViewDto.RoleId">
+            <summary>
+            角色编号
+            </summary>
+        </member>
+        <member name="T:St.AutoMapper.Identity.User.ParameterUserDto">
+            <summary>
+            管理员账户请求参数
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserCreateDto.Account">
+            <summary>
+            账户名
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserCreateDto.PassWord">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserCreateDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserCreateDto.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserCreateDto.Email">
+            <summary>
+            QQ邮箱
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserCreateDto.HeadPic">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserCreateDto.PhoneNumber">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserUpdateDto.PassWord">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserUpdateDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserUpdateDto.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserUpdateDto.Email">
+            <summary>
+            QQ邮箱
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserUpdateDto.HeadPic">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.Register.UserUpdateDto.PhoneNumber">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.UserViewDto.Id">
+            <summary>
+            主键编号
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.UserViewDto.Account">
+            <summary>
+            账户名
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.UserViewDto.NickName">
+            <summary>
+            昵称
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.UserViewDto.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.UserViewDto.Email">
+            <summary>
+            QQ邮箱
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.UserViewDto.HeadPic">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.UserViewDto.PhoneNumber">
+            <summary>
+            手机号码
+            </summary>
+        </member>
+        <member name="P:St.AutoMapper.Identity.User.UserViewDto.TwoFactorVerifyEnable">
+            <summary>
+            双因子身份验证是否开启
+            </summary>
+        </member>
+    </members>
+</doc>

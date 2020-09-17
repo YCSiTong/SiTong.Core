@@ -11,5 +11,6 @@ namespace St.Common.Attributes
         /// 过期时间(分钟)
         /// </summary>
         public int ExpirationTime { get; set; } = 10;
+
     }
 }

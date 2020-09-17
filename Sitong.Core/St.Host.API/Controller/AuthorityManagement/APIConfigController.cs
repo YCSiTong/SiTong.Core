@@ -35,6 +35,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// </summary>
         /// <param name="dto">条件</param>
         /// <returns></returns>
+        [HttpGet]
         public async Task<PageResultDto<APIManagementViewDto>> GetListAsync(ParameterAPIManagementDto dto)
             => await _apiManagementService.GetListAsync(dto);
         /// <summary>
@@ -42,6 +43,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// </summary>
         /// <param name="dto">新增信息</param>
         /// <returns></returns>
+        [HttpPost]
         public async Task<ResultDto<bool>> CreateAsync(APIManagementCreateDto dto)
             => new ResultDto<bool> { Result = await _apiManagementService.InsertAsync(dto) };
         /// <summary>
@@ -50,6 +52,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// <param name="Id">主键编号</param>
         /// <param name="dto">修改信息</param>
         /// <returns></returns>
+        [HttpPut]
         public async Task<ResultDto<bool>> UpdateAsync(Guid Id, APIManagementUpdateDto dto)
             => new ResultDto<bool> { Result = await _apiManagementService.UpdateAsync(Id, dto) };
         /// <summary>
@@ -57,6 +60,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// </summary>
         /// <param name="Id">主键编号</param>
         /// <returns></returns>
+        [HttpDelete]
         public async Task<ResultDto<bool>> DeleteAsync(Guid Id)
             => new ResultDto<bool> { Result = await _apiManagementService.DeleteAsync(Id) };
         /// <summary>
@@ -64,6 +68,7 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// </summary>
         /// <param name="Id">主键编号</param>
         /// <returns></returns>
+        [HttpPut]
         public async Task<ResultDto<bool>> OpenOrCloseAPIAsync(Guid Id)
             => new ResultDto<bool> { Result = await _apiManagementService.OpenOrCloseAPIAsync(Id) };
 
