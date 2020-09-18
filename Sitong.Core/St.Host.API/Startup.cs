@@ -141,10 +141,9 @@ namespace St.Host.API
                 op.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
                 op.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
             });
-
-            //services.Add(new ServiceDescriptor(typeof(IAPIManagementService), typeof(APIManagementService), ServiceLifetime.Scoped));
         }
 
+        #region AutoFac工厂管理
         ///// <summary>
         ///// AutoFac工厂
         ///// </summary>
@@ -152,24 +151,28 @@ namespace St.Host.API
         //public void ConfigureContainer(ContainerBuilder builder)
         //{
         //    builder.RegisterModule(new StAutoFacModuleRegister());//模块加载.
-        //}
+        //} 
+        #endregion
 
         /// <summary>
         /// 管道
         /// </summary>
         /// <param name="app"></param>
         /// <param name="env"></param>
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IRedisCaChe redisCaChe)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            #region 自动记录所有权限信息至Redis中...
             app.AddAuthorizeRedis();
-            // 异常处理
+            #endregion
+            #region 全局异常处理
             app.UseExHandler();
+            #endregion
+
             //if (env.IsDevelopment())
             //{
 
             //    app.UseDeveloperExceptionPage();
             //}
-
 
             #region 是否开启Cors跨域
             if (Configuration["Cors:Enabled"].ToBool())

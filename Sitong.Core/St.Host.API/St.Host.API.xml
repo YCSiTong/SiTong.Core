@@ -177,7 +177,7 @@
             </summary>
             <param name="services"></param>
         </member>
-        <member name="M:St.Host.API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,St.Common.RedisCaChe.IRedisCaChe)">
+        <member name="M:St.Host.API.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
             管道
             </summary>

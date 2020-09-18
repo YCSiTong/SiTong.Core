@@ -18,10 +18,15 @@ namespace St.Host.API.Controller.AuthorityManagement
     {
 
         private readonly IUserService _userService;
+        private readonly IUserRoleService _userRoleService;
 
-        public LoginController(IUserService userService)
+        public LoginController(
+            IUserService userService
+            , IUserRoleService userRoleService
+            )
         {
             _userService = userService;
+            _userRoleService = userRoleService;
         }
 
 
@@ -35,7 +40,8 @@ namespace St.Host.API.Controller.AuthorityManagement
         public async Task<string> LoginAdmin(string account, string pwd)
         {
             var userDto = await _userService.LoginAsync(account, pwd);
-            return JwtHelper.GetJwtToken(new IdentityModel { UId = userDto.Id, Role = new Guid[] { Guid.NewGuid() } });
+            var userRoles = (await _userRoleService.GetListAsync(userDto.Id)).Select(x => x.RoleId);
+            return JwtHelper.GetJwtToken(new IdentityModel { UId = userDto.Id, Role = userRoles });
         }
     }
 }

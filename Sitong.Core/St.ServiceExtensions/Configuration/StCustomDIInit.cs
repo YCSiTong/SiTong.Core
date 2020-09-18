@@ -15,6 +15,10 @@ namespace St.ServiceExtensions.Configuration
     /// </summary>
     public static class StCustomDIInit
     {
+        /// <summary>
+        /// 自定义根据·StDI·找到接口实现注入管理
+        /// </summary>
+        /// <param name="services"></param>
         public static void AddDIAllStartUp(this IServiceCollection services)
         {
             services.NotNull(nameof(IServiceCollection));
@@ -23,7 +27,7 @@ namespace St.ServiceExtensions.Configuration
             var result = AssemblyHelper.GetAssemblys().SelectMany(op => op.GetTypes())
                 .ToArray()
                 .Distinct();
-            var abstracts = result.Where(op => op.IsInterface && op.GetCustomAttribute<StDIAttribute>() != null).ToArray();
+            var abstracts = result.Where(op => op.IsInterface && op.HasAttribute<StDIAttribute>()).ToArray();
             abstracts.ForEach(serviceType =>
             {
                 var attr = serviceType.GetCustomAttribute<StDIAttribute>();
@@ -34,7 +38,7 @@ namespace St.ServiceExtensions.Configuration
                     //Console.WriteLine($"Interface => { serviceType.Name } \r\n realize => { implementType.Name } \r\n ServiceLifetime => { attr.ServiceLifetime } \r\r");
                     services.Add(new ServiceDescriptor(serviceType, implementType, attr.ServiceLifetime));
                 }
-                else
+                else // 需注入接口若未存在实现提示用户.
                     Console.WriteLine($"Interface => `{ serviceType.Name }` Not have ImplementType  \r\n ServiceLifetime => { attr.ServiceLifetime } \r\r");
 
             });

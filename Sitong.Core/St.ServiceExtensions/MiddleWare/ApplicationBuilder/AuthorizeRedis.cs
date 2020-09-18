@@ -39,19 +39,7 @@ namespace St.ServiceExtensions.MiddleWare.ApplicationBuilder
                 var result = op.GetRedis();
                 foreach (var item in result)
                 {
-                    int count = 0;
-                    do
-                    {
-                        var redisResult = redisService.HSetAsync(AllStaticHelper.HRedisRole, item.Id.ToString(), item).Result;
-                        if (redisResult) break;
-                        ++count;
-                        if (count > 0)
-                        {
-                            if (count == 1)
-                                Console.WriteLine();
-                            Console.Out.WriteLine($">>> 第{count + 1}次重试记录Id为{{{item.Id}}}的信息录入失败！");
-                        }
-                    } while (count < 5);
+                    redisService.HSetAsync(AllStaticHelper.HRedisRole, item.Id.ToString(), item).Wait();
                 }
                 loadRedis.Stop();
                 Console.Out.WriteLine($"**记录所有角色信息完毕！耗时：{loadRedis.Elapsed.TotalSeconds}/s \r\n");
@@ -65,19 +53,7 @@ namespace St.ServiceExtensions.MiddleWare.ApplicationBuilder
                 var result = op.GetRedis();
                 foreach (var item in result)
                 {
-                    int count = 0;
-                    do
-                    {
-                        var redisResult = redisService.HSetAsync(AllStaticHelper.HRedisRoleMenu, item.Id.ToString(), item).Result;
-                        if (redisResult) break;
-                        ++count;
-                        if (count > 0)
-                        {
-                            if (count == 1)
-                                Console.WriteLine();
-                            Console.Out.WriteLine($">>> 第{count + 1}次重试记录Id为{{{item.Id}}}的信息录入失败！");
-                        }
-                    } while (count < 5);
+                    redisService.HSetAsync(AllStaticHelper.HRedisRoleMenu, item.Id.ToString(), item).Wait();
                 }
                 loadRedis.Stop();
                 Console.Out.WriteLine($"**记录所有角色菜单信息完毕！耗时：{loadRedis.Elapsed.TotalSeconds}/s \r\n");
@@ -91,19 +67,7 @@ namespace St.ServiceExtensions.MiddleWare.ApplicationBuilder
                 var result = op.GetRedis();
                 foreach (var item in result)
                 {
-                    int count = 0;
-                    do
-                    {
-                        var redisResult = (redisService.HSetAsync(AllStaticHelper.HRedisMenu, item.Id.ToString(), item).Result);
-                        if (redisResult) break;
-                        ++count;
-                        if (count > 0)
-                        {
-                            if (count == 1)
-                                Console.WriteLine();
-                            Console.Out.WriteLine($">>> 第{count + 1}次重试记录Id为{{{item.Id}}}的信息录入失败！");
-                        }
-                    } while (count < 5);
+                    redisService.HSetAsync(AllStaticHelper.HRedisMenu, item.Id.ToString(), item).Wait();
                 }
                 loadRedis.Stop();
                 Console.Out.WriteLine($"**记录所有菜单信息完毕！耗时：{loadRedis.Elapsed.TotalSeconds}/s \r\n");
@@ -117,19 +81,7 @@ namespace St.ServiceExtensions.MiddleWare.ApplicationBuilder
                 var result = op.GetRedis();
                 foreach (var item in result)
                 {
-                    int count = 0;
-                    do
-                    {
-                        var redisResult = redisService.HSetAsync(AllStaticHelper.HRedisAPI, item.Id.ToString(), item).Result;
-                        if (!redisResult) break;
-                        ++count;
-                        if (count > 0)
-                        {
-                            if (count == 1)
-                                Console.WriteLine();
-                            Console.Out.WriteLine($">>> 第{count + 1}次重试记录Id为{{{item.Id}}}的信息录入失败！");
-                        }
-                    } while (count < 5);
+                    redisService.HSetAsync(AllStaticHelper.HRedisAPI, item.Id.ToString(), item).Wait();
                 }
                 loadRedis.Stop();
                 Console.Out.WriteLine($"**记录所有接口信息完毕！耗时：{loadRedis.Elapsed.TotalSeconds}/s \r\n");
@@ -143,19 +95,7 @@ namespace St.ServiceExtensions.MiddleWare.ApplicationBuilder
                 var result = op.GetRedis();
                 foreach (var item in result)
                 {
-                    int count = 0;
-                    do
-                    {
-                        var redisResult = redisService.HSetAsync(AllStaticHelper.HRedisRoleAPI, item.Id.ToString(), item).Result;
-                        if (redisResult) break;
-                        ++count;
-                        if (count > 0)
-                        {
-                            if (count == 1)
-                                Console.WriteLine();
-                            Console.Out.WriteLine($">>> 第{count + 1}次重试记录Id为{{{item.Id}}}的信息录入失败！");
-                        }
-                    } while (count < 5);
+                    redisService.HSetAsync(AllStaticHelper.HRedisRoleAPI, item.Id.ToString(), item).Wait();
                 }
                 loadRedis.Stop();
                 Console.Out.WriteLine($"**记录所有角色接口权限信息完毕！耗时：{loadRedis.Elapsed.TotalSeconds}/s \r\n");
