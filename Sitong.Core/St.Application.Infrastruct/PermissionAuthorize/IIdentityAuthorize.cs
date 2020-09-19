@@ -6,7 +6,7 @@ namespace St.Application.Infrastruct.PermissionAuthorize
     /// <summary>
     /// 权限校验
     /// </summary>
-    [StDI]
+    [StDIInterface]
     public interface IIdentityAuthorize
     {
         /// <summary>

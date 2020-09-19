@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace St.Application.Infrastruct.Identity
 {
-    [StDI]
+    [StDIInterface]
     public interface IRoleMenuService
     {
         /// <summary>

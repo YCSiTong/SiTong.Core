@@ -27,20 +27,51 @@ namespace St.ServiceExtensions.Configuration
             var result = AssemblyHelper.GetAssemblys().SelectMany(op => op.GetTypes())
                 .ToArray()
                 .Distinct();
-            var abstracts = result.Where(op => op.IsInterface && op.HasAttribute<StDIAttribute>()).ToArray();
-            abstracts.ForEach(serviceType =>
-            {
-                var attr = serviceType.GetCustomAttribute<StDIAttribute>();
-                // TODO：可扩展工厂注入形式！！！ 一接口多实现.
-                var implementType = result.Where(op => op.IsClass && !op.IsAbstract && !op.IsInterface && serviceType.IsAssignableFrom(op)).SingleOrDefault();
-                if (implementType.IsNotNull())
-                {
-                    //Console.WriteLine($"Interface => { serviceType.Name } \r\n realize => { implementType.Name } \r\n ServiceLifetime => { attr.ServiceLifetime } \r\r");
-                    services.Add(new ServiceDescriptor(serviceType, implementType, attr.ServiceLifetime));
-                }
-                else // 需注入接口若未存在实现提示用户.
-                    Console.WriteLine($"Interface => `{ serviceType.Name }` Not have ImplementType  \r\n ServiceLifetime => { attr.ServiceLifetime } \r\r");
 
+            var interfaces = result.Where(op => op.IsInterface && op.HasAttribute<StDIInterfaceAttribute>());// 获取所有需要注入的接口
+            var implements = result.Where(op => op.IsClass && interfaces.Any(x => x.IsAssignableFrom(op)));// 获取所有需注入接口的实现类
+            var classs = result.Where(op => op.HasAttribute<StDIClassAttribute>());// 获取所有需要单注入的实现类
+
+            /*
+             *   摘要：
+             *      检查当前需被接口注入的实现类中是否与需单独注入的实现类一致
+             */
+
+            classs.ForEach(x =>
+            {
+                Console.BackgroundColor = ConsoleColor.Red;
+                if (implements.Any(op => x == op))
+                    Console.WriteLine($"Class => `{ x.Name }` is Not Alone DI! Please check it ! \r\n  ");
+            });
+
+            /*
+             *   摘要：
+             *      开始注入单实现类.
+             */
+            classs.ForEach(implementType =>
+            {
+                var attr = implementType.GetCustomAttribute<StDIClassAttribute>();
+                services.Add(new ServiceDescriptor(implementType, implementType, attr.ServiceLifetime));
+            });
+
+            /*
+             *   摘要：
+             *      开始注入接口与实现类.
+             *   TODO：
+             *      可进行工厂注入
+             */
+            interfaces.ForEach(serviceType =>
+            {
+                var attr = serviceType.GetCustomAttribute<StDIInterfaceAttribute>();
+
+                // TODO：可扩展工厂注入形式！！！ 一接口多实现.目前只允许单个实现，需手动自行进行多实现注入工厂.
+                var implementType = implements.Where(op => op.IsClass && serviceType.IsAssignableFrom(op)).SingleOrDefault();
+
+                Console.BackgroundColor = ConsoleColor.Green;
+                if (implementType.IsNotNull())
+                    services.Add(new ServiceDescriptor(serviceType, implementType, attr.ServiceLifetime));
+                else // 需注入接口若未存在实现提示用户.
+                    Console.WriteLine($"Interface => `{ serviceType.Name }` Not have ImplementType  \r\n ServiceLifetime => { attr.ServiceLifetime } \r\n");
             });
         }
     }

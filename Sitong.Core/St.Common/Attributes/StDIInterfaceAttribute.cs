@@ -4,17 +4,21 @@ using System;
 namespace St.Common.Attributes
 {
     /// <summary>
-    /// 此接口将进行依赖注入
+    /// 接口依赖注入
     /// </summary>
     [AttributeUsage(AttributeTargets.Interface)]
-    public class StDIAttribute : Attribute
+    public class StDIInterfaceAttribute : Attribute
     {
         /// <summary>
         /// 服务生命周期
         /// </summary>
         public ServiceLifetime ServiceLifetime { get; set; }
 
-        public StDIAttribute(ServiceLifetime serviceLifetime = ServiceLifetime.Scoped)
+        /// <summary>
+        /// 接口注入时默认为·<see cref="ServiceLifetime.Scoped"/>·
+        /// </summary>
+        /// <param name="serviceLifetime">生命周期</param>
+        public StDIInterfaceAttribute(ServiceLifetime serviceLifetime = ServiceLifetime.Scoped)
         {
             ServiceLifetime = serviceLifetime;
         }

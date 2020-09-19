@@ -23,8 +23,8 @@ namespace St.ServiceExtensions.Configuration
             services.NotNull(nameof(IServiceCollection));
             services.NotNull(nameof(Action<DbContextOptions>));
 
-            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork<TDbContext>));
-            services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+            services.AddScoped(typeof(IUnitOfWork), typeof(UnitOfWork<TDbContext>));// 注入工作单元
+            services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));// 注入仓储
 
             var model = new DbContextOptions();
             options(model);

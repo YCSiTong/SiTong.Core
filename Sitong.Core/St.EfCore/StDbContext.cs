@@ -7,7 +7,6 @@ namespace St.EfCore
     {
         public StDbContext(DbContextOptions<StDbContext> options) : base(options)
         {
-
         }
 
         #region DbSet
@@ -16,6 +15,8 @@ namespace St.EfCore
         public DbSet<UserRole> UserRole { get; set; }
         public DbSet<Menu> Menu { get; set; }
         public DbSet<RoleMenu> RoleMenu { get; set; }
+        public DbSet<APIManagement> APIManagement { get; set; }
+        public DbSet<RoleAPIManagement> RoleAPIManagement { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder model)

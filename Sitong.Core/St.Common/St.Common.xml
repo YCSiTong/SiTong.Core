@@ -14,15 +14,37 @@
             过期时间(分钟)
             </summary>
         </member>
-        <member name="T:St.Common.Attributes.StDIAttribute">
+        <member name="T:St.Common.Attributes.StDIClassAttribute">
             <summary>
-            此接口将进行依赖注入
+            单个类依赖注入
             </summary>
         </member>
-        <member name="P:St.Common.Attributes.StDIAttribute.ServiceLifetime">
+        <member name="P:St.Common.Attributes.StDIClassAttribute.ServiceLifetime">
             <summary>
             服务生命周期
             </summary>
+        </member>
+        <member name="M:St.Common.Attributes.StDIClassAttribute.#ctor(Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+            <summary>
+            接口注入时默认为·<see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Singleton"/>·
+            </summary>
+            <param name="serviceLifetime">生命周期</param>
+        </member>
+        <member name="T:St.Common.Attributes.StDIInterfaceAttribute">
+            <summary>
+            接口依赖注入
+            </summary>
+        </member>
+        <member name="P:St.Common.Attributes.StDIInterfaceAttribute.ServiceLifetime">
+            <summary>
+            服务生命周期
+            </summary>
+        </member>
+        <member name="M:St.Common.Attributes.StDIInterfaceAttribute.#ctor(Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+            <summary>
+            接口注入时默认为·<see cref="F:Microsoft.Extensions.DependencyInjection.ServiceLifetime.Scoped"/>·
+            </summary>
+            <param name="serviceLifetime">生命周期</param>
         </member>
         <member name="T:St.Common.GuidMethods.GuidAll">
             <summary>
