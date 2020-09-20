@@ -46,6 +46,25 @@
             </summary>
             <param name="serviceLifetime">生命周期</param>
         </member>
+        <member name="M:St.Common.Email.MailKit.IMailKitMessage.SendEmail(MimeKit.MimeMessage)">
+            <summary>
+            发送邮件
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Common.Email.MailKit.MailKitMessage.SendEmail(MimeKit.MimeMessage)">
+            <summary>
+            发送邮件
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:St.Common.Email.MailKit.DemoEmail">
+            <summary>
+            演示代码：如何使用该项发送邮件
+            </summary>
+        </member>
         <member name="T:St.Common.GuidMethods.GuidAll">
             <summary>
             All of the Guid methods

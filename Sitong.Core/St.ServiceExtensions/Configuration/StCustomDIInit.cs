@@ -39,7 +39,7 @@ namespace St.ServiceExtensions.Configuration
 
             classs.ForEach(x =>
             {
-                Console.BackgroundColor = ConsoleColor.Red;
+                //Console.BackgroundColor = ConsoleColor.Red;
                 if (implements.Any(op => x == op))
                     Console.WriteLine($"Class => `{ x.Name }` is Not Alone DI! Please check it ! \r\n  ");
             });
@@ -66,8 +66,8 @@ namespace St.ServiceExtensions.Configuration
 
                 // TODO：可扩展工厂注入形式！！！ 一接口多实现.目前只允许单个实现，需手动自行进行多实现注入工厂.
                 var implementType = implements.Where(op => op.IsClass && serviceType.IsAssignableFrom(op)).SingleOrDefault();
-
-                Console.BackgroundColor = ConsoleColor.Green;
+                //Console.WriteLine($"Interface => `{ serviceType.Name }` ImplementType => `{ implementType.Name }`  \r\n ServiceLifetime => { attr.ServiceLifetime } \r\n");
+                //Console.BackgroundColor = ConsoleColor.Green;
                 if (implementType.IsNotNull())
                     services.Add(new ServiceDescriptor(serviceType, implementType, attr.ServiceLifetime));
                 else // 需注入接口若未存在实现提示用户.
