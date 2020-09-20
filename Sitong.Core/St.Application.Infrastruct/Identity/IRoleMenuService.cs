@@ -17,11 +17,11 @@ namespace St.Application.Infrastruct.Identity
         /// <returns></returns>
         List<RoleMenu> GetRedis();
         /// <summary>
-        /// 分页获取角色菜单信息
+        /// 获取指定权限的菜单编号
         /// </summary>
-        /// <param name="dto">查询条件</param>
+        /// <param name="guids">角色编号</param>
         /// <returns></returns>
-        Task<PageResultDto<RoleMenuViewDto>> GetListAsync(ParameterRoleMenuDto dto);
+        Task<IEnumerable<Guid>> GetMenuListAsync(IEnumerable<Guid> guids);
         /// <summary>
         /// 新增角色所拥有菜单权限
         /// </summary>

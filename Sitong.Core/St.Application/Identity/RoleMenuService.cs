@@ -28,17 +28,14 @@ namespace St.Application.Identity
         public List<RoleMenu> GetRedis()
             => _roleMenuRepository.AsNoTracking().ToList();
         /// <summary>
-        /// 分页获取角色菜单信息
+        /// 获取指定权限的菜单编号
         /// </summary>
-        /// <param name="dto">查询条件</param>
+        /// <param name="guids">角色编号</param>
         /// <returns></returns>
-        public async Task<PageResultDto<RoleMenuViewDto>> GetListAsync(ParameterRoleMenuDto dto)
+        public async Task<IEnumerable<Guid>> GetMenuListAsync(IEnumerable<Guid> guids)
         {
-            dto.NotNull(nameof(ParameterRoleMenuDto));
-            var roleMenuResult = await _roleMenuRepository.GetListAsync(x => x.CreatedTime, null, dto.SkipCount, dto.MaxResultCount);
-            var roleMenuDtos = roleMenuResult.Item1.ToMap<RoleMenuViewDto>();
-            var totalCount = roleMenuResult.Item2;
-            return new PageResultDto<RoleMenuViewDto> { TotalCount = totalCount, Result = roleMenuDtos };
+            guids.NotNull(nameof(ParameterRoleMenuDto));
+            return await _roleMenuRepository.AsNoTracking().Where(op => guids.Contains(op.RoleId)).Select(x => x.MenuId).ToListAsync();
         }
 
         /// <summary>

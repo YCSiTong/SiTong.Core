@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using St.Application.Infrastruct.Identity;
+using St.AutoMapper.Common;
 using St.Common.Helper;
+using St.DoMain.Identity;
+using St.Exceptions;
 
 namespace St.Host.API.Controller.AuthorityManagement
 {
@@ -19,14 +22,23 @@ namespace St.Host.API.Controller.AuthorityManagement
 
         private readonly IUserService _userService;
         private readonly IUserRoleService _userRoleService;
+        private readonly IRoleMenuService _roleMenuService;
+        private readonly IMenuService _menuService;
+        private readonly IdentityInfo _identityInfo;
 
         public LoginController(
             IUserService userService
             , IUserRoleService userRoleService
+            , IRoleMenuService roleMenuService
+            , IMenuService menuService
+            , IdentityInfo identityInfo
             )
         {
             _userService = userService;
             _userRoleService = userRoleService;
+            _roleMenuService = roleMenuService;
+            _menuService = menuService;
+            _identityInfo = identityInfo;
         }
 
 
@@ -37,11 +49,24 @@ namespace St.Host.API.Controller.AuthorityManagement
         /// <param name="pwd">密码</param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<string> LoginAdmin(string account, string pwd)
+        public async Task<ResultDto<string>> LoginAdminAsync(string account, string pwd)
         {
             var userDto = await _userService.LoginAsync(account, pwd);
             var userRoles = (await _userRoleService.GetListAsync(userDto.Id)).Select(x => x.RoleId);
-            return JwtHelper.GetJwtToken(new IdentityModel { UId = userDto.Id, Role = userRoles });
+            return new ResultDto<string> { Result = JwtHelper.GetJwtToken(new IdentityModel { UId = userDto.Id, Role = userRoles }) };
+        }
+
+        /// <summary>
+        /// 获取后台菜单
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<ResultDto<string>> GetMenuListAsync()
+        {
+            var roles = _identityInfo.Identity.Role;
+            var roleMenuDtos = await _roleMenuService.GetMenuListAsync(roles);
+            var menuDtos = await _menuService.GetAdminMenuListAsync(roleMenuDtos);
+            throw new BusinessException("请完善通用递归实现菜单排序并论级！");
         }
     }
 }

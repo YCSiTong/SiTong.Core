@@ -45,6 +45,17 @@ namespace St.Application.Identity
         }
 
         /// <summary>
+        /// 获取满足权限条件的所有菜单信息
+        /// </summary>
+        /// <param name="guids">菜单编号</param>
+        /// <returns></returns>
+        public async Task<IEnumerable<MenuViewDto>> GetAdminMenuListAsync(IEnumerable<Guid> guids)
+        {
+            guids.NotNull(nameof(IEnumerable<Guid>));
+            return (await _menuRepository.AsNoTracking().Where(op => guids.Contains(op.Id)).ToListAsync()).ToMap<MenuViewDto>();
+        }
+
+        /// <summary>
         /// 新增菜单信息
         /// </summary>
         /// <param name="dto">新增信息</param>

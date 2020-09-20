@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace St.Extensions
@@ -55,6 +56,20 @@ namespace St.Extensions
             });
             return builder.ToString().Substring(0, builder.Length - 1);
         }
+        ///// <summary>
+        ///// <see cref="IEnumerable{T}"/>扩展根据返回指定键的列表信息
+        ///// </summary>
+        ///// <typeparam name="T">类型</typeparam>
+        ///// <typeparam name="Key">键类型</typeparam>
+        ///// <param name="list">所有值</param>
+        ///// <param name="key">指定键</param>
+        ///// <returns></returns>
+        //public static IEnumerable<Key> ToKeys<T, Key>(this IEnumerable<T> list, Expression<Func<T, Key>> key)
+        //{
+        //    foreach (var item in list)
+        //    {
+        //    }
+        //}
         /// <summary>
         /// <see cref="IEnumerable{T}"/>扩展转换全部类型
         /// </summary>

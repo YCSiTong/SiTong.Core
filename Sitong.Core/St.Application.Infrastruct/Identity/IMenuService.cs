@@ -24,6 +24,12 @@ namespace St.Application.Infrastruct.Identity
         /// <returns></returns>
         Task<PageResultDto<MenuViewDto>> GetListAsync(ParameterMenuDto dto);
         /// <summary>
+        /// 获取满足权限条件的所有菜单信息
+        /// </summary>
+        /// <param name="guids">菜单编号</param>
+        /// <returns></returns>
+        Task<IEnumerable<MenuViewDto>> GetAdminMenuListAsync(IEnumerable<Guid> guids);
+        /// <summary>
         /// 新增菜单信息
         /// </summary>
         /// <param name="dto">新增信息</param>
