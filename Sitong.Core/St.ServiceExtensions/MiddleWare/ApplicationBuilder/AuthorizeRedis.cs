@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using St.Application.Infrastruct.Identity;
+using St.Common.Helper;
+using St.Common.RedisCaChe;
+using St.DoMain.Model.Identity;
+using St.ServiceExtensions.Action;
 using System;
 using System.Collections.Generic;
-using Microsoft.Extensions.DependencyInjection;
-using System.Text;
-using St.ServiceExtensions.Action;
-using St.DoMain.Model.Identity;
-using St.Common.RedisCaChe;
-using St.Common.Helper;
 using System.Diagnostics;
 
 namespace St.ServiceExtensions.MiddleWare.ApplicationBuilder

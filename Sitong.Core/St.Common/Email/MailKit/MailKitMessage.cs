@@ -61,7 +61,7 @@ namespace St.Common.Email.MailKit
     /// <summary>
     /// 演示代码：如何使用该项发送邮件
     /// </summary>
-    class DemoEmail
+    internal class DemoEmail
     {
         private void TestSendEmail()
         {

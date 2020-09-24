@@ -1,6 +1,4 @@
-﻿using St.AutoMapper.Common;
-using St.AutoMapper.Identity.RoleMenu;
-using St.Common.Attributes;
+﻿using St.Common.Attributes;
 using St.DoMain.Model.Identity;
 using System;
 using System.Collections.Generic;

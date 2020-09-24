@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace St.AutoMapper.Common
+﻿namespace St.AutoMapper.Common
 {
     public class ResultDto<T>
     {

@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using St.Application.Infrastruct.Identity;
 using St.AutoMapper.Common;
 using St.AutoMapper.Identity.UserRole;
 using St.AutoMapper.Identity.UserRole.Register;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace St.Host.API.Controller.AuthorityManagement
 {

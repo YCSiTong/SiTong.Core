@@ -1,4 +1,3 @@
-using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -18,7 +17,7 @@ namespace St.Host.API
                 "Âê¿¨°Í¿¨ °¢¿¨ÍÛ¿¨\r\n" +
                 "Ã×¿¨Âí¿¨ Ä·\r\n");
 
-            
+
 
             Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(args)
                 //.UseServiceProviderFactory(new AutofacServiceProviderFactory())//×¢ÈëAutoFacÄ£¿é

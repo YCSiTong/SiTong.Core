@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using St.DoMain.Model.Identity;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace St.EfCore.ModelEx
 {

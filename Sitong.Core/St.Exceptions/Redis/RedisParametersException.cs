@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace St.Exceptions.Redis
+﻿namespace St.Exceptions.Redis
 {
     /// <summary>
     /// Redis异常信息

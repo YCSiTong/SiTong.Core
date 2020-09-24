@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using St.Application.Infrastruct.Identity;
+﻿using St.Application.Infrastruct.Identity;
 using St.AutoMapper.Common;
 using St.AutoMapper.Extensions;
 using St.AutoMapper.Identity.RoleAPIManagement;

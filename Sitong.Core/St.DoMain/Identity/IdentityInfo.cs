@@ -1,5 +1,4 @@
 ﻿using St.Common.Helper;
-using System.Threading.Tasks;
 
 namespace St.DoMain.Identity
 {
@@ -13,6 +12,6 @@ namespace St.DoMain.Identity
         /// </summary>
         IdentityModel Identity { get; }
 
-        
+
     }
 }

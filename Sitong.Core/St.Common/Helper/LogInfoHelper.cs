@@ -13,11 +13,12 @@ namespace St.Common.Helper
         /// <summary>
         /// 读写锁
         /// </summary>
-        static ReaderWriterLockSlim _LockSlim = new ReaderWriterLockSlim();
+        private static ReaderWriterLockSlim _LockSlim = new ReaderWriterLockSlim();
+
         /// <summary>
         /// 程序文件地址
         /// </summary>
-        static string _RootPath = string.Empty;
+        private static string _RootPath = string.Empty;
 
         public LogInfoHelper(string rootPath)
         {

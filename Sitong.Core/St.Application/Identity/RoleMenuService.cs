@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using St.Application.Infrastruct.Identity;
-using St.AutoMapper.Common;
-using St.AutoMapper.Extensions;
 using St.AutoMapper.Identity.RoleMenu;
 using St.DoMain.Model.Identity;
 using St.DoMain.Repository;

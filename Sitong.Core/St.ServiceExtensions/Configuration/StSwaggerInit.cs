@@ -3,7 +3,6 @@ using Microsoft.OpenApi.Models;
 using St.Extensions;
 using Swashbuckle.AspNetCore.Filters;
 using System;
-using System.Collections;
 using System.IO;
 
 namespace St.ServiceExtensions.Configuration

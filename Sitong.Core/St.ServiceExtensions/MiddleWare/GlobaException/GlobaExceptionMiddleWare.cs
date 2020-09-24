@@ -52,7 +52,7 @@ namespace St.ServiceExtensions.MiddleWare.GlobaException
         }
     }
 
-    class StError
+    internal class StError
     {
         /// <summary>
         /// 错误信息
