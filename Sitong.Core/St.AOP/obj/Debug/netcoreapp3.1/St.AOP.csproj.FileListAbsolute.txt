@@ -1,0 +1,5 @@
+D:\Works\C#\PrivateProject\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.AOP.deps.json
+D:\Works\C#\PrivateProject\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.AOP.dll
+D:\Works\C#\PrivateProject\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.AssemblyInfoInputs.cache
+D:\Works\C#\PrivateProject\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.AssemblyInfo.cs
+D:\Works\C#\PrivateProject\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.csprojAssemblyReference.cache
