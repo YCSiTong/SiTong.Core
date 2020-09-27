@@ -136,12 +136,18 @@
             登录相关控制
             </summary>
         </member>
-        <member name="M:St.Host.API.Controller.AuthorityManagement.LoginController.LoginAdmin(System.String,System.String)">
+        <member name="M:St.Host.API.Controller.AuthorityManagement.LoginController.LoginAdminAsync(System.String,System.String)">
             <summary>
             登录后台账户
             </summary>
             <param name="account">账户</param>
             <param name="pwd">密码</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Host.API.Controller.AuthorityManagement.LoginController.GetMenuListAsync">
+            <summary>
+            获取后台菜单
+            </summary>
             <returns></returns>
         </member>
         <member name="T:St.Host.API.Controller.AuthorityManagement.SystemConfigController">

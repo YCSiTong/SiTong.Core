@@ -23,12 +23,12 @@ namespace St.Common.Helper
         /// <param name="path">路径</param>
         /// <param name="data">文件内容</param>
         /// <returns></returns>
-        public static async void WriteFileAsync(string path, string data)
+        public static void WriteFileAsync(string path, string data)
         {
             try
             {
                 _LockSlim.EnterWriteLock();
-                await File.WriteAllText(path, data);
+                File.WriteAllText(path, data);
             }
             catch (Exception ex)
             {

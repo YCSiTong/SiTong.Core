@@ -119,6 +119,42 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:St.Common.Helper.FileHelper">
+            <summary>
+            操作文件
+            </summary>
+        </member>
+        <member name="M:St.Common.Helper.FileHelper.WriteFileAsync(System.String,System.String)">
+            <summary>
+            写入内容到指定目录文件
+            </summary>
+            <param name="path">路径</param>
+            <param name="data">文件内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Common.Helper.FileHelper.ReadFileAsync(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            支持模糊查询指定文件读取内容
+            </summary>
+            <param name="path">路径</param>
+            <param name="liekName">模糊查询时所传名字</param>
+            <param name="splitStr">多文件内容分割符(默认为*号)</param>
+            <param name="IsLikeQuery">是否模糊查</param>
+            <returns></returns>
+        </member>
+        <member name="M:St.Common.Helper.FileHelper.FileDelete(System.String)">
+            <summary>
+            删除指定文件
+            </summary>
+            <param name="path">路径</param>
+        </member>
+        <member name="M:St.Common.Helper.FileHelper.FileCopy(System.String,System.String)">
+            <summary>
+            拷贝文件至指定目录
+            </summary>
+            <param name="souceFilePath">原始文件</param>
+            <param name="newFilePath">新文件路径</param>
+        </member>
         <member name="M:St.Common.Helper.JwtHelper.GetJwtToken(St.Common.Helper.IdentityModel)">
             <summary>
             获取JwtToken
