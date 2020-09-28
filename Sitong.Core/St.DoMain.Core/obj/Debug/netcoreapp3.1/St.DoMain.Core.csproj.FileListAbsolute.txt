@@ -20,9 +20,6 @@ D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.pdb
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.DoMain.xml
 D:\Works\C#\PrivateProject\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Common.xml
-D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.AssemblyInfoInputs.cache
-D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.AssemblyInfo.cs
-D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.csproj.CoreCompileInputs.cache
 D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.DoMain.Core.deps.json
 D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.DoMain.Core.dll
 D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.DoMain.Core.pdb
@@ -39,6 +36,9 @@ D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\bin\Debug\netcorea
 D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Extensions.pdb
 D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\bin\Debug\netcoreapp3.1\St.Exceptions.pdb
 D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.csprojAssemblyReference.cache
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.AssemblyInfoInputs.cache
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.AssemblyInfo.cs
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.csproj.CoreCompileInputs.cache
 D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.csproj.CopyComplete
 D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.dll
 D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.DoMain.Core\obj\Debug\netcoreapp3.1\St.DoMain.Core.pdb

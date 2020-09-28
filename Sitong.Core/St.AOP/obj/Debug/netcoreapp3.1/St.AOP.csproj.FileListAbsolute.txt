@@ -3,3 +3,23 @@ D:\Works\C#\PrivateProject\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.AOP.dll
 D:\Works\C#\PrivateProject\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.AssemblyInfoInputs.cache
 D:\Works\C#\PrivateProject\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.AssemblyInfo.cs
 D:\Works\C#\PrivateProject\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.csprojAssemblyReference.cache
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.AOP.deps.json
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.AOP.dll
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.AOP.pdb
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.Common.dll
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.DoMain.dll
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.Exceptions.dll
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.Extensions.dll
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.DoMain.pdb
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.DoMain.xml
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.Common.pdb
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.Common.xml
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.Exceptions.pdb
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\bin\Debug\netcoreapp3.1\St.Extensions.pdb
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.csprojAssemblyReference.cache
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.AssemblyInfoInputs.cache
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.AssemblyInfo.cs
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.csproj.CoreCompileInputs.cache
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.csproj.CopyComplete
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.dll
+D:\DeskTop File\GitHub\SiTong.Core\Sitong.Core\St.AOP\obj\Debug\netcoreapp3.1\St.AOP.pdb
