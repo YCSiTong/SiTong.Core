@@ -2390,19 +2390,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sn001\\.nuget\\packages\\": {}
+    "C:\\Users\\Sitong\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.AOP\\St.AOP.csproj",
+      "projectUniqueName": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.AOP\\St.AOP.csproj",
       "projectName": "St.AOP",
-      "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.AOP\\St.AOP.csproj",
-      "packagesPath": "C:\\Users\\sn001\\.nuget\\packages\\",
-      "outputPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.AOP\\obj\\",
+      "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.AOP\\St.AOP.csproj",
+      "packagesPath": "C:\\Users\\Sitong\\.nuget\\packages\\",
+      "outputPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.AOP\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sn001\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Sitong\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2415,8 +2415,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain\\St.DoMain.csproj": {
-              "projectPath": "D:\\DeskTop File\\GitHub\\SiTong.Core\\Sitong.Core\\St.DoMain\\St.DoMain.csproj"
+            "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj": {
+              "projectPath": "D:\\Works\\C#\\PrivateProject\\Sitong.Core\\St.DoMain\\St.DoMain.csproj"
             }
           }
         }

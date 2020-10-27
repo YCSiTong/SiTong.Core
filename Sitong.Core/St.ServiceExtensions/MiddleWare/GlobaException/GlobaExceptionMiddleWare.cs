@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using St.Exceptions;
+using St.Extensions;
 using System;
 using System.Threading.Tasks;
 
@@ -34,19 +35,17 @@ namespace St.ServiceExtensions.MiddleWare.GlobaException
         private async Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             context.Response.ContentType = "application/json";
-
+            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
             // TODO:可继续扩展更多自定义异常
-            if (ex is BusinessException)// Service内部主动throw
+            if (ex is BusinessException err)// Service内部主动throw
             {
-                context.Response.StatusCode = StatusCodes.Status403Forbidden;
-                await context.Response.WriteAsync("Service Is Error Please Try again !!!\r\n");
-                await context.Response.WriteAsync("ErrorMsg: " + ex.Message);
+                var errorJson = (new StError { Msg = err.Message, Code = err.Code }).ToJson();
+                await context.Response.WriteAsync(errorJson);
             }
             else
             {
-                context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-                await context.Response.WriteAsync("Service Is Error Please Try again !!!\r\n");
-                await context.Response.WriteAsync("ErrorMsg: " + ex.Message);
+                var errorJson = (new StError { Title = "Service is unavailable !!!", Msg = ex.Message, Code = "999999" }).ToJson();
+                await context.Response.WriteAsync(errorJson);
             }
 
         }
@@ -55,8 +54,16 @@ namespace St.ServiceExtensions.MiddleWare.GlobaException
     internal class StError
     {
         /// <summary>
+        /// 标题头
+        /// </summary>
+        public string Title { get; set; } = "Service is error, Please Try again !!!";
+        /// <summary>
         /// 错误信息
         /// </summary>
         public string Msg { get; set; }
+        /// <summary>
+        /// 错误码
+        /// </summary>
+        public string Code { get; set; }
     }
 }

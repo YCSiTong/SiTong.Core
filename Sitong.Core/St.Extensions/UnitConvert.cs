@@ -88,9 +88,7 @@ namespace St.Extensions
         /// <param name="val"></param>
         /// <returns></returns>
         public static string ToJson(this object val)
-        {
-            return JsonConvert.SerializeObject(val);
-        }
+            => (val.IsNotNull() && val.IsNotEmptyOrNull()) ? JsonConvert.SerializeObject(val) : string.Empty;
         /// <summary>
         /// obj反序列化成实体对象
         /// </summary>
@@ -98,9 +96,7 @@ namespace St.Extensions
         /// <param name="val"></param>
         /// <returns></returns>
         public static T ToEntity<T>(this object val)
-        {
-            return JsonConvert.DeserializeObject<T>(val.ToString());
-        }
+            => (val.IsNotNull() && val.IsNotEmptyOrNull()) ? JsonConvert.DeserializeObject<T>(val.ToString()) : default;
 
         /// <summary>
         /// 将源数据转换为指定类型源数据

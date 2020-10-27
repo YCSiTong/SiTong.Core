@@ -36,14 +36,7 @@ namespace St.Common.Helper
             try
             {
                 var time = DateTime.Now;
-                string path = Path.Combine(_RootPath, $"Logs\\{time:yyyy}\\{time:MM}\\{time:dd}");
-                if (!Directory.Exists(path))
-                {
-                    Directory.CreateDirectory(path);
-                }
-                string logFilePath = Path.Combine(path, $@"{fileName}.log");
-
-                var now = DateTime.Now;
+                string logFilePath = Path.Combine(_RootPath, $"Logs\\{time:yyyy}\\{time:MM}\\{time:dd}", $@"{fileName}.log");
                 string dataStr = "-----------------------------\r\n" +
                                 $"{time:yyyy-MM-dd HH:mm:ss}\r\n" +
                                 $"{string.Join("\r\n", data)}";

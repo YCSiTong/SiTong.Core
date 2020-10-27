@@ -27,6 +27,28 @@ namespace St.Common.RedisCaChe
         /// 清空所有值
         /// </summary>
         void Clear();
+        /// <summary>
+        /// 设置连接Redis的库
+        /// </summary>
+        /// <param name="Db">数据库</param>
+        void SetDbConnection(int Db = 0);
+
+        #region Auto-Increment
+        /// <summary>
+        /// 自动增加
+        /// </summary>
+        /// <param name="key">键名</param>
+        /// <param name="addNumber">数值</param>
+        /// <returns></returns>
+        Task<double> AutoIncrement(string key, double addNumber = 1);
+        /// <summary>
+        /// 自动减少
+        /// </summary>
+        /// <param name="key">键名</param>
+        /// <param name="SubtractNumber">数值</param>
+        /// <returns></returns>
+        Task<double> AutoDecrement(string key, double SubtractNumber = 1);
+        #endregion
 
         #region Key/Val
 

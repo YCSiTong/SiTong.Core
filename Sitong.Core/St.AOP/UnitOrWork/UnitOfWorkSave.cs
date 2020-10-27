@@ -1,6 +1,7 @@
 ﻿using AspectCore.DynamicProxy;
 using St.DoMain.UnitOfWork;
 using St.Extensions;
+using System;
 using System.Threading.Tasks;
 
 namespace St.AOP.UnitOrWork
@@ -12,14 +13,23 @@ namespace St.AOP.UnitOrWork
     {
         public override async Task Invoke(AspectContext context, AspectDelegate next)
         {
-            var unitOfWork = (IUnitOfWork)context.ServiceProvider.GetService(typeof(IUnitOfWork));
-            if (unitOfWork.IsNotNull())
+            try
             {
-                await unitOfWork.UseTransactionAsync(async () =>
+                var unitOfWork = (IUnitOfWork)context.ServiceProvider.GetService(typeof(IUnitOfWork));
+                if (unitOfWork.IsNotNull())
                 {
-                    await next(context);
-                });
+                    await unitOfWork.UseTransactionAsync(async () =>
+                    {
+                        await next(context);
+                    });
+                }
             }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+
         }
     }
 }

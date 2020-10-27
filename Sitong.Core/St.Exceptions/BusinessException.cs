@@ -7,8 +7,14 @@ namespace St.Exceptions
     /// </summary>
     public class BusinessException : Exception
     {
-        public BusinessException(string message) : base(message)
+        /// <summary>
+        /// 错误码
+        /// </summary>
+        public readonly string Code;
+
+        public BusinessException(string message, string code = "5001") : base(message)
         {
+            Code = code;
         }
     }
 }

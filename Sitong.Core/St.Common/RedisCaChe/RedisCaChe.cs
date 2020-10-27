@@ -11,13 +11,15 @@ namespace St.Common.RedisCaChe
     public class RedisCaChe : IRedisCaChe
     {
         private readonly ConnectionMultiplexer _redis;
-        private readonly IDatabase _database;
+        private IDatabase _database;
 
         public RedisCaChe(ConnectionMultiplexer redisConnection)
         {
             _redis = redisConnection;
             _database = redisConnection.GetDatabase();// 可自行扩展选择Redis空间区域例如：redisConnection.GetDatabase(0/1/2/3/4/5...)以此类推
         }
+
+
 
 
         /// <summary>
@@ -34,6 +36,15 @@ namespace St.Common.RedisCaChe
                });
 
            });
+        }
+
+        /// <summary>
+        /// 设置连接Redis的库
+        /// </summary>
+        /// <param name="Db">数据库</param>
+        public void SetDbConnection(int Db = 0)
+        {
+            _database = _redis.GetDatabase(Db);
         }
 
         #region Distributed Lock
@@ -61,6 +72,25 @@ namespace St.Common.RedisCaChe
         {
             return await _database.LockReleaseAsync(key, Task.CurrentId);
         }
+        #endregion
+
+        #region Auto-Increment
+        /// <summary>
+        /// 自动增加
+        /// </summary>
+        /// <param name="key">键名</param>
+        /// <param name="addNumber">数值</param>
+        /// <returns></returns>
+        public async Task<double> AutoIncrement(string key, double addNumber = 1)
+            => (key.IsNotEmptyOrNull() && addNumber > 0) ? await _database.StringIncrementAsync(key, addNumber) : throw new RedisParametersException(nameof(AutoIncrement));
+        /// <summary>
+        /// 自动减少
+        /// </summary>
+        /// <param name="key">键名</param>
+        /// <param name="SubtractNumber">数值</param>
+        /// <returns></returns>
+        public async Task<double> AutoDecrement(string key, double SubtractNumber = 1)
+            => (key.IsNotEmptyOrNull() && SubtractNumber > 0) ? await _database.StringDecrementAsync(key, SubtractNumber) : throw new RedisParametersException(nameof(AutoIncrement));
         #endregion
 
         #region Key/Val
@@ -275,6 +305,8 @@ namespace St.Common.RedisCaChe
         /// <returns></returns>
         public async Task<bool> HSetAsync(string hashName, string field, object val)
             => (hashName.IsNotEmptyOrNull() && field.IsNotEmptyOrNull() && val.IsNotEmptyOrNull()) ? await _database.HashSetAsync(hashName, field, SerializeHelper.Serialize(val)) : throw new RedisParametersException(nameof(HSetAsync));
+
+
 
         #endregion
 
